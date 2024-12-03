@@ -1,0 +1,41 @@
+@use '../../utils/variables' as *;
+
+.landing-page {
+  height: inherit;
+  width: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__headline {
+    font-size: 3rem;
+    color: $primary;
+    margin: 0;
+  }
+
+  &__subheadline {
+    font-size: 1.25rem;
+    color: $gray-dark;
+  }
+
+  &__cta {
+    font-size: 1.25rem;
+    background: $primary-light;
+    border: none;
+    border-radius: 0.5rem;
+    color: $white;
+    padding: 1rem 2rem;
+    cursor: pointer;
+
+    &:hover {
+      background: $primary;
+    }
+  }
+}
+

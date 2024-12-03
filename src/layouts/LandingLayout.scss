@@ -1,0 +1,9 @@
+@use '../utils/variables' as *;
+
+.landing-layout {
+  display: grid;
+  grid-template-rows: 5rem 1fr;
+  height: 100%;
+  width: 100%;
+  padding: 0 2rem;
+}
