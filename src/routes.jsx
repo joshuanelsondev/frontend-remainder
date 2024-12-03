@@ -1,6 +1,6 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import Layout from "./Layout";
+import LandingLayout from "./layouts/LandingLayout";
 import LandingPage from "./pages/landing/LandingPage";
 import ErrorPage from "./pages/error/ErrorPage";
 import AboutPage from "./pages/about/AboutPage";
@@ -11,7 +11,7 @@ import PlansAndPricingPage from "./pages/plansAndPricing/PlansAndPricingPage";
 export default createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: <LandingLayout />,
     errorElement: <ErrorPage />,
     children: [
       {
