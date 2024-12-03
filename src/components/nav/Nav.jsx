@@ -4,26 +4,28 @@ import "./Nav.scss";
 
 export default function Nav() {
   return (
-    <div className="nav">
-      <h1 className="nav__header">Remainder</h1>
-      <div className="nav__links-center">
-        <Link className="nav__link-btn" to={"./about"}>
-          About
-        </Link>
-        <Link className="nav__link-btn" to={"./features"}>
-          Features
-        </Link>
-        <Link className="nav__link-btn" to={"./plansAndPricing"}>
-          Plans & Pricing
-        </Link>
-        <Link className="nav__link-btn" to={"./contact"}>
-          Contact
-        </Link>
+    <nav className="nav">
+      <Link to={"/"} className="nav__header">
+        Remainder
+      </Link>
+      <ul className="center-links">
+        <li className="center-links__link">
+          <Link to={"/about"}>About</Link>
+        </li>
+        <li className="center-links__link">
+          <Link to={"/features"}>Features</Link>
+        </li>
+        <li className="center-links__link">
+          <Link to={"/plansAndPricing"}>Plans & Pricing</Link>
+        </li>
+        <li className="center-links__link">
+          <Link to={"/contact"}>Contact</Link>
+        </li>
+      </ul>
+      <div className="right-links">
+        <button className="right-links__login">Login</button>
+        <button className="right-links__signup">Sign up</button>
       </div>
-      <div className="nav__links-right">
-        <button className="nav__login">Login</button>
-        <button className="nav__signup">Sign up</button>
-      </div>
-    </div>
+    </nav>
   );
 }
