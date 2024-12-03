@@ -1,4 +1,5 @@
 import React from "react";
+import "./FeaturesPage";
 
 export default function FeaturesPage() {
   return (
