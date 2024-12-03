@@ -3,6 +3,7 @@
 .nav {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     &__header {
         font-size: 1.5rem;
@@ -49,9 +50,9 @@
         background-color: $primary;
         color: $white;
         border: none;
-        border-radius: 0.5rem;
+        border-radius: 0.25rem;
         height: 2rem;
-        padding: 0.5rem;
+        padding: 0.5rem 1rem;
         cursor: pointer;
 
         &:hover {
