@@ -4,14 +4,16 @@
   height: inherit;
   width: inherit;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: start;
+  padding-top: 8rem;
 }
+
 
 .hero {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
+  width: 25rem;
 
   &__headline {
     font-size: 3rem;
@@ -21,7 +23,7 @@
 
   &__subheadline {
     font-size: 1.25rem;
-    color: $gray-dark;
+    color: $black;
   }
 
   &__cta {
@@ -32,6 +34,7 @@
     color: $white;
     padding: 1rem 2rem;
     cursor: pointer;
+    z-index: 5;
 
     &:hover {
       background: $primary;
