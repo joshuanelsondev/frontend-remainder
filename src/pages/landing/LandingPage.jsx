@@ -1,7 +1,10 @@
 import React from "react";
+import { useState } from "react";
 import "./LandingPage.scss";
 
 export default function LandingPage() {
+  const [loginModal, setLoginModal] = useState(false);
+  const [signupModal, setSignupModal] = useState(false);
   return (
     <div className="landing-page">
       <section className="hero">
@@ -11,6 +14,8 @@ export default function LandingPage() {
         </h3>
         <button className="hero__cta">Get Started</button>
       </section>
+      {loginModal && <LoginModal setLoginModal={setLoginModal} />}
+      {signupModal && <SignupModal setSignupModal={setSignupModal} />}
     </div>
   );
 }
