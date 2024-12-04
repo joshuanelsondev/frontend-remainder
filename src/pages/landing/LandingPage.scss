@@ -24,6 +24,7 @@
   &__subheadline {
     font-size: 1.25rem;
     color: $black;
+    font-family: $secondary-font
   }
 
   &__cta {
@@ -35,6 +36,7 @@
     padding: 1rem 2rem;
     cursor: pointer;
     z-index: 5;
+    font-family: $secondary-font;
 
     &:hover {
       background: $primary;
