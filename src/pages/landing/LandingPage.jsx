@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import LoginModal from "../../modals/login/LoginModal";
+import SignupModal from "../../modals/signup/SignupModal";
 import "./LandingPage.scss";
 
 export default function LandingPage() {

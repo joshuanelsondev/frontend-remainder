@@ -10,6 +10,11 @@ export default function Nav() {
       </Link>
       <ul className="center-links">
         <li>
+          <Link className="center-links__link" to={"/"}>
+            Home
+          </Link>
+        </li>
+        <li>
           <Link className="center-links__link" to={"/about"}>
             About
           </Link>
@@ -17,11 +22,6 @@ export default function Nav() {
         <li>
           <Link className="center-links__link" to={"/features"}>
             Features
-          </Link>
-        </li>
-        <li>
-          <Link className="center-links__link" to={"/plansAndPricing"}>
-            Plans & Pricing
           </Link>
         </li>
         <li>
