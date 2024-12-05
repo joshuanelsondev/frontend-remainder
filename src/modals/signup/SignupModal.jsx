@@ -60,10 +60,11 @@ export default function SignupModal({ setActiveModal }) {
   };
 
   return (
-    <div className="create-account">
-      <form ref={formRef} className="ca-form" onSubmit={handleSignUp}>
-        <h1 className="ca-form__header">Sign up</h1>
-        <div className="ca-form__first-name">
+    <div className="signup">
+      <div className="signup__overlay"></div>
+      <form ref={formRef} className="signup-form" onSubmit={handleSignUp}>
+        <h1 className="signup-form__header">Sign up</h1>
+        <div className="signup-form__first-name">
           <input
             id="first-name"
             type="text"
@@ -75,7 +76,7 @@ export default function SignupModal({ setActiveModal }) {
           />
           <label htmlFor="first-name">First Name</label>
         </div>
-        <div className="ca-form__last-name">
+        <div className="signup-form__last-name">
           <input
             id="last-name"
             type="text"
@@ -87,7 +88,7 @@ export default function SignupModal({ setActiveModal }) {
           />
           <label htmlFor="last-name">Last Name</label>
         </div>
-        <div className="ca-form__email">
+        <div className="signup-form__email">
           <input
             id="email"
             type="text"
@@ -99,7 +100,7 @@ export default function SignupModal({ setActiveModal }) {
           />
           <label htmlFor="email">Email</label>
         </div>
-        <div className="ca-form__create-pwd">
+        <div className="signup-form__create-pwd">
           <input
             id="create-pwd"
             type="password"
@@ -111,7 +112,7 @@ export default function SignupModal({ setActiveModal }) {
           />
           <label htmlFor="create-pwd">Create Password</label>
         </div>
-        <div className="ca-form__re-type-pwd">
+        <div className="signup-form__re-type-pwd">
           <input
             id="re-type-pwd"
             type="password"
@@ -123,10 +124,10 @@ export default function SignupModal({ setActiveModal }) {
           />
           <label htmlFor="re-type-pwd">Re-type Password</label>
         </div>
-        <button className="ca-form__create-btn">Create account</button>
+        <button className="signup-form__create-btn">Create account</button>
         <button
           onClick={() => setActiveModal("login")}
-          className="ca-form__sign-in"
+          className="signup-form__login"
         >
           Already have an account? Sign in
         </button>
