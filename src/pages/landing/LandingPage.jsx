@@ -1,12 +1,10 @@
 import React from "react";
-import { useState } from "react";
-import LoginModal from "../../modals/login/LoginModal";
-import SignupModal from "../../modals/signup/SignupModal";
 import "./LandingPage.scss";
+import { useModal } from "../../modals/ModalContext";
 
 export default function LandingPage() {
-  const [loginModal, setLoginModal] = useState(false);
-  const [signupModal, setSignupModal] = useState(false);
+  const { setActiveModal } = useModal();
+
   return (
     <div className="landing-page">
       <section className="hero">
@@ -14,10 +12,10 @@ export default function LandingPage() {
         <h3 className="hero__subheadline">
           Master your budget and turn savings into smart investments.
         </h3>
-        <button className="hero__cta">Get Started</button>
+        <button onClick={() => setActiveModal("login")} className="hero__cta">
+          Get Started
+        </button>
       </section>
-      {loginModal && <LoginModal setLoginModal={setLoginModal} />}
-      {signupModal && <SignupModal setSignupModal={setSignupModal} />}
     </div>
   );
 }
