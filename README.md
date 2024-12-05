@@ -1,15 +1,16 @@
 # Remainder - Budgeting, Savings, and Investment Recommendation App
 
-You can access the live version of Remainder here:
-**_[Remainder](https://remainderinvest.netlify.app/)_**
-
-Remainder backend repo [here](https://github.com/joshuanelsondev/backend-remainder)
-
 ## Overview
 
 Remainder is a budgeting, savings, and investment recommendation application designed to help users effectively manage their finances and maximize their savings. Remainder allows users to track their incomes and expenses, calculate their disposable income, and determine what remains. Low-risk personalized investment suggestions are provided to the user, easing the struggle of not knowing what to do with that excess income. By providing personalized investment suggestions, Remainder empowers users to make informed decisions about their money, maximize their savings, and grow their wealth over time.
 
 This project is built with **Vite** and **ReactJS** for a responsive, modern, and fast front-end user experience.
+
+#### You can access the live version of Remainder here:
+
+**_[Remainder](https://remainderinvest.netlify.app/)_**
+
+#### Remainder backend repo **_[here](https://github.com/joshuanelsondev/backend-remainder)_**
 
 ## Features
 
