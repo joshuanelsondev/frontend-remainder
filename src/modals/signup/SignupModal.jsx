@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useState, useRef } from "react";
+import axios from "../../api/axios";
 import "./SignupModal.scss";
 import useClickOutside from "../../hooks/useClickOutside";
+import validateInput from "../../utils/validateInput";
 export default function SignupModal({ setActiveModal }) {
   const formRef = useRef(null);
   const [formState, setFormState] = useState({
@@ -12,57 +14,56 @@ export default function SignupModal({ setActiveModal }) {
     password: "",
     confirmPassword: "",
   });
-  const [error, setError] = useState(null);
+  const [verifyMessage, setVerifyMessage] = useState(null);
+  const [errors, setErrors] = useState({});
+  const [dbError, setDbError] = useState(null);
 
   useClickOutside(formRef, () => setActiveModal(null));
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
     setFormState({ ...formState, [name]: value });
-    setError(null);
   };
 
-  const handleSignUp = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const { email, password, confirmPassword } = formState;
-    console.log(email, password, confirmPassword);
-  };
+    const { confirmPassword, ...apiData } = formState;
 
-  const handleFormSubmissionErrors = (error) => {
-    switch (error.code) {
-      case "auth/email-already-in-use":
-        setError("This email address is already in use.");
-        break;
-      case "auth/invalid-email":
-        setError("Please enter a valid email address.");
-        break;
-      case "auth/operation-not-allowed":
-        setError("Email/password accounts are not enabled. Contact support.");
-        break;
-      case "auth/weak-password":
-        setError(
-          "Password must contain a lower case character, an upper case character, a non-alphanumeric character, and be at least 6 characters long."
-        );
-        break;
-      case "auth/network-request-failed":
-        setError("Network error. Please check your internet connection.");
-        break;
-      case "auth/too-many-requests":
-        setError("Too many requests. Please try again later.");
-        break;
-      case "auth/internal-error":
-        setError("An internal error occurred. Please try again.");
-        break;
-      default:
-        setError("An unknown error occurred. Please try again.");
-        break;
+    const allErrors = {};
+
+    Object.keys(formState).forEach((fieldName) => {
+      const fieldErrors = validateInput(fieldName, formState[fieldName]);
+      Object.assign(allErrors, fieldErrors);
+    });
+
+    if (formState.password !== confirmPassword) {
+      allErrors.confirmPassword = "Passwords do not match.";
     }
+
+    if (Object.keys(allErrors).length > 0) {
+      setErrors(allErrors);
+      return;
+    }
+
+    try {
+      await axios.post("/auth/signup", apiData);
+      setVerifyMessage(`Verification email sent to ${formState.email}`);
+    } catch (error) {
+      setDbError(error.response?.data?.message || "Something went wrong");
+      setErrors({});
+    }
+    console.log(formState);
   };
 
   return (
     <div className="signup">
       <div className="signup__overlay"></div>
-      <form ref={formRef} className="signup-form" onSubmit={handleSignUp}>
+      <form
+        ref={formRef}
+        className="signup-form"
+        onSubmit={handleSubmit}
+        noValidate
+      >
         <h1 className="signup-form__header">Sign up</h1>
         <div className="signup-form__first-name">
           <input
@@ -75,6 +76,7 @@ export default function SignupModal({ setActiveModal }) {
             required
           />
           <label htmlFor="first-name">First Name</label>
+          {errors.firstName && <p className="error">{errors.firstName}</p>}
         </div>
         <div className="signup-form__last-name">
           <input
@@ -87,6 +89,7 @@ export default function SignupModal({ setActiveModal }) {
             required
           />
           <label htmlFor="last-name">Last Name</label>
+          {errors.lastName && <p className="error">{errors.lastName}</p>}
         </div>
         <div className="signup-form__email">
           <input
@@ -99,6 +102,7 @@ export default function SignupModal({ setActiveModal }) {
             required
           />
           <label htmlFor="email">Email</label>
+          {errors.email && <p className="error">{errors.email}</p>}
         </div>
         <div className="signup-form__create-pwd">
           <input
@@ -111,6 +115,7 @@ export default function SignupModal({ setActiveModal }) {
             required
           />
           <label htmlFor="create-pwd">Create Password</label>
+          {errors.password && <p className="error">{errors.password}</p>}
         </div>
         <div className="signup-form__re-type-pwd">
           <input
@@ -123,6 +128,9 @@ export default function SignupModal({ setActiveModal }) {
             required
           />
           <label htmlFor="re-type-pwd">Re-type Password</label>
+          {errors.confirmPassword && (
+            <p className="error">{errors.confirmPassword}</p>
+          )}
         </div>
         <button className="signup-form__create-btn">Create account</button>
         <button
@@ -131,11 +139,8 @@ export default function SignupModal({ setActiveModal }) {
         >
           Already have an account? Sign in
         </button>
-        {error && (
-          <div className="error-modal">
-            <h2 className="error-modal__message">{error}</h2>
-          </div>
-        )}
+        {dbError && <p className="db-error">{dbError}</p>}
+        {verifyMessage && <p className="verify-message">{verifyMessage}</p>}
       </form>
     </div>
   );
