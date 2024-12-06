@@ -1,17 +1,34 @@
-import React from "react";
+import { React, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import { useState, useRef } from "react";
+import axios from "../../api/axios";
 import useClickOutside from "../../hooks/useClickOutside";
 import "./LoginModal.scss";
 
 export default function LoginModal({ setActiveModal }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
   const formRef = useRef(null);
   useClickOutside(formRef, () => setActiveModal(null));
 
-  const handleSignIn = (event) => {
+  const handleSignIn = async (event) => {
     event.preventDefault();
+    try {
+      const response = await axios.post("/auth/login", { email, password });
+
+      const { token } = response.data;
+
+      sessionStorage.setItem("authToken", token);
+
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("Login failed", error);
+      setError(
+        error.response?.data?.message || "Login failed. Please try again."
+      );
+    }
   };
 
   return (
@@ -20,6 +37,7 @@ export default function LoginModal({ setActiveModal }) {
       <form ref={formRef} className="login__form" onSubmit={handleSignIn}>
         <h2 className="login__header">Login</h2>
         <div className="login__email">
+          {error && <p style={{ color: "red" }}>{error}</p>}
           <input
             id="email"
             value={email}
