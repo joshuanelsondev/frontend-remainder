@@ -11,6 +11,7 @@ import FeaturesPage from "./pages/features/FeaturesPage";
 import LandingPage from "./pages/landing/LandingPage";
 import VerificationSuccess from "./pages/verification/VerificationSuccess";
 import VerificationFailed from "./pages/verification/VerificationFailed";
+import MFASetupPage from "./pages/mfa/MFASetupPage";
 
 export default createBrowserRouter([
   {
@@ -46,6 +47,10 @@ export default createBrowserRouter([
       {
         path: "/verification-failed",
         element: <VerificationFailed />,
+      },
+      {
+        path: "/mfa-setup",
+        element: <MFASetupPage />,
       },
     ],
   },

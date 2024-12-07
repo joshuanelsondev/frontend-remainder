@@ -2,9 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useState, useRef } from "react";
 import axios from "../../api/axios";
-import "./SignupModal.scss";
 import useClickOutside from "../../hooks/useClickOutside";
 import validateInput from "../../utils/validateInput";
+import { signupUser } from "../../api/auth";
+import "./SignupModal.scss";
+
 export default function SignupModal({ setActiveModal }) {
   const formRef = useRef(null);
   const [formState, setFormState] = useState({
@@ -46,13 +48,15 @@ export default function SignupModal({ setActiveModal }) {
     }
 
     try {
-      await axios.post("/auth/signup", apiData);
-      setVerifyMessage(`Verification email sent to ${formState.email}`);
+      await signupUser(apiData);
+      setVerifyMessage(
+        "Almost there! Please check your email to verify your account and complete the signup process."
+      );
     } catch (error) {
       setDbError(error.response?.data?.message || "Something went wrong");
       setErrors({});
     }
-    console.log(formState);
+    console.log(apiData);
   };
 
   return (
