@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useModal } from "../../modals/ModalContext";
+import { useModal } from "../../context/ModalContext";
 
 export default function VerificationSuccess() {
   const { setActiveModal } = useModal();
