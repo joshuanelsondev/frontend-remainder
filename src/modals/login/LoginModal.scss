@@ -110,3 +110,23 @@
         }
     }
 }
+
+.success {
+    height: 5rem;
+    width: 15rem;
+    background-color: $white;
+    position: inherit;
+    top: inherit;
+    left: inherit;
+    transform: inherit;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5px $gray-dark;
+
+    &__message {
+        color: $primary;
+        font-size: 1.5rem;
+    }
+}

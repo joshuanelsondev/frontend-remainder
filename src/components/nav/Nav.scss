@@ -36,7 +36,7 @@
     align-items: center;
     gap: 1rem;
     
-    &__login {
+    &__login, &__logout {
         font-family: $primary-font;
         background: none;
         border: none;

@@ -76,7 +76,9 @@ export default function SignupModal({ setActiveModal }) {
             required
           />
           <label htmlFor="first-name">First Name</label>
-          {errors.firstName && <p className="error">{errors.firstName}</p>}
+          {errors.firstName && (
+            <p className="signup-form__error">{errors.firstName}</p>
+          )}
         </div>
         <div className="signup-form__last-name">
           <input
@@ -89,7 +91,9 @@ export default function SignupModal({ setActiveModal }) {
             required
           />
           <label htmlFor="last-name">Last Name</label>
-          {errors.lastName && <p className="error">{errors.lastName}</p>}
+          {errors.lastName && (
+            <p className="signup-form__error">{errors.lastName}</p>
+          )}
         </div>
         <div className="signup-form__email">
           <input
@@ -102,7 +106,7 @@ export default function SignupModal({ setActiveModal }) {
             required
           />
           <label htmlFor="email">Email</label>
-          {errors.email && <p className="error">{errors.email}</p>}
+          {errors.email && <p className="signup-form__error">{errors.email}</p>}
         </div>
         <div className="signup-form__create-pwd">
           <input
@@ -115,7 +119,9 @@ export default function SignupModal({ setActiveModal }) {
             required
           />
           <label htmlFor="create-pwd">Create Password</label>
-          {errors.password && <p className="error">{errors.password}</p>}
+          {errors.password && (
+            <p className="signup-form__error">{errors.password}</p>
+          )}
         </div>
         <div className="signup-form__re-type-pwd">
           <input
@@ -129,7 +135,7 @@ export default function SignupModal({ setActiveModal }) {
           />
           <label htmlFor="re-type-pwd">Re-type Password</label>
           {errors.confirmPassword && (
-            <p className="error">{errors.confirmPassword}</p>
+            <p className="signup-form__error">{errors.confirmPassword}</p>
           )}
         </div>
         <button className="signup-form__create-btn">Create account</button>

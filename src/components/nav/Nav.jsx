@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { useModal } from "../../context/ModalContext";
 import "./Nav.scss";
@@ -7,6 +7,11 @@ import "./Nav.scss";
 export default function Nav() {
   const { setActiveModal } = useModal();
   const { isLoggedIn, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout(navigate);
+  };
 
   return (
     <nav className="nav">
@@ -37,7 +42,7 @@ export default function Nav() {
       </ul>
       <div className="right-links">
         {isLoggedIn ? (
-          <button onClick={logout} className="right-links__logout">
+          <button onClick={handleLogout} className="right-links__logout">
             Logout
           </button>
         ) : (

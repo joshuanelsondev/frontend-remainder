@@ -16,9 +16,10 @@ export const AuthProvider = ({ children }) => {
     setIsLoggedIn(true);
   };
 
-  const logout = () => {
+  const logout = (navigate) => {
     sessionStorage.removeItem("authToken");
     setIsLoggedIn(false);
+    navigate("/");
   };
 
   return (
