@@ -27,7 +27,6 @@ axiosInstance.interceptors.response.use(
   (error) => {
     if (error.response && error.response.status === 401) {
       sessionStorage.removeItem("authToken");
-      window.location.href = "/";
     }
     return Promise.reject(error);
   }
