@@ -1,6 +1,6 @@
 import React from "react";
 import "./LandingPage.scss";
-import { useModal } from "../../modals/ModalContext";
+import { useModal } from "../../context/ModalContext";
 
 export default function LandingPage() {
   const { setActiveModal } = useModal();

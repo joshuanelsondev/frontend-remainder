@@ -1,5 +1,5 @@
 import React from "react";
-import { useModal } from "./ModalContext";
+import { useModal } from "../context/ModalContext";
 import LoginModal from "../modals/login/LoginModal";
 import SignupModal from "../modals/signup/SignupModal";
 import ResetPasswordModal from "../modals/resetPassword/ResetPasswordModal";

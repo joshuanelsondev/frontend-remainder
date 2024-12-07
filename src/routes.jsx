@@ -6,7 +6,7 @@ import ErrorPage from "./pages/error/ErrorPage";
 import AboutPage from "./pages/about/AboutPage";
 import ContactPage from "./pages/contact/ContactPage";
 import FeaturesPage from "./pages/features/FeaturesPage";
-import VerificationSuccess from "./pages/verification/VerificationSucces";
+import VerificationSuccess from "./pages/verification/VerificationSuccess";
 import VerificationFailed from "./pages/verification/VerificationFailed";
 
 export default createBrowserRouter([
@@ -32,11 +32,11 @@ export default createBrowserRouter([
         element: <FeaturesPage />,
       },
       {
-        path: "/verifation-success",
+        path: "/verification-success",
         element: <VerificationSuccess />,
       },
       {
-        path: "/verifation-failed",
+        path: "/verification-failed",
         element: <VerificationFailed />,
       },
     ],
