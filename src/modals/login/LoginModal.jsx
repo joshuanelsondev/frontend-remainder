@@ -32,7 +32,7 @@ export default function LoginModal({ setActiveModal }) {
       setTimeout(() => {
         setActiveModal(null);
       }, 1200);
-      navigate("/user-info");
+      navigate("/dashboard");
     } catch (error) {
       console.error("Login failed", error);
       setError(

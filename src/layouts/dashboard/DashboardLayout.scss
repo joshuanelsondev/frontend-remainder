@@ -1,0 +1,9 @@
+@use '../../utils/variables' as *;
+
+.dashboard-layout {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 15rem 1fr;
+
+}
