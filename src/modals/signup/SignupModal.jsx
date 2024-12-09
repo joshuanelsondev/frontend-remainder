@@ -55,7 +55,6 @@ export default function SignupModal({ setActiveModal }) {
       setDbError(error.response?.data?.message || "Something went wrong");
       setErrors({});
     }
-    console.log(apiData);
   };
 
   return (
