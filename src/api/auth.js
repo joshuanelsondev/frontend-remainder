@@ -15,7 +15,6 @@ export const getRegistrationOptions = async (email) => {
 export const verifyCredential = async (email, credential) => {
   const token = sessionStorage.getItem("authToken");
   if (!token) throw new Error("No auth token found. Please log in.");
-
   const response = await axios.post(
     "/auth/verify-registration",
     { email, credential },

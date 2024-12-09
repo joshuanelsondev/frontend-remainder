@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useState, useRef } from "react";
-import axios from "../../api/axios";
 import useClickOutside from "../../hooks/useClickOutside";
 import validateInput from "../../utils/validateInput";
 import { signupUser } from "../../api/auth";
