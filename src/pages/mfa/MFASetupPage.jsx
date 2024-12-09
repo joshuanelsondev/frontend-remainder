@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { client } from "@passwordless-id/webauthn";
-import { getRegistrationOptions, verifyCredential } from "../../api/auth";
+import { getRegistrationOptions } from "../../api/auth";
 import { useModal } from "../../context/ModalContext";
 import "./MFASetupPage.scss";
 
@@ -25,7 +25,7 @@ export default function MFASetupPage() {
         }
 
         const options = await getRegistrationOptions(email);
-        const credential = await client.register({
+        await client.register({
           ...options,
         });
 
