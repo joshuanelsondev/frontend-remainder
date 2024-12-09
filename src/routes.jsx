@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { useRoutes, Navigate } from "react-router-dom";
 
 import { AuthContext } from "./context/AuthContext";
 
 // Layouts
-import LandingLayout from "./layouts/LandingLayout";
-import DashboardLayout from "./layouts/DashboardLayout";
+import LandingLayout from "./layouts/landing/LandingLayout";
+import DashboardLayout from "./layouts/dashboard/DashboardLayout";
 
 // Landing Layout Pages
 import AboutPage from "./pages/about/AboutPage";
@@ -26,82 +26,44 @@ import Budget from "./pages/budget/Budget";
 import Investments from "./pages/investments/Investments";
 import Settings from "./pages/settings/Settings";
 
-const { isLoggedIn } = useContext(AuthContext);
+export default function AppRoutes() {
+  const { isLoggedIn } = useContext(AuthContext);
 
-export default createBrowserRouter([
-  {
-    path: "/",
-    element: <LandingLayout />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "/",
-        element: <LandingPage />,
-      },
-      {
-        path: "/about",
-        element: <AboutPage />,
-      },
-      {
-        path: "/contact",
-        element: <ContactPage />,
-      },
+  const routes = [
+    {
+      path: "/",
+      element: <LandingLayout />,
+      errorElement: <ErrorPage />,
+      children: [
+        { path: "/", element: <LandingPage /> },
+        { path: "/about", element: <AboutPage /> },
+        { path: "/contact", element: <ContactPage /> },
+        { path: "/features", element: <FeaturesPage /> },
+        { path: "/verification-success", element: <VerificationSuccess /> },
+        { path: "/verification-failed", element: <VerificationFailed /> },
+        { path: "/mfa-setup", element: <MFASetupPage /> },
+      ],
+    },
+    ...(isLoggedIn
+      ? [
+          {
+            path: "/dashboard",
+            element: <DashboardLayout />,
+            errorElement: <ErrorPage />,
+            children: [
+              { path: "/dashboard", element: <DashboardPage /> },
+              { path: "/dashboard/profile", element: <UserProfile /> },
+              { path: "/dashboard/incomes", element: <Incomes /> },
+              { path: "/dashboard/expenses", element: <Expenses /> },
+              { path: "/dashboard/budget", element: <Budget /> },
+              { path: "/dashboard/investments", element: <Investments /> },
+              { path: "/dashboard/settings", element: <Settings /> },
+            ],
+          },
+        ]
+      : []),
+    { path: "*", element: <Navigate to="/" replace /> }, // Redirect unknown routes
+  ];
 
-      {
-        path: "/features",
-        element: <FeaturesPage />,
-      },
-      {
-        path: "/verification-success",
-        element: <VerificationSuccess />,
-      },
-      {
-        path: "/verification-failed",
-        element: <VerificationFailed />,
-      },
-      {
-        path: "/mfa-setup",
-        element: <MFASetupPage />,
-      },
-    ],
-  },
-  ...(isLoggedIn
-    ? [
-        {
-          path: "/dashboard",
-          element: <DashboardLayout />,
-          errorElement: <ErrorPage />,
-          children: [
-            {
-              path: "/dashboard",
-              element: <DashboardPage />,
-            },
-            {
-              path: "/dashboard/profile",
-              element: <UserProfile />,
-            },
-            {
-              path: "/dashboard/incomes",
-              element: <Incomes />,
-            },
-            {
-              path: "/dashboard/expenses",
-              element: <Expenses />,
-            },
-            {
-              path: "/dashboard/budget",
-              element: <Budget />,
-            },
-            {
-              path: "/dashboard/investments",
-              element: <Investments />,
-            },
-            {
-              path: "/dashboard/settings",
-              element: <Settings />,
-            },
-          ],
-        },
-      ]
-    : []),
-]);
+  return useRoutes(routes);
+}

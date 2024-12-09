@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function Expenses() {
+export default function SideNav() {
   return (
     <div>
-      <h4>Expenses</h4>
+      <h4>SideNav</h4>
     </div>
   );
 }
