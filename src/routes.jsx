@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useRoutes, Navigate } from "react-router-dom";
 
-import { AuthContext } from "./context/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoutes";
 
 // Layouts
 import LandingLayout from "./layouts/landing/LandingLayout";
@@ -20,6 +20,7 @@ import MFASetupPage from "./pages/mfa/MFASetupPage";
 // Dashboard Layout Pages
 import DashboardPage from "./pages/dashboard/DashboardPage";
 import UserProfile from "./pages/userProfile/UserProfile";
+import UserInfo from "./pages/userInfo/UserInfo";
 import Incomes from "./pages/incomes/Incomes";
 import Expenses from "./pages/expenses/Expenses";
 import Budget from "./pages/budget/Budget";
@@ -27,9 +28,9 @@ import Investments from "./pages/investments/Investments";
 import Settings from "./pages/settings/Settings";
 
 export default function AppRoutes() {
-  const { isLoggedIn } = useContext(AuthContext);
+  const sessionToken = sessionStorage.getItem("authToken");
 
-  const routes = [
+  const landingRoutes = [
     {
       path: "/",
       element: <LandingLayout />,
@@ -39,31 +40,38 @@ export default function AppRoutes() {
         { path: "/about", element: <AboutPage /> },
         { path: "/contact", element: <ContactPage /> },
         { path: "/features", element: <FeaturesPage /> },
-        { path: "/verification-success", element: <VerificationSuccess /> },
+        {
+          path: "/verification-success",
+          element: <VerificationSuccess />,
+        },
         { path: "/verification-failed", element: <VerificationFailed /> },
         { path: "/mfa-setup", element: <MFASetupPage /> },
       ],
     },
-    ...(isLoggedIn
-      ? [
-          {
-            path: "/dashboard",
-            element: <DashboardLayout />,
-            errorElement: <ErrorPage />,
-            children: [
-              { path: "/dashboard", element: <DashboardPage /> },
-              { path: "/dashboard/profile", element: <UserProfile /> },
-              { path: "/dashboard/incomes", element: <Incomes /> },
-              { path: "/dashboard/expenses", element: <Expenses /> },
-              { path: "/dashboard/budget", element: <Budget /> },
-              { path: "/dashboard/investments", element: <Investments /> },
-              { path: "/dashboard/settings", element: <Settings /> },
-            ],
-          },
-        ]
-      : []),
-    { path: "*", element: <Navigate to="/" replace /> }, // Redirect unknown routes
+    { path: "*", element: <Navigate to="/" replace /> },
+  ];
+  const dashboardRoutes = [
+    {
+      path: "/",
+      element: (
+        <ProtectedRoute>
+          <DashboardLayout />
+        </ProtectedRoute>
+      ),
+      errorElement: <ErrorPage />,
+      children: [
+        { path: "/dashboard", element: <DashboardPage /> },
+        { path: "/user-info", element: <UserInfo /> },
+        { path: "/profile", element: <UserProfile /> },
+        { path: "/incomes", element: <Incomes /> },
+        { path: "/expenses", element: <Expenses /> },
+        { path: "/budget", element: <Budget /> },
+        { path: "/investments", element: <Investments /> },
+        { path: "/settings", element: <Settings /> },
+      ],
+    },
+    { path: "*", element: <Navigate to="/" replace /> },
   ];
 
-  return useRoutes(routes);
+  return useRoutes(sessionToken ? dashboardRoutes : landingRoutes);
 }
