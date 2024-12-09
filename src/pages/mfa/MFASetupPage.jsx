@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { client } from "@passwordless-id/webauthn";
-import { getRegistrationOptions } from "../../api/auth";
+import { getRegistrationOptions, verifyCredential } from "../../api/auth";
 import { useModal } from "../../context/ModalContext";
 import "./MFASetupPage.scss";
 
@@ -10,25 +10,26 @@ export default function MFASetupPage() {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const email = searchParams.get("email");
+  const token = searchParams.get("token");
   const { setActiveModal } = useModal();
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (token) {
+      sessionStorage.setItem("authToken", token);
+    }
     const setupMFA = async () => {
       try {
         if (!email) {
           throw new Error("Email is required to complete MFA setup.");
         }
-        console.log("EMAIL:", email);
 
-        const registrationOptions = await getRegistrationOptions(email);
-
-        console.log("REGISTRATIONOPTIONS:", registrationOptions);
-        await client.register({
-          challenge: registrationOptions.challenge,
-          user: registrationOptions.user,
-          ...registrationOptions,
+        const options = await getRegistrationOptions(email);
+        const credential = await client.register({
+          ...options,
         });
+
+        // await verifyCredential(email, options);
 
         alert("MFA setup completed successfully!");
         navigate("/");
@@ -45,7 +46,7 @@ export default function MFASetupPage() {
     };
 
     setupMFA();
-  }, [email, navigate]);
+  }, [email, token, navigate]);
 
   if (isLoading) {
     return (
