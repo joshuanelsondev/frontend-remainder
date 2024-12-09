@@ -19,6 +19,7 @@ export default function ResetPasswordModal({ setActiveModal }) {
         </div>
         <button className="rp-form__reset">Send Reset Link</button>
         <button
+          type="button"
           onClick={() => setActiveModal("login")}
           className="rp-form__login"
         >

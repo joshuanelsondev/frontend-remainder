@@ -92,12 +92,14 @@ export default function LoginModal({ setActiveModal }) {
           </button>
           <div className="login__links">
             <button
+              type="button"
               onClick={() => setActiveModal("resetPassword")}
               className="login__resetPassword"
             >
               Forgot Password?
             </button>
             <button
+              type="button"
               onClick={() => setActiveModal("signup")}
               className="login__signup"
             >

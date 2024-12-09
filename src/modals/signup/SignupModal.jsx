@@ -18,8 +18,13 @@ export default function SignupModal({ setActiveModal }) {
   const [verifyMessage, setVerifyMessage] = useState(null);
   const [errors, setErrors] = useState({});
   const [dbError, setDbError] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  useClickOutside(formRef, () => setActiveModal(null));
+  useClickOutside(formRef, () => {
+    if (!isSubmitting) {
+      setActiveModal(null);
+    }
+  });
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
@@ -28,6 +33,8 @@ export default function SignupModal({ setActiveModal }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsSubmitting(true);
+
     const { confirmPassword, ...apiData } = formState;
 
     const allErrors = {};
@@ -54,6 +61,8 @@ export default function SignupModal({ setActiveModal }) {
     } catch (error) {
       setDbError(error.response?.data?.message || "Something went wrong");
       setErrors({});
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -142,6 +151,7 @@ export default function SignupModal({ setActiveModal }) {
         </div>
         <button className="signup-form__create-btn">Create account</button>
         <button
+          type="submit"
           onClick={() => setActiveModal("login")}
           className="signup-form__login"
         >
