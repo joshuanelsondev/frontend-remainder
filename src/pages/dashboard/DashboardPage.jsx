@@ -4,7 +4,7 @@ import "./DashboardPage.scss";
 export default function DashboardPage() {
   return (
     <div>
-      <h1>Dashboard Page</h1>
+      <h1>Welcome to Remainder</h1>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-@use '../utils/variables' as *;
+@use '../../utils/variables' as *;
 
 .landing-layout {
   display: grid;
@@ -6,7 +6,7 @@
   height: 100%;
   width: 100%;
   padding: 0 2rem;
-  background-image: url('../assets/backgroundImages/plant-growing-from-coins-glass-jar-blurred-nature.jpg');
+  background-image: url('../../assets/backgroundImages/plant-growing-from-coins-glass-jar-blurred-nature.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
