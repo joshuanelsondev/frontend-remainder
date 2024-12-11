@@ -3,7 +3,7 @@ import "./DashboardPage.scss";
 
 export default function DashboardPage() {
   return (
-    <div>
+    <div className="dashboard">
       <h1>Welcome to Remainder</h1>
     </div>
   );

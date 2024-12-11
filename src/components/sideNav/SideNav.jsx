@@ -23,7 +23,7 @@ export default function SideNav() {
         <li className="sidenav-link">
           <FaHome className="sidenav-link__icon" />
           <Link className="sidenav-link__link" to={"/dashboard"}>
-            Home
+            Dashboard
           </Link>
         </li>
         <li className="sidenav-link">
