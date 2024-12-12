@@ -20,55 +20,53 @@ export default function SideNav() {
         Remainder
       </Link>
       <ul className="sidenav-links">
-        <li className="sidenav-link">
-          <FaHome className="sidenav-link__icon" />
-          <Link className="sidenav-link__link" to={"/dashboard"}>
+        <Link className="sidenav-link" to={"/dashboard"}>
+          <li className="sidenav-link">
+            <FaHome className="sidenav-link__icon" />
             Dashboard
-          </Link>
-        </li>
-        <li className="sidenav-link">
-          <FaUser className="sidenav-link__icon" />
-          <Link className="sidenav-link__link" to={"/profile"}>
+          </li>
+        </Link>
+        <Link className="sidenav-link" to={"/profile"}>
+          <li className="sidenav-link">
+            <FaUser className="sidenav-link__icon" />
             Profile
-          </Link>
-        </li>
-        <li className="sidenav-link">
-          <FaMoneyBill className="sidenav-link__icon" />
-          <Link className="sidenav-link__link" to={"/incomes"}>
+          </li>
+        </Link>
+        <Link className="sidenav-link" to={"/incomes"}>
+          <li className="sidenav-link">
+            <FaMoneyBill className="sidenav-link__icon" />
             Incomes
-          </Link>
-        </li>
-        <li className="sidenav-link">
-          <FaMoneyBill className="sidenav-link__icon" />
-          <Link className="sidenav-link__link" to={"/expenses"}>
+          </li>
+        </Link>
+        <Link className="sidenav-link" to={"/expenses"}>
+          <li className="sidenav-link">
+            <FaMoneyBill className="sidenav-link__icon" />
             Expenses
-          </Link>
-        </li>
-        <li className="sidenav-link">
-          <FaChartPie className="sidenav-link__icon" />
-          <Link className="sidenav-link__link" to={"/budget"}>
+          </li>
+        </Link>
+        <Link className="sidenav-link" to={"/budget"}>
+          <li className="sidenav-link">
+            <FaChartPie className="sidenav-link__icon" />
             Budget
-          </Link>
-        </li>
-        <li className="sidenav-link">
-          <FaPiggyBank className="sidenav-link__icon" />
-          <Link className="sidenav-link__link" to={"/investments"}>
+          </li>
+        </Link>
+        <Link className="sidenav-link" to={"/investments"}>
+          <li className="sidenav-link">
+            <FaPiggyBank className="sidenav-link__icon" />
             Investments
-          </Link>
-        </li>
-        <li className="sidenav-link">
-          <FaCog className="sidenav-link__icon" />
-          <Link className="sidenav-link__link" to={"/settings"}>
+          </li>
+        </Link>
+        <Link className="sidenav-link" to={"/settings"}>
+          <li className="sidenav-link">
+            <FaCog className="sidenav-link__icon" />
             Settings
-          </Link>
-        </li>
+          </li>
+        </Link>
       </ul>
-      <div className="sidenav-logout">
+      <button className="sidenav-logout" onClick={logout}>
         <FaSignOutAlt className="sidenav-logout__icon" />
-        <button className="sidenav-logout__link" onClick={logout}>
-          Logout
-        </button>
-      </div>
+        Logout
+      </button>
     </nav>
   );
 }
