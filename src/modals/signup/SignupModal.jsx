@@ -29,6 +29,7 @@ export default function SignupModal({ setActiveModal }) {
   const handleFormChange = (e) => {
     const { name, value } = e.target;
     setFormState({ ...formState, [name]: value });
+    setErrors({});
   };
 
   const handleSubmit = async (event) => {
@@ -56,11 +57,12 @@ export default function SignupModal({ setActiveModal }) {
     try {
       await signupUser(apiData);
       setVerifyMessage(
-        "Almost there! Please check your email to verify your account and complete the signup process."
+        "Your account is being set up. Check your email for the next steps."
       );
     } catch (error) {
       setDbError(error.response?.data?.message || "Something went wrong");
       setErrors({});
+      setIsSubmitting(false);
     } finally {
       setIsSubmitting(false);
     }
@@ -157,6 +159,7 @@ export default function SignupModal({ setActiveModal }) {
         >
           Already have an account? Sign in
         </button>
+        {isSubmitting && <p>Submitting you information...</p>}
         {dbError && <p className="db-error">{dbError}</p>}
         {verifyMessage && <p className="verify-message">{verifyMessage}</p>}
       </form>

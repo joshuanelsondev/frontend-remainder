@@ -2,6 +2,7 @@ import React, { useState, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import axios from "../../api/axios";
+import { authenticateUser } from "../../api/auth";
 import useClickOutside from "../../hooks/useClickOutside";
 import { AuthContext } from "../../context/AuthContext";
 import "./LoginModal.scss";
@@ -11,6 +12,7 @@ export default function LoginModal({ setActiveModal }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [successModal, setSuccessModal] = useState(null);
+  const [useWebAuthn, setUseWebAuthn] = useState(false);
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
   const formRef = useRef(null);
@@ -41,6 +43,21 @@ export default function LoginModal({ setActiveModal }) {
     }
   };
 
+  const handleWebAuthnLogin = async () => {
+    try {
+      const { token } = await authenticateUser(email);
+      login(token);
+      setSuccessModal(true);
+      setTimeout(() => {
+        setActiveModal(null);
+        navigate("/dashboard");
+      }, 1200);
+    } catch (error) {
+      console.error("Authentication failed:", error);
+      setError(error.message || "Authentication failed. Please try again.");
+    }
+  };
+
   const handleFormInput = (e) => {
     const { id, value } = e.target;
     if (id == "email") {
@@ -56,6 +73,25 @@ export default function LoginModal({ setActiveModal }) {
   return (
     <div className="login">
       <div className="login__overlay"></div>
+      {/* <div className="login__webauthn">
+        <p>Sign in with your passkey. Enter your email to proceed:</p>
+        <input
+          id="email"
+          value={email}
+          onChange={handleFormInput}
+          placeholder="Enter your email"
+          className="login__input"
+          type="email"
+          required
+        />
+        <button
+          type="button"
+          onClick={handleWebAuthnLogin}
+          className="login__sign-in"
+        >
+          Sign in with Passkey
+        </button>
+      </div> */}
       {!successModal ? (
         <form ref={formRef} className="login__form" onSubmit={handleLogin}>
           <h2 className="login__header">Login</h2>
