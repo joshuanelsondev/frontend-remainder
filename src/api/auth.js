@@ -1,7 +1,5 @@
 import axios from "./axios";
 import { client } from "@passwordless-id/webauthn";
-import toBase64Url from "../utils/Base64Url";
-import decodeChallenge from "../utils/decodeChallenge";
 
 export const signupUser = async (userData) => {
   const response = await axios.post("/auth/signup", userData);
@@ -11,41 +9,21 @@ export const signupUser = async (userData) => {
 export const registerUser = async (email) => {
   try {
     // Get registration options
-    const { data: options } = await axios.post("/auth/register-options", {
+    const { data: challenge } = await axios.post("/auth/challenge", {
       email,
     });
 
-    const challenge = decodeChallenge(options.challenge);
-    console.log("DECODED CHALLENGE:", challenge);
-    const userId = new TextEncoder().encode(options.user.id);
-    console.log("USERID:", userId);
-    // Perform WebAuthn registration
     const registration = await client.register({
-      username: email,
-      challenge: options.challenge,
-      user: {
-        id: toBase64Url(userId),
-        name: email,
-        displayName: email,
-      },
-      rp: {
-        id: options.rpId || window.location.hostname,
-        name: "Remainder",
-      },
-      authenticatorSelection: options.authenticatorSelection || {
-        userVerification: "preferred",
-      },
-      attestation: options.attestation || "none",
+      user: email,
+      challenge: challenge,
+      userVerification: "preferred",
     });
 
-    console.log("REGISTRATION:", registration);
     // Send registration response to the backend for verification
     await axios.post("/auth/register", {
       registration,
       email,
     });
-
-    alert("Registration successful! You can now log in with your passkey.");
   } catch (error) {
     console.error(
       "Registration failed:",

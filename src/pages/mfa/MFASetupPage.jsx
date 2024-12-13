@@ -23,18 +23,7 @@ export default function MFASetupPage() {
           throw new Error("Email is required to complete MFA setup.");
         }
 
-        const options = await registerUser(email);
-        if (options) {
-          // If registration is successful
-          alert("MFA setup completed successfully!");
-          // navigate("/");
-          // setActiveModal("login");
-        } else {
-          // Handle the case where options are null or undefined
-          throw new Error("Registration options were not received.");
-        }
-
-        // await verifyCredential(email, options);
+        await registerUser(email);
 
         alert("MFA setup completed successfully!");
         // navigate("/");
