@@ -29,7 +29,7 @@ a, .sidenav-link__icon {
     justify-items: start;
     list-style: none;
     gap: 2rem;
-    padding-left: 3rem;
+    padding-left: 2rem;
     font-size: 1rem;
 }
 
@@ -38,19 +38,25 @@ a, .sidenav-link__icon {
     align-items: center;
     gap: 1rem;
     text-decoration: none;
+    height: 2rem;
+    width: 80%;
+    padding-left: 1rem;
 
     &:hover {
-        text-decoration: underline 0.1rem solid $primary;
-        text-underline-offset: 0.5rem;
+        background-color: rgba(128, 128, 128, 0.15);
+        border-radius: 0.5rem;
     }
 }
 
 
 .sidenav-logout {
    display: flex; 
+   height: 2rem;
+   width: 70%;
    align-items: center;
-   padding-left: 3rem;
    gap: 0.5rem;
+   padding-left: 1rem;
+   margin-left: 2rem;
    margin-bottom: 2rem;
    color: $primary;
    background-color: transparent;
@@ -61,7 +67,7 @@ a, .sidenav-link__icon {
    cursor: pointer;
  
    &:hover {
-       text-decoration: underline 0.1rem solid $primary;
-       text-underline-offset: 0.5rem;
+        background-color: rgba(128, 128, 128, 0.15);
+        border-radius: 0.5rem;
    }
 }

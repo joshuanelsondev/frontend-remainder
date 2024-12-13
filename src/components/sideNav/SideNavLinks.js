@@ -1,5 +1,6 @@
 import {
-  FaRegChartBar,
+  FaChartBar,
+  FaMoneyCheck,
   FaMoneyBill,
   FaChartPie,
   FaCog,
@@ -9,7 +10,7 @@ import {
 export const SideNavLinks = [
   {
     name: "Dashboard",
-    icon: FaRegChartBar,
+    icon: FaChartBar,
     path: "/dashboard",
   },
   {
@@ -19,7 +20,7 @@ export const SideNavLinks = [
   },
   {
     name: "Expenses",
-    icon: FaMoneyBill,
+    icon: FaMoneyCheck,
     path: "/expenses",
   },
   {

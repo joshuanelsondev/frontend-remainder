@@ -16,10 +16,8 @@ export default function SideNav() {
         {SideNavLinks.map((link, index) => {
           return (
             <Link key={index} className="sidenav-link" to={link.path}>
-              <li className="sidenav-link">
-                <link.icon className="sidenav-link__icon" />
-                {link.name}
-              </li>
+              <link.icon className="sidenav-link__icon" />
+              {link.name}
             </Link>
           );
         })}
