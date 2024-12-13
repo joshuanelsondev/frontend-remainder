@@ -1,7 +1,7 @@
 import React from "react";
 import { useRoutes, Navigate } from "react-router-dom";
 
-import ProtectedRoute from "./components/ProtectedRoutes";
+import ProtectedRoute from "./ProtectedRoutes";
 
 // Layouts
 import LandingLayout from "./layouts/landing/LandingLayout";

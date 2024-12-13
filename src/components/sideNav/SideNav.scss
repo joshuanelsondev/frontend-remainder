@@ -3,19 +3,23 @@
 .sidenav {
     height: 100%;
     width: 100%;
-    background-color: $primary;
+    background-color: $gray-light;
     display: grid;
     grid-template-rows: auto 1fr auto;
     gap: 2rem;
 
     &__logo {
-      text-align: center;
-      font-size: 1.8rem;
-      color: $white;
-      margin-top: 1rem;
+      font-size: 1.5rem;
+      padding-left: 3rem;
+      margin-top: 2rem;
+      margin-bottom: 3rem;
       height: fit-content;
       text-decoration: none;
     }
+}
+
+a, .sidenav-link__icon {
+  color: $primary;
 }
 
 .sidenav-links {
@@ -25,55 +29,45 @@
     justify-items: start;
     list-style: none;
     gap: 2rem;
-    padding-left: 3rem;
-    color: $white;
+    padding-left: 2rem;
+    font-size: 1rem;
 }
 
 .sidenav-link {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
+    text-decoration: none;
+    height: 2rem;
+    width: 80%;
+    padding-left: 1rem;
 
-    &__icon {
-        color: $primary-darker; 
-    }
-
-    &__link {
-        text-decoration: none;
-        color: $white;
-
-        &:hover {
-            text-decoration: underline 0.1rem solid $white;
-            text-underline-offset: 0.5rem;
-        }
+    &:hover {
+        background-color: rgba(128, 128, 128, 0.15);
+        border-radius: 0.5rem;
     }
 }
 
 
 .sidenav-logout {
    display: flex; 
+   height: 2rem;
+   width: 70%;
    align-items: center;
-   padding-left: 3rem;
-   gap: 0.2rem;
+   gap: 0.5rem;
+   padding-left: 1rem;
+   margin-left: 2rem;
    margin-bottom: 2rem;
-   color: $white;
-   
-    &__icon {
-        color: $primary-darker;
-    }
-
-    &__link {
-        background-color: transparent;
-        border: none;
-        text-align: start;
-        font-size: 1rem; 
-        font-family: $primary-font;
-        color: inherit;
-        cursor: pointer;
-
-        &:hover {
-            text-decoration: underline 0.1rem solid $white;
-            text-underline-offset: 0.5rem;
-        }
-    }
+   color: $primary;
+   background-color: transparent;
+   border: none;
+   text-align: start;
+   font-size: 1rem; 
+   font-family: inherit;
+   cursor: pointer;
+ 
+   &:hover {
+        background-color: rgba(128, 128, 128, 0.15);
+        border-radius: 0.5rem;
+   }
 }
