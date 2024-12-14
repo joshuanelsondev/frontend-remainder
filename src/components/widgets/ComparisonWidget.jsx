@@ -1,9 +1,10 @@
 import React from "react";
+import "./ComparisonWidget";
 
 export default function ComparisonWidget() {
   return (
-    <div className="comparisonn-widget">
-      <h1 className="comparisonn-widget__header">Comparisons</h1>
+    <div className="dashboard__comparison">
+      <h4 className="comparison-widget__header">Comparisons</h4>
     </div>
   );
 }

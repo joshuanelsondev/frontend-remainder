@@ -1,9 +1,10 @@
 import React from "react";
+import "./ExpenseWidget";
 
 export default function ExpenseWidget() {
   return (
-    <div className="expense-widget">
-      <h1 className="expense-widget">Expenses</h1>
+    <div className="dashboard__expense">
+      <h4 className="expense-widget">Expenses</h4>
     </div>
   );
 }

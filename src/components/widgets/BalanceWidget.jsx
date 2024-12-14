@@ -1,9 +1,10 @@
 import React from "react";
+import "./BalanceWidget.scss";
 
 export default function BalanceWidget() {
   return (
-    <div>
-      <h1>Balance</h1>
+    <div className="dashboard__balance">
+      <h4>Balance</h4>
     </div>
   );
 }
