@@ -2,8 +2,8 @@ import React from "react";
 
 export default function ExpenseWidget() {
   return (
-    <div>
-      <h1>Expense Widget</h1>
+    <div className="expense-widget">
+      <h1 className="expense-widget">Expenses</h1>
     </div>
   );
 }

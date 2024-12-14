@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function InvestmentWidget() {
+export default function InvestmentsWidget() {
   return (
-    <div>
-      <h1>Investment Widget</h1>
+    <div className="investments-widget">
+      <h1 className="investments-widget__header">Investments</h1>
     </div>
   );
 }
