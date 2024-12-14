@@ -5,5 +5,12 @@
     width: 100vw;
     display: grid;
     grid-template-columns: 15rem 1fr;
+    background-color: $gray-light;
+}
 
+.outlet {
+  background-color: $white;
+  margin: 2rem 2rem 2rem 0;
+  padding: 1rem;
+  border-radius: 1rem;
 }

@@ -12,7 +12,7 @@
       font-size: 1.5rem;
       padding-left: 3rem;
       margin-top: 2rem;
-      margin-bottom: 3rem;
+      margin-bottom: 1rem;
       height: fit-content;
       text-decoration: none;
     }
@@ -33,7 +33,7 @@ a, .sidenav-link__icon {
     font-size: 1rem;
 }
 
-.sidenav-link {
+.sidenav-link, .sidenav-link__active {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -41,10 +41,17 @@ a, .sidenav-link__icon {
     height: 2rem;
     width: 80%;
     padding-left: 1rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
 
     &:hover {
         background-color: rgba(128, 128, 128, 0.15);
-        border-radius: 0.5rem;
+        color: $primary;
+    }
+
+    &__active {
+      background-color: $primary;
+      color: $white;
     }
 }
 
