@@ -4,7 +4,7 @@ import "./DashboardPage.scss";
 export default function DashboardPage() {
   return (
     <div className="dashboard">
-      <h1>Dashboard</h1>
+      <h4>Dashboard</h4>
     </div>
   );
 }

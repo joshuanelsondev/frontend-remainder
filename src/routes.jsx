@@ -60,7 +60,7 @@ export default function AppRoutes() {
       ),
       errorElement: <ErrorPage />,
       children: [
-        { path: "/dashboard", element: <DashboardPage /> },
+        { path: "/", element: <DashboardPage /> },
         { path: "/user-info", element: <UserInfo /> },
         { path: "/profile", element: <UserProfile /> },
         { path: "/incomes", element: <Incomes /> },
