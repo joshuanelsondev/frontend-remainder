@@ -19,7 +19,6 @@ export const registerUser = async (email) => {
       userVerification: "preferred",
     });
 
-    // Send registration response to the backend for verification
     await axios.post("/auth/register", {
       registration,
       email,
@@ -29,7 +28,6 @@ export const registerUser = async (email) => {
       "Registration failed:",
       error.response?.data || error.message
     );
-    alert("Failed to register. Please try again.");
   }
 };
 
