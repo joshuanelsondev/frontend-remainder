@@ -11,7 +11,7 @@ export const SideNavLinks = [
   {
     name: "Dashboard",
     icon: FaChartBar,
-    path: "/dashboard",
+    path: "/",
   },
   {
     name: "Income",

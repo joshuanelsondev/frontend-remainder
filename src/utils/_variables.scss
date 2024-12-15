@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 $primary-font: "Marcellus", serif;
-$secondary-font: "Roboto Mono", serif;
+$secondary-font: "Roboto", serif;
 
 // Primary Palette
 $primary: #0377A9;
@@ -20,6 +20,12 @@ $black: #000000;
 $gray-light: #E2EBF0;
 $gray: #bdc3c7;
 $gray-dark: #7f8c8d;
+
+// Widget Colors
+$increase-background: #E0F9E3;
+$increase-text: #45704C;
+$decrease-background: #FBD6D6;
+$decrease-text: #AC5B60;
 
 // Feedback Colors
 $success: #2ecc71;

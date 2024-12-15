@@ -1,9 +1,10 @@
 import React from "react";
+import "./InvestmentWidget.scss";
 
 export default function InvestmentWidget() {
   return (
-    <div>
-      <h1>Investment Widget</h1>
+    <div className="dashboard__investment">
+      <h4 className="header">Investments</h4>
     </div>
   );
 }

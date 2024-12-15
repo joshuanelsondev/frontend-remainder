@@ -1,2 +1,147 @@
 @use '../../utils/variables' as *;
 
+.dashboard {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(20rem, 100%));
+  grid-template-rows: repeat(3, minmax(10rem, 100%));
+  gap: 1rem;
+
+  // Header and sizing of widgets
+  &__balance, &__income, &__expense, &__comparison, &__breakdown, &__investment {
+    height: 100%;
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    box-shadow: 0 0 1rem $gray;
+    font-family: $secondary-font;
+
+    .header {
+      font-size: 1rem;
+      font-weight: 500;
+      margin: 0;
+      height: 1rem;
+    }
+  }
+  // Top level widgets
+  &__balance, &__income, &__expense {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .amount {
+      font-size: 2rem;
+      margin: 1rem 0;
+    }
+
+    .cents {
+      font-size: 1.25rem;
+      color: $gray-dark;
+    }
+
+    .bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      justify-items: end;
+    }
+
+    .left-subinfo, .right-subinfo {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      align-items: center;
+      gap: 1rem;
+    }
+
+
+    .percentage {
+      display: flex;
+      align-items: center;
+      height: 1.4rem;
+      width: 3rem;
+      box-sizing: border-box;
+      padding: 0.2rem;
+      border-radius: 0.25rem;
+      margin: 0;
+      box-shadow: 0 0 3px $gray;
+    }
+
+    .increase {
+      background-color: $increase-background;
+      color: $increase-text;
+    }
+
+    .decrease {
+      background-color: $decrease-background;
+      color: $decrease-text;
+    }
+
+    .text, .transactions, .categories {
+      font-size: 0.8rem;
+      margin: 0;
+    }
+
+    .text-amt {
+      font-weight: 800;
+    }
+
+
+    .transactions, .categories {
+      width: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      font-weight: 500;
+      gap: 0.5rem;
+    }
+
+    .icon {
+      background-color: #38a7d744;
+      color: $primary;
+      box-sizing: border-box;
+      border-radius: 0.25rem;
+      padding: 0.2rem;
+      height: 1.4rem;
+      width: 1.4rem;
+      opacity: 90%;
+      box-shadow: 0 0 3px $gray;
+    }
+
+  }
+
+  // Grid positioning of widgets
+  &__balance {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+
+  &__income {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+  }
+
+  &__expense {
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+  }
+
+  &__comparison {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+  }
+
+  &__breakdown {
+    grid-column: 1 / 3;
+    grid-row: 3 / 4;
+  }
+
+  &__investment {
+    grid-column: 3 / 4;
+    grid-row: 2 / 4;
+  }
+}
+
