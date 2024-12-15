@@ -52,21 +52,31 @@
     .left-subinfo, .right-subinfo {
       display: grid;
       grid-template-rows: 1fr 1fr;
+      align-items: center;
       gap: 1rem;
     }
 
 
     .percentage {
-      background-color: $increase-background;
-      color: $increase-text;
       display: flex;
       align-items: center;
-      width: fit-content;
+      height: 1.4rem;
+      width: 3rem;
       box-sizing: border-box;
       padding: 0.2rem;
       border-radius: 0.25rem;
       margin: 0;
       box-shadow: 0 0 3px $gray;
+    }
+
+    .increase {
+      background-color: $increase-background;
+      color: $increase-text;
+    }
+
+    .decrease {
+      background-color: $decrease-background;
+      color: $decrease-text;
     }
 
     .text, .transactions, .categories {

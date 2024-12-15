@@ -14,11 +14,11 @@ export default function BalanceWidget() {
     <div className="dashboard__balance">
       <h4 className="header">Balance</h4>
       <p className="amount">
-        $10,00<span className="cents">.00</span>
+        $10,000<span className="cents">.00</span>
       </p>
       <div className="bottom">
         <div className="left-subinfo">
-          <p className="percentage">
+          <p className={`percentage ${increase ? "increase" : "decrease"}`}>
             {increase ? <FaAngleDoubleUp size={16} /> : <FaAngleDoubleDown />}
             10%
           </p>
