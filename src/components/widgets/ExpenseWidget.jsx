@@ -4,7 +4,7 @@ import "./ExpenseWidget";
 export default function ExpenseWidget() {
   return (
     <div className="dashboard__expense">
-      <h4 className="expense-widget">Expenses</h4>
+      <h4 className="header">Expenses</h4>
     </div>
   );
 }
