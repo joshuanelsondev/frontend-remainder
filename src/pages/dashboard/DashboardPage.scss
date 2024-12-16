@@ -10,7 +10,7 @@
   gap: 1rem;
 
   // Header and sizing of widgets
-  &__balance, &__income, &__expense, &__comparison, &__breakdown, &__investment {
+  &__budget, &__income, &__expense, &__comparison, &__breakdown, &__investment {
     height: 100%;
     width: 100%;
     padding: 1rem;
@@ -28,7 +28,7 @@
     }
   }
   // Top level widgets
-  &__balance, &__income, &__expense {
+  &__budget, &__income, &__expense {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -114,7 +114,7 @@
   }
 
   // Grid positioning of widgets
-  &__balance {
+  &__budget {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
   }
