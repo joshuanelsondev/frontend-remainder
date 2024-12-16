@@ -1,5 +1,5 @@
 import React from "react";
-import BalanceWidget from "../../components/widgets/BalanceWidget";
+import BudgetWidget from "../../components/widgets/BudgetWidget";
 import IncomeWidget from "../../components/widgets/IncomeWidget";
 import ExpenseWidget from "../../components/widgets/ExpenseWidget";
 import ComparisonWidget from "../../components/widgets/ComparisonWidget";
@@ -10,7 +10,7 @@ import "./DashboardPage.scss";
 export default function DashboardPage() {
   return (
     <div className="dashboard">
-      <BalanceWidget />
+      <BudgetWidget />
       <IncomeWidget />
       <ExpenseWidget />
       <ComparisonWidget />

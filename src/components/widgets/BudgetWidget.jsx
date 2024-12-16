@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./BalanceWidget.scss";
+import "./BudgetWidget.scss";
 import {
   FaAngleDoubleUp,
   FaAngleDoubleDown,
@@ -7,12 +7,12 @@ import {
   FaShapes,
 } from "react-icons/fa";
 
-export default function BalanceWidget() {
+export default function BudgetWidget() {
   const [increase, setIncrease] = useState(true);
 
   return (
-    <div className="dashboard__balance">
-      <h4 className="header">Balance</h4>
+    <div className="dashboard__budget">
+      <h4 className="header">Budget</h4>
       <p className="amount">
         $10,000<span className="cents">.00</span>
       </p>
