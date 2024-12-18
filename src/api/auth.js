@@ -8,10 +8,11 @@ export const signupUser = async (userData) => {
 
 export const registerUser = async (email) => {
   try {
-    // Get registration options
-    const { data: challenge } = await axios.post("/auth/challenge", {
+    const { data } = await axios.post("/auth/challenge", {
       email,
     });
+
+    const challenge = data.challenge;
 
     const registration = await client.register({
       user: email,
