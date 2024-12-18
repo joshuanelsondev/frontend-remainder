@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import "./SideNav.scss";
 import { SideNavLinks } from "./SideNavLinks.js";
 import { FaSignOutAlt } from "react-icons/fa";
 
 export default function SideNav() {
+  const navigate = useNavigate();
   const { logout } = useContext(AuthContext);
 
   return (
@@ -33,7 +34,7 @@ export default function SideNav() {
           );
         })}
       </ul>
-      <button className="sidenav-logout" onClick={logout}>
+      <button className="sidenav-logout" onClick={() => logout(navigate)}>
         <FaSignOutAlt className="sidenav-logout__icon" />
         Logout
       </button>

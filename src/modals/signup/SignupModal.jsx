@@ -15,15 +15,11 @@ export default function SignupModal({ setActiveModal }) {
     password: "",
     confirmPassword: "",
   });
-  const [verifyMessage, setVerifyMessage] = useState(null);
+  const [message, setMessage] = useState(null);
   const [errors, setErrors] = useState({});
-  const [dbError, setDbError] = useState(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useClickOutside(formRef, () => {
-    if (!isSubmitting) {
-      setActiveModal(null);
-    }
+    setActiveModal(null);
   });
 
   const handleFormChange = (e) => {
@@ -34,7 +30,8 @@ export default function SignupModal({ setActiveModal }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setIsSubmitting(true);
+
+    setMessage("Submitting your information...");
 
     const { confirmPassword, ...apiData } = formState;
 
@@ -56,15 +53,12 @@ export default function SignupModal({ setActiveModal }) {
 
     try {
       await signupUser(apiData);
-      setVerifyMessage(
+      setMessage(
         "Your account is being set up. Check your email for the next steps."
       );
     } catch (error) {
-      setDbError(error.response?.data?.message || "Something went wrong");
+      setMessage(error.response?.data?.message || "Something went wrong");
       setErrors({});
-      setIsSubmitting(false);
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -152,16 +146,16 @@ export default function SignupModal({ setActiveModal }) {
           )}
         </div>
         <button className="signup-form__create-btn">Create account</button>
-        <button
-          type="submit"
-          onClick={() => setActiveModal("login")}
-          className="signup-form__login"
-        >
-          Already have an account? Sign in
-        </button>
-        {isSubmitting && <p>Submitting you information...</p>}
-        {dbError && <p className="db-error">{dbError}</p>}
-        {verifyMessage && <p className="verify-message">{verifyMessage}</p>}
+        <div>
+          <button
+            type="submit"
+            onClick={() => setActiveModal("login")}
+            className="signup-form__login"
+          >
+            Already have an account? Sign in
+          </button>
+          {message && <p className="signup-form__message">{message}</p>}
+        </div>
       </form>
     </div>
   );

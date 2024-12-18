@@ -17,7 +17,6 @@ const routes = {
 export default function Header() {
   const location = useLocation();
   const { user, isLoggedIn } = useContext(AuthContext);
-  console.log("TEST:", user, isLoggedIn);
 
   return (
     <div className="header">
