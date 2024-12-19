@@ -6,7 +6,9 @@ import React, {
   useMemo,
 } from "react";
 import PropTypes from "prop-types";
-import { getAllIncomes, getAllExpenses, getBudget } from "../api";
+import { getAllIncomes } from "../api/incomeApi.js";
+import { getAllExpenses } from "../api/expenseApi.js";
+import { getBudget } from "../api/budgetApi.js";
 
 const UserDataContext = createContext();
 
