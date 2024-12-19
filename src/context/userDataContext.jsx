@@ -1,33 +1,48 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useMemo,
+} from "react";
 import PropTypes from "prop-types";
-import axios from "axios";
+import { getAllIncomes, getAllExpenses, getBudget } from "../api";
 
 const UserDataContext = createContext();
 
 export const useUserData = () => useContext(UserDataContext);
 
 export const UserDataProvider = ({ children }) => {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState({
+    incomes: [],
+    expenses: [],
+    budget: { totalIncome: 0, totalExpenses: 0, disposableIncome: 0 },
+  });
 
-  const fetchUserData = async () => {
+  const getUserData = async () => {
     try {
-      const { data } = await axios.get("/users/me");
-      setUserData({
-        budgetSummary: data.budgetSummary,
-        incomeSummary: data.incomeSummary,
-        expenseSummary: data.expenseSummary,
-      });
+      const [incomes, expenses, budget] = await Promise.all([
+        getAllIncomes(),
+        getAllExpenses(),
+        getBudget(),
+      ]);
+
+      setUserData({ incomes, expenses, budget });
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
   };
 
   useEffect(() => {
-    fetchUserData();
+    getUserData();
   }, []);
 
+  const memoizedUserData = useMemo(() => userData, [userData]);
+
   return (
-    <UserDataContext.Provider value={{ userData, fetchUserData }}>
+    <UserDataContext.Provider
+      value={{ userData: memoizedUserData, getUserData }}
+    >
       {children}
     </UserDataContext.Provider>
   );
