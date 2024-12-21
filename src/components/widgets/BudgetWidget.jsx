@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./BudgetWidget.scss";
+import { useUserData } from "../../context/UserDataContext";
+import { formatAmount } from "../../utils/formatAmount";
 import {
   FaAngleDoubleUp,
   FaAngleDoubleDown,
@@ -9,12 +11,20 @@ import {
 
 export default function BudgetWidget() {
   const [increase, setIncrease] = useState(true);
+  const { userData } = useUserData();
+  const {
+    budget = 0,
+    totalSources = 0,
+    totalTransactions = 0,
+  } = userData.budget || {};
+  const { dollars, cents } = formatAmount(budget);
 
   return (
     <div className="dashboard__budget">
       <h4 className="header">Budget</h4>
       <p className="amount">
-        $10,000<span className="cents">.00</span>
+        ${dollars}
+        <span className="cents">.{cents}</span>
       </p>
       <div className="bottom">
         <div className="left-subinfo">
@@ -30,13 +40,13 @@ export default function BudgetWidget() {
         <div className="right-subinfo">
           <p className="transactions">
             <FaExchangeAlt className="icon" />
-            10 transactions
+            {totalTransactions} transactions
           </p>
           <p className="categories">
             <span>
               <FaShapes className="icon" />
             </span>
-            5 categories
+            {totalSources} categories
           </p>
         </div>
       </div>

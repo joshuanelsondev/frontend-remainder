@@ -39,10 +39,6 @@ export const UserDataProvider = ({ children }) => {
     getUserData();
   }, []);
 
-  useEffect(() => {
-    console.log("Updated userData:", userData);
-  }, [userData]);
-
   const memoizedUserData = useMemo(() => userData, [userData]);
 
   return (

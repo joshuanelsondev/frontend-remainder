@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const ModalContext = createContext(undefined);
 
-const ModalProvider = ({ children }) => {
+export const ModalProvider = ({ children }) => {
   const [activeModal, setActiveModal] = useState(null);
 
   return (
@@ -17,7 +17,7 @@ ModalProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const useModal = () => {
+export const useModal = () => {
   const context = useContext(ModalContext);
 
   if (!context) {
@@ -26,5 +26,3 @@ const useModal = () => {
 
   return context;
 };
-
-export { ModalProvider, useModal };
