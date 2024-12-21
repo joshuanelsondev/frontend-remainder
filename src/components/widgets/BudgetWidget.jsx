@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./BudgetWidget.scss";
 import { useUserData } from "../../context/UserDataContext";
 import { formatAmount } from "../../utils/formatAmount";

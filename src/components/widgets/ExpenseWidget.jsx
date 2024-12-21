@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./ExpenseWidget";
+import { useUserData } from "../../context/UserDataContext";
+import { formatAmount } from "../../utils/formatAmount";
 import {
   FaAngleDoubleUp,
   FaAngleDoubleDown,
@@ -9,12 +11,21 @@ import {
 
 export default function ExpenseWidget() {
   const [increase, setIncrease] = useState(false);
+  const { userData } = useUserData();
+  console.log(userData);
+  const {
+    totalExpenses = 0,
+    expenseSources = 0,
+    expenseTransactions = 0,
+  } = userData.budget || {};
+  const { dollars, cents } = formatAmount(totalExpenses);
 
   return (
     <div className="dashboard__expense">
       <h4 className="header">Expenses</h4>
       <p className="amount">
-        $10,000<span className="cents">.00</span>
+        ${dollars}
+        <span className="cents">.{cents}</span>
       </p>
       <div className="bottom">
         <div className="left-subinfo">
@@ -34,13 +45,13 @@ export default function ExpenseWidget() {
         <div className="right-subinfo">
           <p className="transactions">
             <FaExchangeAlt className="icon" />
-            10 transactions
+            {expenseTransactions} transactions
           </p>
           <p className="categories">
             <span>
               <FaShapes className="icon" />
             </span>
-            5 categories
+            {expenseSources} categories
           </p>
         </div>
       </div>
