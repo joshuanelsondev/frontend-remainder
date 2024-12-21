@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./BudgetWidget.scss";
+import { useUserData } from "../../context/UserDataContext";
 import {
   FaAngleDoubleUp,
   FaAngleDoubleDown,
@@ -9,6 +10,8 @@ import {
 
 export default function BudgetWidget() {
   const [increase, setIncrease] = useState(true);
+  const { userData } = useUserData();
+  console.log("USERDATA:", userData);
 
   return (
     <div className="dashboard__budget">
