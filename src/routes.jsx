@@ -21,10 +21,10 @@ import MFASetupPage from "./pages/mfa/MFASetupPage";
 import DashboardPage from "./pages/dashboard/DashboardPage";
 import UserProfile from "./pages/userProfile/UserProfile";
 import UserInfo from "./pages/userInfo/UserInfo";
-import Incomes from "./pages/incomes/Incomes";
-import Expenses from "./pages/expenses/Expenses";
+import Income from "./pages/income/Income";
+import Expense from "./pages/expense/Expense";
 import Budget from "./pages/budget/Budget";
-import Investments from "./pages/investments/Investments";
+import Investment from "./pages/investment/Investment";
 import Settings from "./pages/settings/Settings";
 
 export default function AppRoutes() {
@@ -63,10 +63,10 @@ export default function AppRoutes() {
         { path: "/", element: <DashboardPage /> },
         { path: "/user-info", element: <UserInfo /> },
         { path: "/profile", element: <UserProfile /> },
-        { path: "/incomes", element: <Incomes /> },
-        { path: "/expenses", element: <Expenses /> },
+        { path: "/income", element: <Income /> },
+        { path: "/expense", element: <Expense /> },
         { path: "/budget", element: <Budget /> },
-        { path: "/investments", element: <Investments /> },
+        { path: "/investment", element: <Investment /> },
         { path: "/settings", element: <Settings /> },
       ],
     },

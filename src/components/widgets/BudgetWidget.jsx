@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./BudgetWidget.scss";
 import { useUserData } from "../../context/UserDataContext";
 import { formatAmount } from "../../utils/formatAmount";
@@ -21,7 +22,9 @@ export default function BudgetWidget() {
 
   return (
     <div className="dashboard__budget">
-      <h4 className="header">Budget</h4>
+      <Link to={"/budget"} className="header">
+        Budget
+      </Link>
       <p className="amount">
         ${dollars}
         <span className="cents">.{cents}</span>

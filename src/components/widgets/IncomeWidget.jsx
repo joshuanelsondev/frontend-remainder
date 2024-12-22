@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./IncomeWidget.scss";
 import { useUserData } from "../../context/UserDataContext";
 import { formatAmount } from "../../utils/formatAmount";
@@ -21,7 +22,9 @@ export default function IncomeWidget() {
 
   return (
     <div className="dashboard__income">
-      <h4 className="header">Income</h4>
+      <Link to={"/incomes"} className="header">
+        Income
+      </Link>
       <p className="amount">
         ${dollars}
         <span className="cents">.{cents}</span>
