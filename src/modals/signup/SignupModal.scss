@@ -109,10 +109,25 @@
       top: 2rem;
       padding-left: 0.2rem;
     }
+    
+    &__input-error {
+      outline: 0.1rem solid $error !important;
+      border-radius: 0.25rem;
+      border: none !important;
+    }
 
     &__message {
       margin: 0.5rem;
       text-align: center
     }
+
+    &__pwd-visibility {
+      position: absolute;
+      right: 0.5rem;
+      top: 0.7rem;
+      color: $primary;
+      cursor: pointer;
+    }
 }
+
 
