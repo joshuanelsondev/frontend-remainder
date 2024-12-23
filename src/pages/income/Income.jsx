@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function Incomes() {
+export default function Income() {
   return (
     <div>
-      <h4>Incomes</h4>
+      <h4>Income</h4>
     </div>
   );
 }
