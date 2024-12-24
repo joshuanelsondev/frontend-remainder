@@ -8,7 +8,6 @@ import "./DashboardLayout.scss";
 
 export default function DashboardLayout() {
   const { isLoggedIn } = useContext(AuthContext);
-
   if (!isLoggedIn) {
     return <Navigate to="/" replace />;
   }
