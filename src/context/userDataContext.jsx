@@ -15,6 +15,7 @@ const UserDataContext = createContext();
 export const useUserData = () => useContext(UserDataContext);
 
 export const UserDataProvider = ({ children }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState({
     incomes: [],
     expenses: [],
@@ -32,6 +33,8 @@ export const UserDataProvider = ({ children }) => {
       setUserData({ incomes, expenses, budget });
     } catch (error) {
       console.error("Error fetching user data:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 

@@ -13,7 +13,6 @@ import {
 export default function ExpenseWidget() {
   const [increase, setIncrease] = useState(false);
   const { userData } = useUserData();
-  console.log(userData);
   const {
     totalExpenses = 0,
     expenseSources = 0,

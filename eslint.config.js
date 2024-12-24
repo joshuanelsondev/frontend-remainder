@@ -29,6 +29,7 @@ export default [
       "react/prop-types": "off",
       ...pluginJs.configs.recommended.rules,
       ...pluginReact.configs.recommended.rules,
+      "import/no-unresolved": [2, { caseSensitive: true }],
     },
     settings: {
       react: {
