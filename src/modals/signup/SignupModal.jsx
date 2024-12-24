@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import useClickOutside from "../../hooks/useClickOutside";
 import validateInput from "../../utils/validateInput";
 import { signupUser } from "../../api/auth";
-import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
+import { FaRegEyeSlash, FaRegEye, FaInfoCircle } from "react-icons/fa";
 import "./SignupModal.scss";
 
 export default function SignupModal({ setActiveModal }) {
@@ -18,6 +18,7 @@ export default function SignupModal({ setActiveModal }) {
   });
   const [pwdVisibility, setPwdVisibility] = useState(false);
   const [confirmPwdVisibility, setConfirmPwdVisibility] = useState(false);
+  const [pwdInfo, setPwdInfo] = useState(false);
   const [message, setMessage] = useState(null);
   const [errors, setErrors] = useState({});
 
@@ -28,6 +29,7 @@ export default function SignupModal({ setActiveModal }) {
   const handleFormChange = (e) => {
     const { name, value } = e.target;
     setFormState({ ...formState, [name]: value });
+    setMessage(null);
     setErrors({});
   };
 
@@ -61,6 +63,10 @@ export default function SignupModal({ setActiveModal }) {
     } catch (error) {
       setMessage(error.response?.data?.message || "Something went wrong");
       setErrors({});
+    } finally {
+      setTimeout(() => {
+        setMessage(null);
+      }, 3000);
     }
   };
 
@@ -143,6 +149,19 @@ export default function SignupModal({ setActiveModal }) {
               className="signup-form__pwd-visibility"
             />
           )}
+          <div className="signup-form__pwd-info-icon">
+            <FaInfoCircle
+              onClick={() => setPwdInfo(!pwdInfo)}
+              title="Password Requirements"
+            />
+            {pwdInfo && (
+              <p className="signup-form__pwd-info-text">
+                Password must be at least 10 characters long, include an
+                uppercase letter, a lowercase letter, a number, and a special
+                character.
+              </p>
+            )}
+          </div>
           {errors.password && (
             <p className="signup-form__error">{errors.password}</p>
           )}

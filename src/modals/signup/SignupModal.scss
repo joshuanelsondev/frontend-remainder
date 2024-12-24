@@ -29,7 +29,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 2.5rem;
     padding: 2.5rem;
     box-shadow: 0 0 5px $gray-dark;
 
@@ -117,8 +117,18 @@
     }
 
     &__message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       margin: 0.5rem;
-      text-align: center
+      text-align: center;
+      background-color: white;
+      box-shadow: 0 0 2px $gray;
+      padding: 1rem;
+      border-radius: 0.25rem;
+      color: $primary;
+      width: 20rem;
     }
 
     &__pwd-visibility {
@@ -127,6 +137,24 @@
       top: 0.7rem;
       color: $primary;
       cursor: pointer;
+    }
+
+    &__pwd-info-icon {
+      position: absolute;
+      top: 0.7rem;
+      right: -1.5rem;
+      color: $primary;
+      cursor: pointer;
+    }
+
+    &__pwd-info-text {
+      position: absolute;
+      background-color: $white;
+      font-size: 0.8rem;
+      padding: 1rem;
+      border-radius: 0.25rem;
+      box-shadow: 0 0 1px $gray;
+      width: 10rem;
     }
 }
 
