@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./ExpenseWidget";
 import { useUserData } from "../../context/UserDataContext";
 import { formatAmount } from "../../utils/formatAmount";
@@ -22,7 +23,9 @@ export default function ExpenseWidget() {
 
   return (
     <div className="dashboard__expense">
-      <h4 className="header">Expenses</h4>
+      <Link to={"/expenses"} className="header">
+        Expenses
+      </Link>
       <p className="amount">
         ${dollars}
         <span className="cents">.{cents}</span>

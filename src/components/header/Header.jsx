@@ -7,10 +7,10 @@ import capitalizeStr from "../../utils/capitalizeStr";
 
 const routes = {
   "/": "Dashboard",
-  "/incomes": "Income",
-  "/expenses": "Expenses",
+  "/income": "Income",
+  "/expense": "Expenses",
   "/budget": "Budget",
-  "/investments": "Investments",
+  "/investment": "Investments",
   "/settings": "Settings",
 };
 

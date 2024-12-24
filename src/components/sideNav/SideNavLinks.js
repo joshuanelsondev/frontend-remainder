@@ -16,12 +16,12 @@ export const SideNavLinks = [
   {
     name: "Income",
     icon: FaMoneyBill,
-    path: "/incomes",
+    path: "/income",
   },
   {
     name: "Expenses",
     icon: FaMoneyCheck,
-    path: "/expenses",
+    path: "/expense",
   },
   {
     name: "Budget",
@@ -31,7 +31,7 @@ export const SideNavLinks = [
   {
     name: "Investments",
     icon: FaPiggyBank,
-    path: "/investments",
+    path: "/investment",
   },
   {
     name: "Settings",

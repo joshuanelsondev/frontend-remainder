@@ -27,8 +27,7 @@ const validateInput = (fieldName, value) => {
         value
       )
     ) {
-      errors.password =
-        "Password must be at least 10 characters long, include an uppercase letter, a lowercase letter, a number, and a special character.";
+      errors.password = "Password requirements not met.";
     }
   }
 

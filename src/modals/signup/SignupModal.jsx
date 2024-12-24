@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import useClickOutside from "../../hooks/useClickOutside";
 import validateInput from "../../utils/validateInput";
 import { signupUser } from "../../api/auth";
+import { FaRegEyeSlash, FaRegEye, FaInfoCircle } from "react-icons/fa";
 import "./SignupModal.scss";
 
 export default function SignupModal({ setActiveModal }) {
@@ -15,6 +16,9 @@ export default function SignupModal({ setActiveModal }) {
     password: "",
     confirmPassword: "",
   });
+  const [pwdVisibility, setPwdVisibility] = useState(false);
+  const [confirmPwdVisibility, setConfirmPwdVisibility] = useState(false);
+  const [pwdInfo, setPwdInfo] = useState(false);
   const [message, setMessage] = useState(null);
   const [errors, setErrors] = useState({});
 
@@ -25,13 +29,12 @@ export default function SignupModal({ setActiveModal }) {
   const handleFormChange = (e) => {
     const { name, value } = e.target;
     setFormState({ ...formState, [name]: value });
+    setMessage(null);
     setErrors({});
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    setMessage("Submitting your information...");
 
     const { confirmPassword, ...apiData } = formState;
 
@@ -52,6 +55,7 @@ export default function SignupModal({ setActiveModal }) {
     }
 
     try {
+      setMessage("Submitting your information...");
       await signupUser(apiData);
       setMessage(
         "Your account is being set up. Check your email for the next steps."
@@ -59,6 +63,10 @@ export default function SignupModal({ setActiveModal }) {
     } catch (error) {
       setMessage(error.response?.data?.message || "Something went wrong");
       setErrors({});
+    } finally {
+      setTimeout(() => {
+        setMessage(null);
+      }, 3000);
     }
   };
 
@@ -80,6 +88,7 @@ export default function SignupModal({ setActiveModal }) {
             value={formState.firstName}
             onChange={handleFormChange}
             placeholder=""
+            className={errors.firstName ? "signup-form__input-error" : ""}
             required
           />
           <label htmlFor="first-name">First Name</label>
@@ -94,6 +103,7 @@ export default function SignupModal({ setActiveModal }) {
             name="lastName"
             value={formState.lastName}
             onChange={handleFormChange}
+            className={errors.lastName ? "signup-form__input-error" : ""}
             placeholder=""
             required
           />
@@ -109,6 +119,7 @@ export default function SignupModal({ setActiveModal }) {
             name="email"
             value={formState.email}
             onChange={handleFormChange}
+            className={errors.email ? "signup-form__input-error" : ""}
             placeholder=""
             required
           />
@@ -118,14 +129,39 @@ export default function SignupModal({ setActiveModal }) {
         <div className="signup-form__create-pwd">
           <input
             id="create-pwd"
-            type="password"
+            type={`${pwdVisibility ? "text" : "password"}`}
             name="password"
             value={formState.password}
             onChange={handleFormChange}
+            className={errors.password ? "signup-form__input-error" : ""}
             placeholder=""
             required
           />
           <label htmlFor="create-pwd">Create Password</label>
+          {!pwdVisibility ? (
+            <FaRegEyeSlash
+              onClick={() => setPwdVisibility(!pwdVisibility)}
+              className="signup-form__pwd-visibility"
+            />
+          ) : (
+            <FaRegEye
+              onClick={() => setPwdVisibility(!pwdVisibility)}
+              className="signup-form__pwd-visibility"
+            />
+          )}
+          <div className="signup-form__pwd-info-icon">
+            <FaInfoCircle
+              onClick={() => setPwdInfo(!pwdInfo)}
+              title="Password Requirements"
+            />
+            {pwdInfo && (
+              <p className="signup-form__pwd-info-text">
+                Password must be at least 10 characters long, include an
+                uppercase letter, a lowercase letter, a number, and a special
+                character.
+              </p>
+            )}
+          </div>
           {errors.password && (
             <p className="signup-form__error">{errors.password}</p>
           )}
@@ -133,14 +169,26 @@ export default function SignupModal({ setActiveModal }) {
         <div className="signup-form__re-type-pwd">
           <input
             id="re-type-pwd"
-            type="password"
+            type={`${confirmPwdVisibility ? "text" : "password"}`}
             name="confirmPassword"
             value={formState.confirmPassword}
             onChange={handleFormChange}
+            className={errors.confirmPassword ? "signup-form__input-error" : ""}
             placeholder=""
             required
           />
           <label htmlFor="re-type-pwd">Re-type Password</label>
+          {!confirmPwdVisibility ? (
+            <FaRegEyeSlash
+              onClick={() => setConfirmPwdVisibility(!confirmPwdVisibility)}
+              className="signup-form__pwd-visibility"
+            />
+          ) : (
+            <FaRegEye
+              onClick={() => setConfirmPwdVisibility(!confirmPwdVisibility)}
+              className="signup-form__pwd-visibility"
+            />
+          )}
           {errors.confirmPassword && (
             <p className="signup-form__error">{errors.confirmPassword}</p>
           )}
