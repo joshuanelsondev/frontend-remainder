@@ -46,24 +46,29 @@ export default function LoginModal({ setActiveModal }) {
       const { email, password } = formState;
       const response = await loginUser(email, password);
 
-      console.log("Login response:", response);
-      //const { token } = response.data;
+      const { token } = response;
 
-      //if (!token) {
-      //  throw new Error("invalid response: token is missing.");
-      //}
+      if (!token) {
+        throw new Error("invalid response: token is missing.");
+      }
 
       login(token);
       setMessage("Successful Login");
       setTimeout(() => {
         setActiveModal(null);
       }, 1200);
-      //navigate("/");
+      navigate("/");
     } catch (error) {
       console.error("Login failed", error);
       setMessage(
-        error.response?.data?.message || "Login failed. Please try again."
+        (error.response?.data?.message &&
+          `${error.response?.data?.message}. Please try again.`) ||
+          "Login failed. Please try again."
       );
+    } finally {
+      setTimeout(() => {
+        setMessage(null);
+      }, 2500);
     }
   };
 
