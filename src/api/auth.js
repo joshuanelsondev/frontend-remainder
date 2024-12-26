@@ -6,6 +6,11 @@ export const signupUser = async (userData) => {
   return response.data;
 };
 
+export const loginUser = async (email, password) => {
+  const response = await axios.post("/auth/login", { email, password });
+  return response.data;
+};
+
 export const registerUser = async (email) => {
   try {
     const { data } = await axios.post("/auth/challenge", {
@@ -60,25 +65,3 @@ export const authenticateUser = async (email) => {
     throw new Error("Failed to authenticate. Please try again.");
   }
 };
-
-// export const getRegistrationOptions = async (email) => {
-//   const response = await axios.get(`/auth/get-registration-options`, {
-//     params: { email },
-//   });
-//   return response.data;
-// };
-
-// export const verifyCredential = async (email, credential) => {
-//   const token = sessionStorage.getItem("authToken");
-//   if (!token) throw new Error("No auth token found. Please log in.");
-//   const response = await axios.post(
-//     "/auth/verify-registration",
-//     { email, credential },
-//     {
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//       },
-//     }
-//   );
-//   return response.data;
-// };
