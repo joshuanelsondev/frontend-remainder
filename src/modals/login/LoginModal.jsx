@@ -27,9 +27,7 @@ export default function LoginModal({ setActiveModal }) {
 
   useClickOutside(formRef, () => setActiveModal(null));
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
-
+  const handleFormErrors = () => {
     const allErrors = {};
 
     Object.keys(formState).forEach((fieldName) => {
@@ -39,6 +37,14 @@ export default function LoginModal({ setActiveModal }) {
 
     if (Object.keys(allErrors).length > 0) {
       setErrors(allErrors);
+      return false;
+    }
+  };
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+
+    if (!handleFormErrors()) {
       return;
     }
 
@@ -84,6 +90,10 @@ export default function LoginModal({ setActiveModal }) {
     } catch (error) {
       console.error("Authentication failed:", error);
       setMessage(error.message || "Authentication failed. Please try again.");
+    } finally {
+      setTimeout(() => {
+        setMessage(null);
+      }, 2500);
     }
   };
 
@@ -97,25 +107,6 @@ export default function LoginModal({ setActiveModal }) {
   return (
     <div className="login">
       <div className="login__overlay"></div>
-      {/* <div className="login__webauthn">
-        <p>Sign in with your passkey. Enter your email to proceed:</p>
-        <input
-          id="email"
-          value={email}
-          onChange={handleFormInput}
-          placeholder="Enter your email"
-          className="login__input"
-          type="email"
-          required
-        />
-        <button
-          type="button"
-          onClick={handleWebAuthnLogin}
-          className="login__sign-in"
-        >
-          Sign in with Passkey
-        </button>
-      </div> */}
       <form
         ref={formRef}
         className="login__form"
@@ -179,9 +170,20 @@ export default function LoginModal({ setActiveModal }) {
           </div>
           {errors.password && <p className="login__error">{errors.password}</p>}
         </div>
-        <button type="submit" className="login__sign-in">
-          Sign in
-        </button>
+        {/*Login Options */}
+        <div className="login-options">
+          <button type="submit" className="login-options__sign-in">
+            Sign in
+          </button>
+          <p className="login-options__or">or</p>
+          <button
+            type="button"
+            onClick={handleWebAuthnLogin}
+            className="login-options__sign-in"
+          >
+            Sign in with Passkey
+          </button>
+        </div>
         <div className="login__links">
           <button
             type="button"
