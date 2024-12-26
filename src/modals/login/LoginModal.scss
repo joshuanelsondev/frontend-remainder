@@ -146,6 +146,22 @@
       color: $primary;
       width: fit-content;
     }
+
+    &__webauthn {
+        display: grid;
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    &__back-to-login {
+        font-family: $primary-font;
+        font-size: 0.8rem;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        color: $gray-dark;
+    }
 }
 
 .login-options {
@@ -170,6 +186,7 @@
     }
 
     &__or {
+        font-size: 0.8rem;
         color: $gray-dark;
     }
 }

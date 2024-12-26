@@ -27,10 +27,10 @@ export default function LoginModal({ setActiveModal }) {
 
   useClickOutside(formRef, () => setActiveModal(null));
 
-  const handleFormErrors = () => {
+  const handleFormErrors = (formFields) => {
     const allErrors = {};
 
-    Object.keys(formState).forEach((fieldName) => {
+    Object.keys(formFields).forEach((fieldName) => {
       const fieldErrors = validateInput(fieldName, formState[fieldName]);
       Object.assign(allErrors, fieldErrors);
     });
@@ -39,12 +39,14 @@ export default function LoginModal({ setActiveModal }) {
       setErrors(allErrors);
       return false;
     }
+
+    return true;
   };
 
   const handleLogin = async (event) => {
     event.preventDefault();
 
-    if (!handleFormErrors()) {
+    if (!handleFormErrors(formState)) {
       return;
     }
 
@@ -79,6 +81,12 @@ export default function LoginModal({ setActiveModal }) {
   };
 
   const handleWebAuthnLogin = async () => {
+    const { password, ...email } = formState;
+
+    if (!handleFormErrors(email)) {
+      return;
+    }
+
     try {
       const { token } = await authenticateUser(email);
       login(token);
@@ -113,93 +121,138 @@ export default function LoginModal({ setActiveModal }) {
         onSubmit={handleLogin}
         noValidate
       >
-        <h2 className="login__header">Login</h2>
-        <div className="login__email">
-          <input
-            id="email"
-            name="email"
-            value={formState.email}
-            onChange={(e) => handleFormInput(e)}
-            placeholder=""
-            className="login__input"
-            type="email"
-            required
-          />
-          <label className="login__label" htmlFor="email">
-            Email
-          </label>
-          {errors.email && <p className="login__error">{errors.email}</p>}
-        </div>
-        <div className="login__password">
-          <input
-            id="password"
-            name="password"
-            value={formState.password}
-            onChange={(e) => handleFormInput(e)}
-            placeholder=""
-            className="login__input"
-            type={`${pwdVisibility ? "text" : "password"}`}
-            required
-          />
-          <label className="login__label" htmlFor="password">
-            Password
-          </label>
-          {!pwdVisibility ? (
-            <FaRegEyeSlash
-              onClick={() => setPwdVisibility(!pwdVisibility)}
-              className="login__pwd-visibility"
-            />
-          ) : (
-            <FaRegEye
-              onClick={() => setPwdVisibility(!pwdVisibility)}
-              className="login__pwd-visibility"
-            />
-          )}
-          <div className="login__pwd-info-icon">
-            <FaInfoCircle
-              onClick={() => setPwdInfo(!pwdInfo)}
-              title="Password Requirements"
-            />
-            {pwdInfo && (
-              <p className="login__pwd-info-text">
-                Password must be at least 10 characters long, include an
-                uppercase letter, a lowercase letter, a number, and a special
-                character.
-              </p>
-            )}
-          </div>
-          {errors.password && <p className="login__error">{errors.password}</p>}
-        </div>
-        {/*Login Options */}
-        <div className="login-options">
-          <button type="submit" className="login-options__sign-in">
-            Sign in
-          </button>
-          <p className="login-options__or">or</p>
-          <button
-            type="button"
-            onClick={handleWebAuthnLogin}
-            className="login-options__sign-in"
-          >
-            Sign in with Passkey
-          </button>
-        </div>
-        <div className="login__links">
-          <button
-            type="button"
-            onClick={() => setActiveModal("resetPassword")}
-            className="login__resetPassword"
-          >
-            Forgot Password?
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveModal("signup")}
-            className="login__signup"
-          >
-            Create account
-          </button>
-        </div>
+        {useWebAuthn ? (
+          <>
+            <h2 className="login__header">Enter Email</h2>
+            <div className="login__email">
+              <input
+                id="email"
+                name="email"
+                value={formState.email}
+                onChange={(e) => handleFormInput(e)}
+                placeholder=""
+                className="login__input"
+                type="email"
+                required
+              />
+              <label className="login__label" htmlFor="email">
+                Email
+              </label>
+              {errors.email && <p className="login__error">{errors.email}</p>}
+            </div>
+            <div className="login__webauthn">
+              <button
+                onClick={handleWebAuthnLogin}
+                type="button"
+                className="login-options__sign-in"
+              >
+                Sign in
+              </button>
+              <p className="login-options__or">or</p>
+              <button
+                type="button"
+                onClick={() => setUseWebAuthn(false)}
+                className="login__back-to-login"
+              >
+                Sign in with password
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <h2 className="login__header">Login</h2>
+            <div className="login__email">
+              <input
+                id="email"
+                name="email"
+                value={formState.email}
+                onChange={(e) => handleFormInput(e)}
+                placeholder=""
+                className="login__input"
+                type="email"
+                required
+              />
+              <label className="login__label" htmlFor="email">
+                Email
+              </label>
+              {errors.email && <p className="login__error">{errors.email}</p>}
+            </div>
+            <div className="login__password">
+              <input
+                id="password"
+                name="password"
+                value={formState.password}
+                onChange={(e) => handleFormInput(e)}
+                placeholder=""
+                className="login__input"
+                type={`${pwdVisibility ? "text" : "password"}`}
+                required
+              />
+              <label className="login__label" htmlFor="password">
+                Password
+              </label>
+              {!pwdVisibility ? (
+                <FaRegEyeSlash
+                  onClick={() => setPwdVisibility(!pwdVisibility)}
+                  className="login__pwd-visibility"
+                />
+              ) : (
+                <FaRegEye
+                  onClick={() => setPwdVisibility(!pwdVisibility)}
+                  className="login__pwd-visibility"
+                />
+              )}
+              <div className="login__pwd-info-icon">
+                <FaInfoCircle
+                  onClick={() => setPwdInfo(!pwdInfo)}
+                  title="Password Requirements"
+                />
+                {pwdInfo && (
+                  <p className="login__pwd-info-text">
+                    Password must be at least 10 characters long, include an
+                    uppercase letter, a lowercase letter, a number, and a
+                    special character.
+                  </p>
+                )}
+              </div>
+              {errors.password && (
+                <p className="login__error">{errors.password}</p>
+              )}
+            </div>
+
+            {/*Login Options */}
+            <div className="login-options">
+              <button type="submit" className="login-options__sign-in">
+                Sign in
+              </button>
+              <p className="login-options__or">or</p>
+              <button
+                type="button"
+                onClick={() => setUseWebAuthn(true)}
+                className="login-options__sign-in"
+              >
+                Sign in with Passkey
+              </button>
+            </div>
+            <div className="login__links">
+              <button
+                type="button"
+                onClick={() => setActiveModal("resetPassword")}
+                className="login__resetPassword"
+              >
+                Forgot Password?
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveModal("signup")}
+                className="login__signup"
+              >
+                Create account
+              </button>
+            </div>
+          </>
+        )}
+
         {message && (
           <p className="login__message" aria-live="polite">
             {message}
