@@ -88,13 +88,15 @@ export default function LoginModal({ setActiveModal }) {
     }
 
     try {
+      console.log("Authenticating...");
       const { token } = await authenticateUser(email);
+      if (!token) {
+        console.error("No token");
+      }
+
       login(token);
-      setSuccessModal(true);
-      setTimeout(() => {
-        setActiveModal(null);
-        navigate("/");
-      }, 1200);
+      setMessage("Successful Login");
+      navigate("/");
     } catch (error) {
       console.error("Authentication failed:", error);
       setMessage(error.message || "Authentication failed. Please try again.");
