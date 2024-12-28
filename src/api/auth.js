@@ -50,15 +50,12 @@ export const authenticateUser = async (userEmail) => {
       email,
     });
 
-    console.log("Options:", options);
     // Perform WebAuthn authentication
     const authentication = await client.authenticate({
       challenge: options.challenge,
       allowCredentials: options.allowCredentials,
       timeout: 60000,
     });
-
-    console.log("Authentication:", authentication);
 
     // Send authentication response to the backend for verification
     const { data } = await axios.post("/auth/authenticate", {
