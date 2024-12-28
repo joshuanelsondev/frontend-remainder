@@ -37,16 +37,24 @@ export const registerUser = async (email) => {
   }
 };
 
-export const authenticateUser = async (email) => {
+export const authenticateUser = async (userEmail) => {
+  const { email } = userEmail;
+
+  if (!email) {
+    throw new Error("Email is required for authentication.");
+  }
+
   try {
     // Get authentication options
-    const { data: options } = await axios.post("/auth/authenticate-options", {
+    const { data: options } = await axios.post("/auth/auth-options", {
       email,
     });
 
     // Perform WebAuthn authentication
     const authentication = await client.authenticate({
       challenge: options.challenge,
+      allowCredentials: options.allowCredentials,
+      timeout: 60000,
     });
 
     // Send authentication response to the backend for verification
@@ -56,6 +64,7 @@ export const authenticateUser = async (email) => {
     });
 
     sessionStorage.setItem("authToken", data.token);
+    console.log("Success!");
     return { success: true, token: data.token };
   } catch (error) {
     console.error(
