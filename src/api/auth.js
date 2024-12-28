@@ -64,7 +64,6 @@ export const authenticateUser = async (userEmail) => {
     });
 
     sessionStorage.setItem("authToken", data.token);
-    console.log("Success!");
     return { success: true, token: data.token };
   } catch (error) {
     console.error(
