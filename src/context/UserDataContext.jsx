@@ -6,9 +6,11 @@ import React, {
   useMemo,
 } from "react";
 import PropTypes from "prop-types";
+import { throttle } from "lodash";
 import { getAllIncomes } from "../api/incomeApi.js";
 import { getAllExpenses } from "../api/expenseApi.js";
 import { getBudget } from "../api/budgetApi.js";
+import { getComparisons } from "../api/comparisonsApi.js";
 
 const UserDataContext = createContext();
 
@@ -22,24 +24,27 @@ export const UserDataProvider = ({ children }) => {
     budget: { totalIncome: 0, totalExpenses: 0, disposableIncome: 0 },
   });
 
-  const getUserData = async () => {
+  const getUserData = throttle(async (startDate, endDate) => {
     try {
-      const [incomes, expenses, budget] = await Promise.all([
+      const [incomes, expenses, budget, comparisons] = await Promise.all([
         getAllIncomes(),
         getAllExpenses(),
         getBudget(),
+        getComparisons(startDate, endDate),
       ]);
 
-      setUserData({ incomes, expenses, budget });
+      setUserData({ incomes, expenses, budget, comparisons });
     } catch (error) {
       console.error("Error fetching user data:", error);
     } finally {
       setIsLoading(false);
     }
-  };
+  }, 5000);
 
   useEffect(() => {
-    getUserData();
+    const defaultStartDate = "2024-01-01";
+    const defaultEndDate = "2024-12-31";
+    getUserData(defaultStartDate, defaultEndDate);
   }, []);
 
   const memoizedUserData = useMemo(() => userData, [userData]);
