@@ -22,7 +22,7 @@ export default function IncomeWidget() {
 
   return (
     <div className="dashboard__income">
-      <Link to={"/incomes"} className="header">
+      <Link to={"/income"} className="header">
         Income
       </Link>
       <p className="amount">
