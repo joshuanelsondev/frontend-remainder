@@ -22,7 +22,7 @@ export default function ExpenseWidget() {
 
   return (
     <div className="dashboard__expense">
-      <Link to={"/expenses"} className="header">
+      <Link to={"/expense"} className="header">
         Expenses
       </Link>
       <p className="amount">

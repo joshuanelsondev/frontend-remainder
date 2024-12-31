@@ -1,10 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./BreakdownWidget.scss";
 
 export default function BreakdownWidget() {
   return (
     <div className="dashboard__breakdown">
-      <h4 className="header">Expenses Breakdown</h4>
+      <Link to={"/expense"} className="header">
+        Expenses Breakdown
+      </Link>
     </div>
   );
 }
