@@ -17,6 +17,8 @@ const UserDataContext = createContext();
 export const useUserData = () => useContext(UserDataContext);
 
 export const UserDataProvider = ({ children }) => {
+  const currentYear = new Date().getFullYear();
+  const [selectedYear, setSelectedYear] = useState(currentYear);
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState({
     incomes: [],
@@ -24,8 +26,11 @@ export const UserDataProvider = ({ children }) => {
     budget: { totalIncome: 0, totalExpenses: 0, disposableIncome: 0 },
   });
 
-  const getUserData = throttle(async (startDate, endDate) => {
+  const getUserData = throttle(async (year) => {
     try {
+      const startDate = `${year}-01-01`;
+      const endDate = `${year}-12-31`;
+
       const [incomes, expenses, budget, comparisons] = await Promise.all([
         getAllIncomes(),
         getAllExpenses(),
@@ -42,16 +47,20 @@ export const UserDataProvider = ({ children }) => {
   }, 5000);
 
   useEffect(() => {
-    const defaultStartDate = "2024-01-01";
-    const defaultEndDate = "2024-12-31";
-    getUserData(defaultStartDate, defaultEndDate);
-  }, []);
+    getUserData(selectedYear);
+  }, [selectedYear]);
 
   const memoizedUserData = useMemo(() => userData, [userData]);
 
   return (
     <UserDataContext.Provider
-      value={{ userData: memoizedUserData, getUserData }}
+      value={{
+        userData: memoizedUserData,
+        getUserData,
+        selectedYear,
+        setSelectedYear,
+        isLoading,
+      }}
     >
       {children}
     </UserDataContext.Provider>
