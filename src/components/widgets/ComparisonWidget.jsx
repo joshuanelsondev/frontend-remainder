@@ -25,7 +25,7 @@ ChartJS.register(
 export default function ComparisonWidget() {
   const { userData } = useUserData();
   const { comparisons } = userData;
-  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [itemsPerPage, setItemsPerPage] = useState(4);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
 
