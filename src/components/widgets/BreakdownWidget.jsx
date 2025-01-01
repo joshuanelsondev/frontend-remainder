@@ -6,7 +6,6 @@ import "./BreakdownWidget.scss";
 export default function BreakdownWidget() {
   const { userData } = useUserData();
   const { expenses } = userData;
-  console.log(expenses);
 
   return (
     <div className="dashboard__breakdown">

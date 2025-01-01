@@ -11,6 +11,12 @@ import {
   FaUsers,
   FaFirstAid,
   FaPlaneDeparture,
+  FaBriefcase,
+  FaMoneyBillWave,
+  FaRegBuilding,
+  FaGift,
+  FaChartLine,
+  FaThLarge,
 } from "react-icons/fa";
 
 export default icons = {
@@ -26,4 +32,12 @@ export default icons = {
   family: FaUsers,
   emergency: FaFirstAid,
   vacation: FaPlaneDeparture,
+  freelance: FaBriefcase,
+  salary: FaMoneyBillWave,
+  business: FaRegBuilding,
+  gifts: FaGift,
+  rental: FaHome,
+  investment: FaChartLine,
+  other: FaThLarge,
+  miscellaneous: FaThLarge,
 };
