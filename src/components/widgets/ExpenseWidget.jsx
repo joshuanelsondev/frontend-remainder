@@ -7,7 +7,7 @@ import {
   FaAngleDoubleUp,
   FaAngleDoubleDown,
   FaExchangeAlt,
-  FaShapes,
+  FaThLarge,
 } from "react-icons/fa";
 
 export default function ExpenseWidget() {
@@ -51,7 +51,7 @@ export default function ExpenseWidget() {
           </p>
           <p className="categories">
             <span>
-              <FaShapes className="icon" />
+              <FaThLarge className="icon" />
             </span>
             {expenseSources} categories
           </p>
