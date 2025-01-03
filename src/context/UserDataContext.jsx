@@ -10,13 +10,17 @@ import { throttle } from "lodash";
 import { getAllIncomes } from "../api/incomeApi.js";
 import { getAllExpenses } from "../api/expenseApi.js";
 import { getBudget } from "../api/budgetApi.js";
-import { getComparisons } from "../api/comparisonsApi.js";
+import { getComparisons, getComparisonsYears } from "../api/comparisonsApi.js";
 
 const UserDataContext = createContext();
 
 export const useUserData = () => useContext(UserDataContext);
 
+// Provider Function
 export const UserDataProvider = ({ children }) => {
+  const currentYear = new Date().getFullYear();
+  const [selectedYear, setSelectedYear] = useState(currentYear);
+  const [availableYears, setAvailableYears] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState({
     incomes: [],
@@ -24,13 +28,14 @@ export const UserDataProvider = ({ children }) => {
     budget: { totalIncome: 0, totalExpenses: 0, disposableIncome: 0 },
   });
 
-  const getUserData = throttle(async (startDate, endDate) => {
+  // Make API calls to retrieve user data
+  const getUserData = throttle(async (year) => {
     try {
       const [incomes, expenses, budget, comparisons] = await Promise.all([
         getAllIncomes(),
         getAllExpenses(),
         getBudget(),
-        getComparisons(startDate, endDate),
+        getComparisons(selectedYear),
       ]);
 
       setUserData({ incomes, expenses, budget, comparisons });
@@ -41,17 +46,36 @@ export const UserDataProvider = ({ children }) => {
     }
   }, 5000);
 
+  const getAvailableYears = async () => {
+    try {
+      const years = await getComparisonsYears();
+      setAvailableYears(years);
+    } catch (error) {
+      console.error("Error fetching available years:", error);
+    }
+  };
+
   useEffect(() => {
-    const defaultStartDate = "2024-01-01";
-    const defaultEndDate = "2024-12-31";
-    getUserData(defaultStartDate, defaultEndDate);
+    getAvailableYears();
+    getUserData(selectedYear);
   }, []);
+
+  useEffect(() => {
+    getUserData(selectedYear);
+  }, [selectedYear]);
 
   const memoizedUserData = useMemo(() => userData, [userData]);
 
   return (
     <UserDataContext.Provider
-      value={{ userData: memoizedUserData, getUserData }}
+      value={{
+        userData: memoizedUserData,
+        getUserData,
+        selectedYear,
+        setSelectedYear,
+        isLoading,
+        availableYears,
+      }}
     >
       {children}
     </UserDataContext.Provider>

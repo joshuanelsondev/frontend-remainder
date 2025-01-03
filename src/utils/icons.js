@@ -21,6 +21,7 @@ import {
 
 export default icons = {
   housing: FaHome,
+  rent: FaHome,
   utilities: FaRegLightbulb,
   groceries: FaShoppingCart,
   entertainment: FaGamepad,
