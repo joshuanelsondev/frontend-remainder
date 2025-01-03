@@ -137,7 +137,9 @@ export default function ComparisonWidget() {
         <h4 className="header">Monthly Income vs. Expenses</h4>
         <div className="comparisons-filters">
           <div className="year-selector">
-            <label htmlFor="year">Select Start Year:</label>
+            <label className="year-label" htmlFor="year">
+              Select Start Year:
+            </label>
             <select
               id="year"
               value={selectedYear}
