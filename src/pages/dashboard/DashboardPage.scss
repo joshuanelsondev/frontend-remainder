@@ -21,6 +21,11 @@
     box-shadow: 0 0 0.5rem $gray;
     font-family: $secondary-font;
 
+    .heading {
+      display: flex;
+      align-items: center;
+    }
+
     .header {
       text-decoration: none;
       font-size: 1rem;
@@ -28,6 +33,11 @@
       margin: 0;
       height: 1rem;
       color: $primary;
+    }
+
+    .add {
+      color: $primary;
+      cursor: pointer;
     }
   }
   // Top level widgets

@@ -8,6 +8,7 @@ import {
   FaAngleDoubleDown,
   FaExchangeAlt,
   FaThLarge,
+  FaRegPlusSquare,
 } from "react-icons/fa";
 
 export default function IncomeWidget() {
@@ -22,9 +23,12 @@ export default function IncomeWidget() {
 
   return (
     <div className="dashboard__income">
-      <Link to={"/income"} className="header">
-        Income
-      </Link>
+      <div className="heading">
+        <Link to={"/income"} className="header">
+          Income
+        </Link>
+        <FaRegPlusSquare className="add" />
+      </div>
       <p className="amount">
         ${dollars}
         <span className="cents">.{cents}</span>
