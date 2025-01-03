@@ -8,7 +8,6 @@ import {
   FaAngleDoubleDown,
   FaExchangeAlt,
   FaThLarge,
-  FaRegPlusSquare,
 } from "react-icons/fa";
 
 export default function BudgetWidget() {
@@ -27,7 +26,6 @@ export default function BudgetWidget() {
         <Link to={"/budget"} className="header">
           Budget
         </Link>
-        <FaRegPlusSquare className="add" />
       </div>
       <p className="amount">
         ${dollars}

@@ -1,7 +1,6 @@
 import React, { useState, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import axios from "../../api/axios";
 import validateInput from "../../utils/validateInput";
 import { loginUser } from "../../api/auth";
 import { authenticateUser } from "../../api/auth";
@@ -18,7 +17,6 @@ export default function LoginModal({ setActiveModal }) {
   const [message, setMessage] = useState(null);
   const [pwdVisibility, setPwdVisibility] = useState(false);
   const [pwdInfo, setPwdInfo] = useState(false);
-  const [successModal, setSuccessModal] = useState(null);
   const [useWebAuthn, setUseWebAuthn] = useState(false);
   const [errors, setErrors] = useState({});
   const { login } = useContext(AuthContext);
