@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import useClickOutside from "../../hooks/useClickOutside";
 import capitalizeStr from "../../utils/capitalizeStr";
+import "./ExpenseModal.scss";
 
 const selectOptions = [
   "rent",
@@ -28,11 +29,11 @@ export default function ExpenseModal({ setActiveModal }) {
       <div className="expense-form__overlay"></div>
       <form className="expense-form__form" ref={formRef}>
         <h1 className="expense-form__header">Add Expense</h1>
-        <div>
+        <div className="amount">
           <label htmlFor="amount">Amount:</label>
           <input type="number" />
         </div>
-        <div>
+        <div className="category">
           <label htmlFor="category">Category:</label>
           <select name="category" id="category">
             <option>Category</option>
@@ -43,11 +44,11 @@ export default function ExpenseModal({ setActiveModal }) {
             ))}
           </select>
         </div>
-        <div>
+        <div className="date">
           <label htmlFor="date">Date:</label>
           <input type="date" />
         </div>
-        <button>Add Expense</button>
+        <button className="add-btn">Add Expense</button>
       </form>
     </div>
   );

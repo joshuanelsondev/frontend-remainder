@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import useClickOutside from "../../hooks/useClickOutside";
 import capitalizeStr from "../../utils/capitalizeStr";
+import "./IncomeModal.scss";
 
 const selectOptions = [
   "freelance",
@@ -22,11 +23,11 @@ export default function IncomeModal({ setActiveModal }) {
       <div className="income-form__overlay"></div>
       <form className="income-form__form" ref={formRef}>
         <h1 className="income-form__header">Add Income</h1>
-        <div>
+        <div className="amount">
           <label htmlFor="amount">Amount:</label>
           <input type="number" />
         </div>
-        <div>
+        <div className="source">
           <label htmlFor="source">Source of Income:</label>
           <select name="source" id="source">
             <option>Source</option>
@@ -37,11 +38,11 @@ export default function IncomeModal({ setActiveModal }) {
             ))}
           </select>
         </div>
-        <div>
+        <div className="date">
           <label htmlFor="date">Date:</label>
           <input type="date" />
         </div>
-        <button>Add Income</button>
+        <button className="add-btn">Add Income</button>
       </form>
     </div>
   );
