@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./ExpenseWidget";
 import { useUserData } from "../../context/UserDataContext";
+import { useModal } from "../../context/ModalContext";
 import { formatAmount } from "../../utils/formatAmount";
 import {
   FaAngleDoubleUp,
@@ -14,6 +15,7 @@ import {
 export default function ExpenseWidget() {
   const [increase, setIncrease] = useState(false);
   const { userData } = useUserData();
+  const { setActiveModal } = useModal();
   const {
     totalExpenses = 0,
     expenseSources = 0,
@@ -27,7 +29,11 @@ export default function ExpenseWidget() {
         <Link to={"/expense"} className="header">
           Expenses
         </Link>
-        <FaRegPlusSquare className="add" />
+        <FaRegPlusSquare
+          className="add"
+          onClick={() => setActiveModal("expense")}
+          title="Add Expense"
+        />
       </div>
       <p className="amount">
         ${dollars}

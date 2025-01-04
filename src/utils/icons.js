@@ -20,7 +20,6 @@ import {
 } from "react-icons/fa";
 
 export default icons = {
-  housing: FaHome,
   rent: FaHome,
   utilities: FaRegLightbulb,
   groceries: FaShoppingCart,
@@ -40,5 +39,4 @@ export default icons = {
   rental: FaHome,
   investment: FaChartLine,
   other: FaThLarge,
-  miscellaneous: FaThLarge,
 };
