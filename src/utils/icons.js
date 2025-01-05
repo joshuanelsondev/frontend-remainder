@@ -19,7 +19,7 @@ import {
   FaThLarge,
 } from "react-icons/fa";
 
-export default icons = {
+const icons = {
   rent: FaHome,
   utilities: FaRegLightbulb,
   groceries: FaShoppingCart,
@@ -40,3 +40,5 @@ export default icons = {
   investment: FaChartLine,
   other: FaThLarge,
 };
+
+export default icons;
