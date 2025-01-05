@@ -10,7 +10,7 @@ import { FaRegEyeSlash, FaRegEye, FaInfoCircle } from "react-icons/fa";
 import "./LoginModal.scss";
 
 export default function LoginModal({ setActiveModal }) {
-  const [formState, setFormState] = useState({
+  const [form, setForm] = useState({
     email: "",
     password: "",
   });
@@ -29,7 +29,7 @@ export default function LoginModal({ setActiveModal }) {
     const allErrors = {};
 
     Object.keys(formFields).forEach((fieldName) => {
-      const fieldErrors = validateInput(fieldName, formState[fieldName]);
+      const fieldErrors = validateInput(fieldName, form[fieldName]);
       Object.assign(allErrors, fieldErrors);
     });
 
@@ -44,12 +44,12 @@ export default function LoginModal({ setActiveModal }) {
   const handleLogin = async (event) => {
     event.preventDefault();
 
-    if (!handleFormErrors(formState)) {
+    if (!handleFormErrors(form)) {
       return;
     }
 
     try {
-      const { email, password } = formState;
+      const { email, password } = form;
       const response = await loginUser(email, password);
 
       const { token } = response;
@@ -79,7 +79,7 @@ export default function LoginModal({ setActiveModal }) {
   };
 
   const handleWebAuthnLogin = async () => {
-    const { password, ...email } = formState;
+    const { password, ...email } = form;
 
     if (!handleFormErrors(email)) {
       return;
@@ -105,7 +105,7 @@ export default function LoginModal({ setActiveModal }) {
 
   const handleFormInput = (e) => {
     const { name, value } = e.target;
-    setFormState({ ...formState, [name]: value });
+    setForm({ ...form, [name]: value });
     setErrors({});
     setMessage(null);
   };
@@ -126,7 +126,7 @@ export default function LoginModal({ setActiveModal }) {
               <input
                 id="email"
                 name="email"
-                value={formState.email}
+                value={form.email}
                 onChange={(e) => handleFormInput(e)}
                 placeholder=""
                 className="login__input"
@@ -163,7 +163,7 @@ export default function LoginModal({ setActiveModal }) {
               <input
                 id="email"
                 name="email"
-                value={formState.email}
+                value={form.email}
                 onChange={(e) => handleFormInput(e)}
                 placeholder=""
                 className="login__input"
@@ -179,7 +179,7 @@ export default function LoginModal({ setActiveModal }) {
               <input
                 id="password"
                 name="password"
-                value={formState.password}
+                value={form.password}
                 onChange={(e) => handleFormInput(e)}
                 placeholder=""
                 className="login__input"
