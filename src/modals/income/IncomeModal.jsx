@@ -48,7 +48,7 @@ export default function IncomeModal({ setActiveModal }) {
         getUserData();
       }, 2000);
     } catch (error) {
-      console.error("Error creating income:", err);
+      console.error("Error creating income:", error);
       setError("Failed to add income. Please try again.");
     } finally {
       setLoading(false);
