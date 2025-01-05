@@ -17,6 +17,7 @@ import {
   FaGift,
   FaChartLine,
   FaThLarge,
+  FaFileInvoiceDollar,
 } from "react-icons/fa";
 
 const icons = {
@@ -38,6 +39,7 @@ const icons = {
   gifts: FaGift,
   rental: FaHome,
   investment: FaChartLine,
+  debt: FaFileInvoiceDollar,
   other: FaThLarge,
 };
 

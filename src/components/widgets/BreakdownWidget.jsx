@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useUserData } from "../../context/UserDataContext";
 import { formatAmount } from "../../utils/formatAmount";
 import icons from "../../utils/icons";
+import capitalizeStr from "../../utils/capitalizeStr";
 import "./BreakdownWidget.scss";
 
 export default function BreakdownWidget() {
@@ -20,11 +21,19 @@ export default function BreakdownWidget() {
           const Icon = icons[expense.category];
           return (
             <div key={expense.id} className="expense-item">
-              {Icon && <Icon className="expense-item__icon" />}
-              <p className="expense-item__category">{expense.category}</p>
-              <p className="expense-item__amount">
-                ${dollars}.{cents}
-              </p>
+              {Icon && (
+                <div className="expense-item__icon">
+                  <Icon size={20} />
+                </div>
+              )}
+              <div className="expense-item__right">
+                <p className="expense-item__category">
+                  {capitalizeStr(expense.category)}
+                </p>
+                <p className="expense-item__amount">
+                  ${dollars}.{cents}
+                </p>
+              </div>
             </div>
           );
         })}
