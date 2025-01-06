@@ -19,7 +19,8 @@
 
   &__modal {
     background-color: $gray-light;
-    height: 10rem;
+    height: auto;
+    min-height: 5rem;
     width: 25rem;
     position: absolute;
     top: 50%;
@@ -30,6 +31,7 @@
     flex-direction: column;
     justify-content: start;
     align-items: center;
+    padding: 1rem;
   }
 
   &__header {
@@ -59,5 +61,15 @@
         &:hover {
           background-color: $primary;
         }
+  }
+
+  &__success {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 0.5rem;
+    color: $primary;
+    font-size: 1rem;
   }
 }
