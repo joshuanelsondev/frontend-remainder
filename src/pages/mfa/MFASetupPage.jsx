@@ -7,6 +7,7 @@ import { AuthContext } from "../../context/AuthContext";
 export default function MFASetupPage() {
   const [searchParams] = useSearchParams();
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
   const email = searchParams.get("email");
   const token = searchParams.get("token");
   const { login } = useContext(AuthContext);
@@ -21,7 +22,8 @@ export default function MFASetupPage() {
       await registerUser(email);
 
       login(token);
-      navigate("/");
+      setSuccess("Login Successful! Bringing you to your dashboard...");
+      setTimeout(() => navigate("/"), 2000);
     } catch (error) {
       console.error("MFA setup error:", error);
 
@@ -35,8 +37,11 @@ export default function MFASetupPage() {
     <div className="mfa">
       <div className="mfa__overlay"></div>
       <div className="mfa__modal">
-        <h1 className="mfa__header">Mult-factor Authentication</h1>
-        {!error ? (
+        {!success && (
+          <h1 className="mfa__header">Mult-factor Authentication</h1>
+        )}
+
+        {!error && !success && (
           <>
             <p className="mfa__text">
               Click below to set up authentication options
@@ -45,7 +50,8 @@ export default function MFASetupPage() {
               Start
             </button>
           </>
-        ) : (
+        )}
+        {error && (
           <>
             <p className="mfa__error">{error}</p>
             <button className="mfa__btn" onClick={() => setError(null)}>
@@ -54,6 +60,7 @@ export default function MFASetupPage() {
           </>
         )}
       </div>
+      {success && <div className="mfa__success">{success}</div>}
     </div>
   );
 }
