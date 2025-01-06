@@ -1,2 +1,43 @@
 @use "../../utils/variables" as *;
 
+.expenses-list {
+    display: grid;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 100%;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: repeat(5, 50%);
+    scrollbar-color: $gray-light $gray-light;
+}
+
+.expense-item {
+    display: flex;
+    place-items: center;
+    gap: 0.5rem;
+
+    &__icon {
+        background-color: $gray-light;
+        color: $primary;
+        height: 3rem;
+        width: 3rem;
+        display: grid; 
+        place-items: center;
+        border-radius: 0.5rem;
+    }
+
+    &__right {
+        display: grid;
+        gap: 0.5rem;
+    }
+
+    &__category {
+      font-size: 0.8rem;
+      margin: 0;
+    }
+
+    &__amount {
+        font-weight: 600;
+        margin: 0;
+    }
+
+}

@@ -1,0 +1,195 @@
+@use '../../utils/variables' as *;
+
+.expense-form {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+
+    &__overlay {
+      height: inherit;
+      width: inherit;
+      background-color: $primary;
+      opacity: 20%;
+    }
+
+    &__form {
+        position: inherit;
+        top: inherit;
+        left: inherit;
+        transform: inherit;
+        height: auto;
+        width: 25rem;
+        background-color: white;
+        color: black;
+        border-radius: 0.50rem;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 1.5rem;
+        padding: 2rem;
+        box-shadow: 0 0 5px $gray-dark;
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+
+    &__header {
+        align-self: center;
+        font-size: 1.5rem;
+        color: $primary;
+        margin: 0; 
+    }
+
+    &__amount {
+        width: 100%;
+        position: relative;
+
+        label {
+            font-size: 1rem;
+            color: $gray-dark;
+            background-color: $white;
+            position: absolute;
+            top: 1rem;
+            left: 0;
+            padding: 0 0.25rem;
+            cursor: text;
+            transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
+        }
+
+        input {
+            border: none;
+            border-bottom: 0.1rem solid $gray;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.75rem 0.9rem;
+            font-size: 1rem;
+            z-index: 50;
+
+            &:focus,
+            &:valid {
+                outline: 0.15rem solid $primary;
+                border-radius: 0.25rem;
+                border: none;
+            }
+
+            &:focus+label,
+            &:valid+label,
+            &:not(:placeholder-shown)+label {
+                color: $primary;
+                top: -0.65rem;
+                font-size: 0.8rem;
+                left: 0.5rem;
+            }
+        }
+        
+        span {
+          font-size: 0.9rem;
+          position: absolute;
+          bottom: 0.75rem;
+          left: 0.25rem;
+        }
+    }
+    
+    &__amount-label {
+      font-size: 0.75rem;
+      color: $gray-dark;
+      background-color: $white;
+      position: absolute;
+      top: 0.75rem;
+      left: 0;
+      padding: 0 0.25rem;
+      cursor: text;
+      transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
+    }
+
+    &__category {
+      display: grid;
+      gap: 0.25rem;
+      position: relative;
+    }
+
+    &__category-select {
+      border: none;
+      border-radius: 0.25rem;
+      appearance: none;
+      width: 100%;
+      padding: 0.5rem 1rem;
+      padding-right: 1.5rem;
+      background-color: $primary;
+      color: $white;
+      cursor: pointer;
+
+      &:focus {
+        outline: 1px solid $primary-light;
+      }
+    }
+
+    .category-caret {
+      color: $white;
+      position: absolute;
+      bottom: 0.4rem;
+      right: 0.4rem;
+      cursor: default;
+    }
+    
+    &__date {
+      display: grid;
+      gap: 0.25rem;
+    }
+
+    &__date-input {
+      border-radius: 0.25rem;
+      border: 1px solid $primary;
+      appearance: none;
+      width: 100%;
+      padding: 0.5rem 1rem;
+      box-shadow: 0 0 2px $gray;
+      cursor: text;
+
+      &:focus {
+        outline: 1px solid $primary;
+      }
+    }
+
+    ::-webkit-calendar-picker-indicator {
+      background-color: $gray-light;
+      cursor: pointer;
+      padding: 0.25rem;
+      border-radius: 0.25rem;
+    }
+
+    
+    &__add-btn {
+      border: none;
+      background-color: $primary;
+      color: $white;
+      border-radius: 0.25rem;
+      padding: 0.5rem 1rem; 
+      cursor: pointer;
+      font-weight: 600;
+      
+      &:disabled {
+        background-color: $gray-light;
+        color: $gray-dark;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .error-message, .success-message {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background-color: $white;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 0 3px $gray;
+    color: $primary;
+    font-size: 1rem;
+  }

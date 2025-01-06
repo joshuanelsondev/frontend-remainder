@@ -9,7 +9,7 @@ import "./SignupModal.scss";
 
 export default function SignupModal({ setActiveModal }) {
   const formRef = useRef(null);
-  const [formState, setFormState] = useState({
+  const [form, setForm] = useState({
     firstName: "",
     lastName: "",
     email: "",
@@ -28,7 +28,7 @@ export default function SignupModal({ setActiveModal }) {
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
-    setFormState({ ...formState, [name]: value });
+    setForm({ ...form, [name]: value });
     setMessage(null);
     setErrors({});
   };
@@ -36,16 +36,16 @@ export default function SignupModal({ setActiveModal }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { confirmPassword, ...apiData } = formState;
+    const { confirmPassword, ...apiData } = form;
 
     const allErrors = {};
 
-    Object.keys(formState).forEach((fieldName) => {
-      const fieldErrors = validateInput(fieldName, formState[fieldName]);
+    Object.keys(form).forEach((fieldName) => {
+      const fieldErrors = validateInput(fieldName, form[fieldName]);
       Object.assign(allErrors, fieldErrors);
     });
 
-    if (formState.password !== confirmPassword) {
+    if (form.password !== confirmPassword) {
       allErrors.confirmPassword = "Passwords do not match.";
     }
 
@@ -85,7 +85,7 @@ export default function SignupModal({ setActiveModal }) {
             id="first-name"
             type="text"
             name="firstName"
-            value={formState.firstName}
+            value={form.firstName}
             onChange={handleFormChange}
             placeholder=""
             className={errors.firstName ? "signup-form__input-error" : ""}
@@ -101,7 +101,7 @@ export default function SignupModal({ setActiveModal }) {
             id="last-name"
             type="text"
             name="lastName"
-            value={formState.lastName}
+            value={form.lastName}
             onChange={handleFormChange}
             className={errors.lastName ? "signup-form__input-error" : ""}
             placeholder=""
@@ -117,7 +117,7 @@ export default function SignupModal({ setActiveModal }) {
             id="email"
             type="text"
             name="email"
-            value={formState.email}
+            value={form.email}
             onChange={handleFormChange}
             className={errors.email ? "signup-form__input-error" : ""}
             placeholder=""
@@ -131,7 +131,7 @@ export default function SignupModal({ setActiveModal }) {
             id="create-pwd"
             type={`${pwdVisibility ? "text" : "password"}`}
             name="password"
-            value={formState.password}
+            value={form.password}
             onChange={handleFormChange}
             className={errors.password ? "signup-form__input-error" : ""}
             placeholder=""
@@ -171,7 +171,7 @@ export default function SignupModal({ setActiveModal }) {
             id="re-type-pwd"
             type={`${confirmPwdVisibility ? "text" : "password"}`}
             name="confirmPassword"
-            value={formState.confirmPassword}
+            value={form.confirmPassword}
             onChange={handleFormChange}
             className={errors.confirmPassword ? "signup-form__input-error" : ""}
             placeholder=""

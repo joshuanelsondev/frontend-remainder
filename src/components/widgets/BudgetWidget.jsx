@@ -22,9 +22,11 @@ export default function BudgetWidget() {
 
   return (
     <div className="dashboard__budget">
-      <Link to={"/budget"} className="header">
-        Budget
-      </Link>
+      <div className="heading">
+        <Link to={"/budget"} className="header">
+          Budget
+        </Link>
+      </div>
       <p className="amount">
         ${dollars}
         <span className="cents">.{cents}</span>

@@ -4,6 +4,8 @@ import SideNav from "../../components/sideNav/SideNav";
 import Header from "../../components/header/Header";
 import { AuthContext } from "../../context/AuthContext";
 import { UserDataProvider } from "../../context/UserDataContext";
+import { ModalProvider } from "../../context/ModalContext";
+import ModalRenderer from "../../modals/ModalRenderer";
 import "./DashboardLayout.scss";
 
 export default function DashboardLayout() {
@@ -13,14 +15,17 @@ export default function DashboardLayout() {
   }
 
   return (
-    <UserDataProvider>
-      <div className="dashboard-layout">
-        <SideNav />
-        <div className="outlet">
-          <Header />
-          <Outlet />
+    <ModalProvider>
+      <UserDataProvider>
+        <div className="dashboard-layout">
+          <SideNav />
+          <ModalRenderer />
+          <div className="outlet">
+            <Header />
+            <Outlet />
+          </div>
         </div>
-      </div>
-    </UserDataProvider>
+      </UserDataProvider>
+    </ModalProvider>
   );
 }

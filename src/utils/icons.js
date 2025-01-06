@@ -17,10 +17,10 @@ import {
   FaGift,
   FaChartLine,
   FaThLarge,
+  FaFileInvoiceDollar,
 } from "react-icons/fa";
 
-export default icons = {
-  housing: FaHome,
+const icons = {
   rent: FaHome,
   utilities: FaRegLightbulb,
   groceries: FaShoppingCart,
@@ -39,6 +39,8 @@ export default icons = {
   gifts: FaGift,
   rental: FaHome,
   investment: FaChartLine,
+  debt: FaFileInvoiceDollar,
   other: FaThLarge,
-  miscellaneous: FaThLarge,
 };
+
+export default icons;

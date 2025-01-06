@@ -3,16 +3,19 @@ import { Link } from "react-router-dom";
 import "./IncomeWidget.scss";
 import { useUserData } from "../../context/UserDataContext";
 import { formatAmount } from "../../utils/formatAmount";
+import { useModal } from "../../context/ModalContext";
 import {
   FaAngleDoubleUp,
   FaAngleDoubleDown,
   FaExchangeAlt,
   FaThLarge,
+  FaRegPlusSquare,
 } from "react-icons/fa";
 
 export default function IncomeWidget() {
   const [increase, setIncrease] = useState(true);
   const { userData } = useUserData();
+  const { setActiveModal } = useModal();
   const {
     totalIncome = 0,
     incomeSources = 0,
@@ -22,9 +25,16 @@ export default function IncomeWidget() {
 
   return (
     <div className="dashboard__income">
-      <Link to={"/income"} className="header">
-        Income
-      </Link>
+      <div className="heading">
+        <Link to={"/income"} className="header">
+          Income
+        </Link>
+        <FaRegPlusSquare
+          className="add"
+          onClick={() => setActiveModal("income")}
+          title="Add Income"
+        />
+      </div>
       <p className="amount">
         ${dollars}
         <span className="cents">.{cents}</span>
