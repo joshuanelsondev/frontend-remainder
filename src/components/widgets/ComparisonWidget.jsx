@@ -29,7 +29,6 @@ export default function ComparisonWidget() {
   const [itemsPerPage, setItemsPerPage] = useState(4);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
-  console.log(comparisons);
 
   // Set the total pages and the current page
   useEffect(() => {

@@ -20,6 +20,7 @@
     box-sizing: border-box;
     box-shadow: 0 0 0.5rem $gray;
     font-family: $secondary-font;
+    position: relative;
 
     .heading {
       display: flex;
@@ -38,6 +39,15 @@
     .add {
       color: $primary;
       cursor: pointer;
+    }
+
+    .no-data {
+        position: absolute;
+        color: $primary;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin: 0;
     }
   }
   // Top level widgets

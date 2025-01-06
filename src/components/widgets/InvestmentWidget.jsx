@@ -8,6 +8,7 @@ export default function InvestmentWidget() {
       <Link to={"/investment"} className="header">
         Investments
       </Link>
+      <p className="no-data">No Data Available Yet</p>
     </div>
   );
 }
