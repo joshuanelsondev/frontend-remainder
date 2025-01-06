@@ -25,25 +25,23 @@ ChartJS.register(
 export default function ComparisonWidget() {
   const { userData, availableYears, selectedYear, setSelectedYear } =
     useUserData();
-  const { comparisons } = userData;
+  const { comparisons = {} } = userData;
   const [itemsPerPage, setItemsPerPage] = useState(4);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
 
   // Set the total pages and the current page
   useEffect(() => {
-    if (comparisons && Object.keys(comparisons).length > 0) {
-      const numberOfPages = Math.ceil(
-        Object.keys(comparisons).length / itemsPerPage
-      );
+    const numComparisons = Object.keys(comparisons).length;
+    if (numComparisons > 0) {
+      const numberOfPages = Math.ceil(numComparisons / itemsPerPage);
       setCurrentPage(numberOfPages - 1);
       setTotalPages(numberOfPages);
+    } else {
+      setTotalPages(1);
+      setCurrentPage(0);
     }
   }, [comparisons, itemsPerPage]);
-
-  if (!comparisons || Object.keys(comparisons).length === 0) {
-    return <div>Loading comparisons...</div>;
-  }
 
   // Convert month date (e.g., '2024-01') to month name
   const monthFormatter = new Intl.DateTimeFormat("en-US", { month: "short" });
@@ -66,18 +64,18 @@ export default function ComparisonWidget() {
   const startIndex =
     currentPage < totalPages - 1
       ? currentPage * itemsPerPage
-      : incomeData.length - itemsPerPage;
+      : Math.max(0, incomeData.length - itemsPerPage);
   const endIndex = startIndex + itemsPerPage;
   const paginatedMonths = months.slice(startIndex, endIndex);
   const paginatedIncomeData = incomeData.slice(startIndex, endIndex);
   const paginatedExpenseData = expenseData.slice(startIndex, endIndex);
 
   const data = {
-    labels: paginatedMonths,
+    labels: paginatedMonths.length ? paginatedMonths : ["No Data Available"],
     datasets: [
       {
         label: "Income",
-        data: paginatedIncomeData,
+        data: paginatedIncomeData.length ? paginatedIncomeData : [0],
         backgroundColor: "#049ada",
         borderColor: "#036a96",
         borderWidth: 1,
@@ -85,7 +83,7 @@ export default function ComparisonWidget() {
       },
       {
         label: "Expenses",
-        data: paginatedExpenseData,
+        data: paginatedExpenseData.length ? paginatedExpenseData : [0],
         backgroundColor: "#E74C3C",
         borderColor: "#F44336",
         borderWidth: 1,
@@ -145,11 +143,15 @@ export default function ComparisonWidget() {
               value={selectedYear}
               onChange={(e) => setSelectedYear(Number(e.target.value))}
             >
-              {availableYears.map((year) => (
-                <option key={year} value={year}>
-                  {year}
-                </option>
-              ))}
+              {availableYears.length ? (
+                availableYears.map((year) => (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                ))
+              ) : (
+                <option>{new Date().getFullYear()}</option>
+              )}
             </select>
           </div>
           <div className="items-per-page-selector">
