@@ -4,7 +4,7 @@ import IncomeWidget from "../../components/widgets/IncomeWidget";
 import ExpenseWidget from "../../components/widgets/ExpenseWidget";
 import ComparisonWidget from "../../components/widgets/ComparisonWidget";
 import InvestmentWidget from "../../components/widgets/InvestmentWidget";
-import BreakdownWidget from "../../components/widgets/BreakdownWidget";
+import RecentActivityWidget from "../../components/widgets/RecentActivityWidget";
 import "./DashboardPage.scss";
 
 export default function DashboardPage() {
@@ -15,7 +15,7 @@ export default function DashboardPage() {
       <ExpenseWidget />
       <ComparisonWidget />
       <InvestmentWidget />
-      <BreakdownWidget />
+      <RecentActivityWidget />
     </div>
   );
 }

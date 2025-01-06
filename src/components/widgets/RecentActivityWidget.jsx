@@ -4,9 +4,9 @@ import { useUserData } from "../../context/UserDataContext";
 import { formatAmount } from "../../utils/formatAmount";
 import icons from "../../utils/icons";
 import capitalizeStr from "../../utils/capitalizeStr";
-import "./BreakdownWidget.scss";
+import "./RecentActivityWidget.scss";
 
-export default function BreakdownWidget() {
+export default function RecentActivityWidget() {
   const { userData } = useUserData();
   const { expenses } = userData;
 
@@ -14,9 +14,9 @@ export default function BreakdownWidget() {
     expenses.length <= 4 ? "expenses-list no-scroll" : "expenses-list";
 
   return (
-    <div className="dashboard__breakdown">
+    <div className="dashboard__recent-activity">
       <Link to={"/expense"} className="header">
-        Expenses Breakdown
+        Recent Activity
       </Link>
       {expenses.length ? (
         <div className={expensesListClass}>
