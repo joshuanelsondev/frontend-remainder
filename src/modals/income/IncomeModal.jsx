@@ -87,7 +87,7 @@ export default function IncomeModal({ setActiveModal }) {
           </label>
         </div>
         <div className="income-form__source">
-          <label htmlFor="income-form__source-label">Source of Income:</label>
+          <label htmlFor="source">Source of Income:</label>
           <select
             className="income-form__source-select"
             onChange={handleFormInput}
@@ -108,10 +108,11 @@ export default function IncomeModal({ setActiveModal }) {
           <span className="source-caret">▾</span>
         </div>
         <div className="income-form__date">
-          <label htmlFor="income-form__date-label">Date:</label>
+          <label htmlFor="date">Date:</label>
           <input
             className="income-form__date-input"
             value={form.date}
+            id="date"
             name="date"
             onChange={handleFormInput}
             type="date"
