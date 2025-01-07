@@ -1,4 +1,4 @@
-@use "../../utils/variables" as *;
+@use '../../utils/variables' as *;
 
 .expenses-list {
     display: grid;
@@ -7,7 +7,7 @@
     height: 100%;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: repeat(5, 50%);
-    scrollbar-color: $gray-light $gray-light;
+    scrollbar-color: $primary $gray-light;
    
     &.no-scroll {
         overflow-x: hidden;
@@ -23,8 +23,8 @@
     &__icon {
         background-color: $gray-light;
         color: $primary;
-        height: 3rem;
-        width: 3rem;
+        height: 2.5rem;
+        width: 2.5rem;
         display: grid; 
         place-items: center;
         border-radius: 0.5rem;
@@ -41,6 +41,7 @@
     }
 
     &__amount {
+        font-size: 0.8rem;
         font-weight: 600;
         margin: 0;
     }

@@ -1,0 +1,27 @@
+@use "../../utils/variables" as *;
+
+.recent-activity-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.recent-activity-btns {
+    display: flex;
+    gap: 1rem;
+}
+
+.recent-activity-btn {
+    font-size: 0.8rem;
+    color: $gray-dark;
+    margin: 0;
+    cursor: pointer; 
+    
+}
+
+.active {
+    color: $primary;
+    font-weight: 600;
+    text-decoration: underline 1.5px;
+    text-underline-offset: 0.4rem;
+}
