@@ -11,7 +11,7 @@
     gap: 1rem;
 }
 
-.recent-activity-btn {
+.recent-activity-btn, .recent-activity-btn-active {
     font-size: 0.8rem;
     color: $gray-dark;
     margin: 0;
@@ -19,7 +19,7 @@
     
 }
 
-.active {
+.recent-activity-btn-active {
     color: $primary;
     font-weight: 600;
     text-decoration: underline 1.5px;
