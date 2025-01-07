@@ -29,6 +29,7 @@ export default function IncomeWidget() {
         <Link to={"/income"} className="header">
           Income
         </Link>
+        {/*Add income button  */}
         <FaRegPlusSquare
           className="add"
           onClick={() => setActiveModal("income")}

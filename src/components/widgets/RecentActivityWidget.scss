@@ -1,47 +1,27 @@
 @use "../../utils/variables" as *;
 
-.expenses-list {
-    display: grid;
-    overflow-x: auto;
-    overflow-y: hidden;
-    height: 100%;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: repeat(5, 50%);
-    scrollbar-color: $gray-light $gray-light;
-   
-    &.no-scroll {
-        overflow-x: hidden;
-        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-    }
+.recent-activity-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.expense-item {
+.recent-activity-btns {
     display: flex;
-    place-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
+}
 
-    &__icon {
-        background-color: $gray-light;
-        color: $primary;
-        height: 3rem;
-        width: 3rem;
-        display: grid; 
-        place-items: center;
-        border-radius: 0.5rem;
-    }
+.recent-activity-btn {
+    font-size: 0.8rem;
+    color: $gray-dark;
+    margin: 0;
+    cursor: pointer; 
+    
+}
 
-    &__right {
-        display: grid;
-        gap: 0.5rem;
-    }
-
-    &__category {
-      font-size: 0.8rem;
-      margin: 0;
-    }
-
-    &__amount {
-        font-weight: 600;
-        margin: 0;
-    }
+.active {
+    color: $primary;
+    font-weight: 600;
+    text-decoration: underline 1.5px;
+    text-underline-offset: 0.4rem;
 }

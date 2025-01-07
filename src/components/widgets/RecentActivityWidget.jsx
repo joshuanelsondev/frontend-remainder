@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useUserData } from "../../context/UserDataContext";
 import { formatAmount } from "../../utils/formatAmount";
 import icons from "../../utils/icons";
 import capitalizeStr from "../../utils/capitalizeStr";
+import RecentIncome from "../../components/recentActivity/RecentIncome";
+import RecentExpense from "../../components/recentActivity/RecentExpense";
 import "./RecentActivityWidget.scss";
 
 export default function RecentActivityWidget() {
+  const [activityData, setActivityData] = useState("income");
   const { userData } = useUserData();
   const { expenses } = userData;
 
@@ -15,36 +18,29 @@ export default function RecentActivityWidget() {
 
   return (
     <div className="dashboard__recent-activity">
-      <Link to={"/expense"} className="header">
-        Recent Activity
-      </Link>
-      {expenses.length ? (
-        <div className={expensesListClass}>
-          {expenses.map((expense) => {
-            const { dollars, cents } = formatAmount(expense.amount);
-            const Icon = icons[expense.category];
-            return (
-              <div key={expense.id} className="expense-item">
-                {Icon && (
-                  <div className="expense-item__icon">
-                    <Icon size={20} />
-                  </div>
-                )}
-                <div className="expense-item__right">
-                  <p className="expense-item__category">
-                    {capitalizeStr(expense.category)}
-                  </p>
-                  <p className="expense-item__amount">
-                    ${dollars}.{cents}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
+      <div className="recent-activity-heading">
+        <p className="header">Recent Activity</p>
+        <div className="recent-activity-btns">
+          <p
+            className={`recent-activity-btn ${
+              activityData === "income" && "active"
+            }`}
+            onClick={() => setActivityData("income")}
+          >
+            Income
+          </p>
+          <p
+            className={`recent-activity-btn ${
+              activityData === "expense" && "active"
+            }`}
+            onClick={() => setActivityData("expense")}
+          >
+            Expense
+          </p>
         </div>
-      ) : (
-        <p className="no-data">No Data Available Yet</p>
-      )}
+      </div>
+      {activityData === "income" && <RecentIncome />}
+      {activityData === "expense" && <RecentExpense />}
     </div>
   );
 }
