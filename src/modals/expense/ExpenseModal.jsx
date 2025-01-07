@@ -93,38 +93,40 @@ export default function ExpenseModal({ setActiveModal }) {
             Amount
           </label>
         </div>
-        <div className="expense-form__category">
-          <label htmlFor="category">Select a category:</label>
-          <select
-            onChange={handleFormInput}
-            name="category"
-            id="category"
-            className="expense-form__category-select"
-            value={form.category}
-            title="Select a category for your expense"
-            required
-          >
-            <option value="">Category</option>
-            {selectOptions.map((option, index) => (
-              <option key={index} value={option}>
-                {capitalizeStr(option)}
-              </option>
-            ))}
-          </select>
-          <span className="category-caret">▾</span>
-        </div>
-        <div className="expense-form__date">
-          <label htmlFor="date">Date:</label>
-          <input
-            value={form.date}
-            id="date"
-            className="expense-form__date-input"
-            name="date"
-            onChange={handleFormInput}
-            type="date"
-            title="Select a date"
-            required
-          />
+        <div className="expense-form__bottom-inputs">
+          <div className="expense-form__category">
+            <label htmlFor="category">Select a category:</label>
+            <select
+              onChange={handleFormInput}
+              name="category"
+              id="category"
+              className="expense-form__category-select"
+              value={form.category}
+              title="Select a category for your expense"
+              required
+            >
+              <option value="">Category</option>
+              {selectOptions.map((option, index) => (
+                <option key={index} value={option}>
+                  {capitalizeStr(option)}
+                </option>
+              ))}
+            </select>
+            <span className="category-caret">▾</span>
+          </div>
+          <div className="expense-form__date">
+            <label htmlFor="date">Date:</label>
+            <input
+              value={form.date}
+              id="date"
+              className="expense-form__date-input"
+              name="date"
+              onChange={handleFormInput}
+              type="date"
+              title="Select a date"
+              required
+            />
+          </div>
         </div>
         <button
           type="submit"
