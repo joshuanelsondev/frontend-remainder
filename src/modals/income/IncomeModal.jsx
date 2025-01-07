@@ -86,39 +86,41 @@ export default function IncomeModal({ setActiveModal }) {
             Amount
           </label>
         </div>
-        <div className="income-form__source">
-          <label htmlFor="source">Source of Income:</label>
-          <select
-            className="income-form__source-select"
-            onChange={handleFormInput}
-            name="source"
-            id="source"
-            value={form.source}
-            title="Select a source of income"
-            required
-          >
-            <option value="">Choose a source</option>
+        <div className="income-form__bottom-inputs">
+          <div className="income-form__source">
+            <label htmlFor="source">Source of Income:</label>
+            <select
+              className="income-form__source-select"
+              onChange={handleFormInput}
+              name="source"
+              id="source"
+              value={form.source}
+              title="Select a source of income"
+              required
+            >
+              <option value="">Choose a source</option>
 
-            {selectOptions.map((option, index) => (
-              <option key={index} value={option}>
-                {capitalizeStr(option)}
-              </option>
-            ))}
-          </select>
-          <span className="source-caret">▾</span>
-        </div>
-        <div className="income-form__date">
-          <label htmlFor="date">Date:</label>
-          <input
-            className="income-form__date-input"
-            value={form.date}
-            id="date"
-            name="date"
-            onChange={handleFormInput}
-            type="date"
-            title="Select a date"
-            required
-          />
+              {selectOptions.map((option, index) => (
+                <option key={index} value={option}>
+                  {capitalizeStr(option)}
+                </option>
+              ))}
+            </select>
+            <span className="source-caret">▾</span>
+          </div>
+          <div className="income-form__date">
+            <label htmlFor="date">Date:</label>
+            <input
+              className="income-form__date-input"
+              value={form.date}
+              id="date"
+              name="date"
+              onChange={handleFormInput}
+              type="date"
+              title="Select a date"
+              required
+            />
+          </div>
         </div>
         <button
           type="submit"

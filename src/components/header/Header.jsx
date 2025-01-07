@@ -36,7 +36,7 @@ export default function Header() {
             <p className="header-right__email">guest@mail.com</p>
           </div>
         )}
-        <FaSortDown />
+        <FaSortDown className="header-right__caret" />
       </div>
     </div>
   );
