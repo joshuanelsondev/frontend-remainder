@@ -1,0 +1,87 @@
+@use '../../../utils/variables' as *;
+
+.user-settings {
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+    width: inherit;
+    padding: inherit;
+    font-family: $primary-font;
+    font-size: 0.8rem;
+
+    &__heading {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        
+    }
+
+    &__user-image {
+        color: $primary;
+    }
+
+    &__upload {
+        display: flex;
+
+
+        input {
+            display: none;
+        }
+    }
+}
+
+.user-settings-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    height: inherit;
+    width: inherit;
+    padding: inherit;
+
+    &__footer {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        gap: 1rem;
+        grid-column: 2 / 3;
+    }
+
+    &__label-input {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.5rem;
+
+        input {
+            height: 2rem;
+            border-radius: 0.5rem;
+            border: 1px solid $gray;
+            padding-left: 0.5rem;
+
+            &:focus {
+                outline: 1px solid $primary;
+            }
+        }
+    }
+}
+
+.image-input-label, .user-settings-delete-image, .user-settings-save, .user-settings-reset {
+    display: grid;
+    place-items: center;
+    background-color: $gray-light;
+    padding: 0 1rem;
+    min-width: 6rem;
+    border: none;
+    border-radius: 0.5rem;
+    height: 2rem;
+    box-shadow: 0 0 2px $gray;
+    cursor: pointer;
+    font-family: $primary-font;
+    font-size: 0.8rem;
+} 
+
+.user-settings-save {
+    background-color: $primary;
+    color: $white;
+}

@@ -1,13 +1,17 @@
 import React, { useState } from "react";
+import UserSettings from "./user/UserSettings";
+import PasswordSettings from "./password/PasswordSettings";
+import NotificationSettings from "./notifications/NotificationSettings";
+import AdditionalSettings from "./additional/AdditionalSettings";
 import "./Settings.scss";
 
 const navLinks = [
   {
-    displayName: "User",
+    displayName: "User Settings",
     identifier: "user",
   },
   {
-    displayName: "Password",
+    displayName: "Password Settings",
     identifier: "password",
   },
   {
@@ -38,7 +42,12 @@ export default function Settings() {
           </li>
         ))}
       </ul>
-      <div className="settings__forms"></div>
+      <div className="settings__forms">
+        {activeLink === "user" && <UserSettings />}
+        {activeLink === "password" && <PasswordSettings />}
+        {activeLink === "notification" && <NotificationSettings />}
+        {activeLink === "additional" && <AdditionalSettings />}
+      </div>
     </div>
   );
 }
