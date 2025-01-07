@@ -28,7 +28,33 @@ export default function UserSettings() {
 
   const handleFormInput = (e) => {
     const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
+
+    if (name === "phoneNumber") {
+      // Remove non-numeric characters
+      const numericInput = value.replace(/\D/g, "");
+
+      // Format as (123)-456-7890
+      let formattedInput = numericInput;
+      if (numericInput.length > 3 && numericInput.length <= 6) {
+        formattedInput = `(${numericInput.slice(0, 3)})-${numericInput.slice(
+          3
+        )}`;
+      } else if (numericInput.length > 6) {
+        formattedInput = `(${numericInput.slice(0, 3)})-${numericInput.slice(
+          3,
+          6
+        )}-${numericInput.slice(6, 10)}`;
+      }
+
+      setUserInfo({ ...userInfo, [name]: formattedInput });
+    } else {
+      setUserInfo({ ...userInfo, [name]: value });
+    }
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    console.log(userInfo);
   };
 
   return (
@@ -91,8 +117,11 @@ export default function UserSettings() {
           <input
             type="tel"
             value={userInfo.phoneNumber || ""}
-            placeholder="(123) 456-7890"
+            placeholder="(123)-456-7890"
+            pattern="\(\d{3}\)-\d{3}-\d{4}"
+            title="Phone number must match the format (123)-456-7890"
             id="phone"
+            maxLength={14}
             onChange={(e) => handleFormInput(e)}
             name="phoneNumber"
           />
