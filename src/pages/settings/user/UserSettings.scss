@@ -50,7 +50,7 @@
     &__label-input {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         gap: 0.5rem;
 
         input {
@@ -84,4 +84,16 @@
 .user-settings-save {
     background-color: $primary;
     color: $white;
+}
+
+#dob {
+   padding: 1rem;
+   cursor: pointer; 
+}
+
+::-webkit-calendar-picker-indicator {
+    background-color: $gray-light;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
 }

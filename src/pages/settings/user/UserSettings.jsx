@@ -1,25 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { FaUserCircle } from "react-icons/fa";
-import { getCurrentUser } from "../../../api/userApi";
+import { getCurrentUser, updateUser } from "../../../api/userApi";
 import "./UserSettings.scss";
 
 export default function UserSettings() {
   const [originalUserInfo, setOriginalUserInfo] = useState(null);
   const [userInfo, setUserInfo] = useState({
+    id: "",
     firstName: "",
     lastName: "",
     email: "",
     phoneNumber: "",
+    dateOfBirth: "",
   });
 
   useEffect(() => {
     const getUserData = async () => {
       try {
-        const { id, ...userData } = await getCurrentUser();
+        const userData = await getCurrentUser();
+
+        // Format the dateOfBirth to yyyy-MM-dd
+        if (userData.dateOfBirth) {
+          const date = new Date(userData.dateOfBirth);
+          userData.dateOfBirth = date.toISOString().split("T")[0];
+        }
 
         setUserInfo(userData);
         setOriginalUserInfo(userData);
-        console.log("User Test:", userData);
       } catch (error) {
         console.error(error);
       }
@@ -60,9 +67,23 @@ export default function UserSettings() {
     }
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log(userInfo);
+
+    const sanitizedUserInfo = {
+      ...userInfo,
+      phoneNumber: userInfo.phoneNumber.replace(/\D/g, ""),
+    };
+
+    try {
+      const updatedUser = await updateUser(sanitizedUserInfo);
+      setUserInfo(updatedUser);
+      setOriginalUserInfo(updatedUser);
+      alert("User information updated successfully");
+    } catch (error) {
+      console.error("Error updating user information:", error);
+      alert("Failed to update user information. Please try again.");
+    }
   };
 
   return (
@@ -90,7 +111,7 @@ export default function UserSettings() {
           Delete Image
         </button>
       </div>
-      <form className="user-settings-form">
+      <form onSubmit={handleFormSubmit} className="user-settings-form">
         <div className="user-settings-form__label-input">
           <label htmlFor="firstName">First Name</label>
           <input
@@ -130,12 +151,22 @@ export default function UserSettings() {
             type="tel"
             value={userInfo.phoneNumber || ""}
             placeholder="(123)-456-7890"
-            pattern="\(\d{3}\)-\d{3}-\d{4}"
             title="Phone number must match the format (123)-456-7890"
             id="phone"
             maxLength={14}
             onChange={(e) => handleFormInput(e)}
             name="phoneNumber"
+          />
+        </div>
+        <div className="user-settings-form__label-input">
+          <label htmlFor="dob">Date of Birth</label>
+          <input
+            type="date"
+            value={userInfo.dateOfBirth || ""}
+            title="Select your birth date"
+            id="dob"
+            onChange={(e) => handleFormInput(e)}
+            name="dateOfBirth"
           />
         </div>
         <div className="user-settings-form__footer">
