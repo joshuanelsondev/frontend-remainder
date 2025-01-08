@@ -4,6 +4,7 @@ import { getCurrentUser } from "../../../api/userApi";
 import "./UserSettings.scss";
 
 export default function UserSettings() {
+  const [originalUserInfo, setOriginalUserInfo] = useState(null);
   const [userInfo, setUserInfo] = useState({
     firstName: "",
     lastName: "",
@@ -17,6 +18,7 @@ export default function UserSettings() {
         const { id, ...userData } = await getCurrentUser();
 
         setUserInfo(userData);
+        setOriginalUserInfo(userData);
         console.log("User Test:", userData);
       } catch (error) {
         console.error(error);
@@ -52,6 +54,12 @@ export default function UserSettings() {
     }
   };
 
+  const handleReset = () => {
+    if (originalUserInfo) {
+      setUserInfo(originalUserInfo);
+    }
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     console.log(userInfo);
@@ -60,7 +68,11 @@ export default function UserSettings() {
   return (
     <div className="user-settings">
       <div className="user-settings__heading">
-        <FaUserCircle size={100} className="user-settings__user-image" />
+        <FaUserCircle
+          size={100}
+          onSubmit={handleFormSubmit}
+          className="user-settings__user-image"
+        />
         <div className="user-settings__upload">
           <label
             className="image-input-label"
@@ -127,8 +139,16 @@ export default function UserSettings() {
           />
         </div>
         <div className="user-settings-form__footer">
-          <button className="user-settings-save">Save</button>
-          <button className="user-settings-reset">Reset</button>
+          <button type="submit" className="user-settings-save">
+            Save
+          </button>
+          <button
+            type="button"
+            onClick={handleReset}
+            className="user-settings-reset"
+          >
+            Reset
+          </button>
         </div>
       </form>
     </div>
