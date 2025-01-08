@@ -1,0 +1,45 @@
+@use '../../utils/variables' as *;
+
+.settings {
+    height: inherit;
+    width: inherit;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+
+    &__nav {
+        display: flex;
+        align-items: center;
+        gap: 5rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: 0.9rem;
+    }
+
+    &__nav-link, &__nav-link-active {
+       height: 2rem;
+       width: 10rem;
+       min-width: 10rem;
+       display: grid;
+       padding: 0 1rem;
+       place-items: center;
+       border-radius: 0.5rem;
+       box-sizing: border-box;
+       cursor: pointer;
+    }
+
+    &__nav-link-active {
+        border: 2px solid $primary;
+        color: $white;
+        background-color: $primary;
+    }
+
+    &__forms {
+        height: 100%;
+        width: 100%;
+        border-radius: 1rem;
+        box-shadow: 0 0 0.5rem $gray;
+        padding: 1rem;
+    }
+}

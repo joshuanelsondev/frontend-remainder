@@ -19,6 +19,7 @@
     display: flex;
     place-items: center;
     gap: 0.5rem;
+    padding-left: 1px;
 
     &__icon {
         background-color: $gray-light;
@@ -28,6 +29,10 @@
         display: grid; 
         place-items: center;
         border-radius: 0.5rem;
+
+        &:hover {
+            outline: 0.5px solid $primary;
+        }
     }
 
     &__right {

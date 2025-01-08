@@ -22,16 +22,16 @@ export default function RecentActivityWidget() {
         <p className="header">Recent Activity</p>
         <div className="recent-activity-btns">
           <p
-            className={`recent-activity-btn ${
-              activityData === "income" && "active"
+            className={`recent-activity-btn${
+              activityData === "income" ? "-active" : ""
             }`}
             onClick={() => setActivityData("income")}
           >
             Income
           </p>
           <p
-            className={`recent-activity-btn ${
-              activityData === "expense" && "active"
+            className={`recent-activity-btn${
+              activityData === "expense" ? "-active" : ""
             }`}
             onClick={() => setActivityData("expense")}
           >
