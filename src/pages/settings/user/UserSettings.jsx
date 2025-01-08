@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { getCurrentUser, updateUser } from "../../../api/userApi";
+import { formatToIso } from "../../../utils/formatDate";
 import "./UserSettings.scss";
 
 export default function UserSettings() {
@@ -21,8 +22,7 @@ export default function UserSettings() {
 
         // Format the dateOfBirth to yyyy-MM-dd
         if (userData.dateOfBirth) {
-          const date = new Date(userData.dateOfBirth);
-          userData.dateOfBirth = date.toISOString().split("T")[0];
+          userData.dateOfBirth = formatToIso(userData.dateOfBirth);
         }
 
         setUserInfo(userData);
