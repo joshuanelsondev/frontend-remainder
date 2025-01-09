@@ -20,7 +20,7 @@ export default function IncomeModal({ setActiveModal }) {
     amount: "",
     source: "",
     date: "",
-    recurring: "",
+    recurring: false,
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");

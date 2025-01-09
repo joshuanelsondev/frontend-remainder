@@ -13,11 +13,12 @@ import {
 import { formatToShort } from "../../utils/formatDate";
 import { formatAmount } from "../../utils/formatAmount";
 import { getAllIncomes, deleteIncome } from "../../api/incomeApi";
+import "./Income.scss";
 
 export default function Income() {
   const [selectAll, setSelectAll] = useState(false);
   const { setActiveModal, setModalData } = useModal();
-  const { userData } = useUserData();
+  const { userData, getUserData } = useUserData();
   const { totalIncome } = userData.budget;
   const [incomes, setIncomes] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -50,6 +51,7 @@ export default function Income() {
       await deleteIncome(deleteId);
       alert("Income deleted");
       getIncomes();
+      getUserData();
       setDeleteModal(null);
     } catch (error) {
       console.error("Error deleting income", error);
@@ -63,7 +65,10 @@ export default function Income() {
     <div className="income-page">
       <div className="income-page__heading">
         <div className="income-page__heading-left">
-          <p>${formatAmount(totalIncome).fullAmount}</p>
+          <p className="heading-left-amount">
+            ${formatAmount(totalIncome).dollars}.
+            <span className="cents">{formatAmount(totalIncome).cents}</span>
+          </p>
           <p>Current Income</p>
         </div>
         <button
@@ -126,11 +131,9 @@ export default function Income() {
       </table>
       <div className="pagination">
         {/* Left: Displaying page numbers */}
-        <div className="pagination__info">
-          <p>
-            Displaying {currentPage} out of {totalPages}
-          </p>
-        </div>
+        <p className="pagination__info">
+          Displaying pages <b>{currentPage}</b> out of <b>{totalPages}</b>
+        </p>
 
         {/* Right: Items range and navigation */}
         <div className="pagination__controls">
