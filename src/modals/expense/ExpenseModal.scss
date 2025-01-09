@@ -1,6 +1,6 @@
 @use '../../utils/variables' as *;
 
-.expense-form {
+.expense-modal {
     height: 100vh;
     width: 100vw;
     position: absolute;
@@ -15,8 +15,8 @@
       background-color: $primary;
       opacity: 20%;
     }
-
-    &__form {
+  }
+  .expense-form {
         position: inherit;
         top: inherit;
         left: inherit;
@@ -34,7 +34,6 @@
         box-shadow: 0 0 5px $gray-dark;
         font-size: 0.9rem;
         font-weight: 600;
-    }
 
     &__header {
         align-self: center;
@@ -169,6 +168,14 @@
       border-radius: 0.25rem;
     }
 
+    &__checkbox {
+      display: flex;
+      align-items: center;
+
+      input {
+        accent-color: $primary;
+      }
+    }
     
     &__add-btn {
       border: none;

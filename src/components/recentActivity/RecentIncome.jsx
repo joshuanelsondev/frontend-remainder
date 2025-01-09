@@ -8,7 +8,7 @@ import "./RecentIncome.scss";
 
 export default function RecentIncome() {
   const { userData } = useUserData();
-  const { incomes } = userData;
+  const incomes = userData?.incomes || [];
 
   const incomeListClass =
     incomes.length <= 4 ? "income-list no-scroll" : "income-list";

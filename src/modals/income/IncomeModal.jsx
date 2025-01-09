@@ -20,6 +20,7 @@ export default function IncomeModal({ setActiveModal }) {
     amount: "",
     source: "",
     date: "",
+    recurring: false,
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -59,9 +60,9 @@ export default function IncomeModal({ setActiveModal }) {
   const isFormComplete = form.amount && form.source && form.date;
 
   return (
-    <div className="income-form">
-      <div className="income-form__overlay"></div>
-      <form onSubmit={submitForm} className="income-form__form" ref={formRef}>
+    <div className="income-modal">
+      <div className="income-modal__overlay"></div>
+      <form onSubmit={submitForm} className="income-form" ref={formRef}>
         <h1 className="income-form__header">Add Income</h1>
 
         {error && <div className="error-message">{error}</div>}
@@ -121,6 +122,16 @@ export default function IncomeModal({ setActiveModal }) {
               required
             />
           </div>
+        </div>
+        <div className="income-form__checkbox">
+          <input
+            type="checkbox"
+            id="recurring"
+            name="recurring"
+            checked={form.recurring}
+            onChange={(e) => setForm({ ...form, recurring: e.target.checked })}
+          />
+          <label htmlFor="recurring">Recurring Income</label>
         </div>
         <button
           type="submit"

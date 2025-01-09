@@ -26,7 +26,7 @@ export const SideNavLinks = [
   {
     name: "Budget",
     icon: FaChartPie,
-    path: "./budget",
+    path: "/budget",
   },
   {
     name: "Investments",

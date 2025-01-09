@@ -1,0 +1,5 @@
+@use '../../utils/variables' as *;
+
+.checkbox-selected {
+    color: $primary;
+}

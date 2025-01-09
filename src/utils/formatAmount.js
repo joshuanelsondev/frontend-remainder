@@ -12,5 +12,8 @@ export const formatAmount = (amount) => {
   // Add commas to the dollars part
   const dollarsWithCommas = dollars.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-  return { dollars: dollarsWithCommas, cents };
+  // Full Amount
+  const fullAmount = `${dollarsWithCommas}.${cents}`;
+
+  return { fullAmount, dollars: dollarsWithCommas, cents };
 };
