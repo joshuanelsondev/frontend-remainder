@@ -23,8 +23,8 @@ export const UserDataProvider = ({ children }) => {
   const [availableYears, setAvailableYears] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState({
-    incomes: [],
-    expenses: [],
+    incomeData: [],
+    expenseData: [],
     budget: { totalIncome: 0, totalExpenses: 0, disposableIncome: 0 },
   });
 
@@ -38,7 +38,12 @@ export const UserDataProvider = ({ children }) => {
         getComparisons(selectedYear),
       ]);
 
-      setUserData({ incomes, expenses, budget, comparisons });
+      setUserData({
+        incomeData: incomes,
+        expenseData: expenses,
+        budget,
+        comparisons,
+      });
     } catch (error) {
       console.error("Error fetching user data:", error);
     } finally {
