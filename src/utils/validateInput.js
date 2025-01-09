@@ -23,7 +23,7 @@ const validateInput = (fieldName, value) => {
     if (!value.trim()) {
       errors.password = "Password is required.";
     } else if (
-      !/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/.test(
+      !/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{10,}$/.test(
         value
       )
     ) {
