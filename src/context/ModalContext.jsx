@@ -5,9 +5,12 @@ const ModalContext = createContext(undefined);
 
 export const ModalProvider = ({ children }) => {
   const [activeModal, setActiveModal] = useState(null);
+  const [modalData, setModalData] = useState(null);
 
   return (
-    <ModalContext.Provider value={{ activeModal, setActiveModal }}>
+    <ModalContext.Provider
+      value={{ activeModal, setActiveModal, modalData, setModalData }}
+    >
       {children}
     </ModalContext.Provider>
   );
