@@ -15,12 +15,12 @@ export default function Checkbox({ selectAll }) {
   return (
     <>
       {selected || selectAll ? (
-        <FaSquare onClick={() => setSelected(false)} className="checkbox" />
-      ) : (
-        <FaRegSquare
-          onClick={() => setSelected(true)}
+        <FaSquare
+          onClick={() => setSelected(false)}
           className="checkbox-selected"
         />
+      ) : (
+        <FaRegSquare onClick={() => setSelected(true)} className="checkbox" />
       )}
     </>
   );

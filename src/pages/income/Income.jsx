@@ -10,6 +10,7 @@ import {
   FaAngleLeft,
   FaAngleRight,
 } from "react-icons/fa";
+import capitalizeStr from "../../utils/capitalizeStr";
 import { formatToShort } from "../../utils/formatDate";
 import { formatAmount } from "../../utils/formatAmount";
 import { getAllIncomes, deleteIncome } from "../../api/incomeApi";
@@ -23,8 +24,7 @@ export default function Income() {
   const [incomes, setIncomes] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [numOfIncomes, setNumOfIncomes] = useState(0);
-  const [deleteModal, setDeleteModal] = useState(false);
-  const [deleteId, setDeleteId] = useState(null);
+  const [selectedIncome, setSelectedIncome] = useState(null);
   const itemsPerPage = 10;
 
   useEffect(() => {
@@ -46,13 +46,13 @@ export default function Income() {
     }
   };
 
-  const handleIncomeDelete = async () => {
+  const handleIncomeDelete = async (id) => {
     try {
-      await deleteIncome(deleteId);
+      await deleteIncome(id);
       alert("Income deleted");
       getIncomes();
       getUserData();
-      setDeleteModal(null);
+      setSelectedIncome(null);
     } catch (error) {
       console.error("Error deleting income", error);
     }
@@ -81,7 +81,7 @@ export default function Income() {
       <table>
         <thead>
           <tr>
-            <th>
+            <th className="table-checkbox">
               {selectAll ? (
                 <FaSquare onClick={() => setSelectAll(false)} />
               ) : (
@@ -92,8 +92,8 @@ export default function Income() {
             <th>Amount</th>
             <th>Date</th>
             <th>Recurring</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th className="table-edit">Edit</th>
+            <th className="table-trash">Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -101,14 +101,18 @@ export default function Income() {
             incomes.map((income) => {
               return (
                 <tr key={income.id}>
-                  <td>
+                  <td className="table-checkbox">
                     <Checkbox selectAll={selectAll} />
                   </td>
-                  <td>{income.source}</td>
+                  <td>{capitalizeStr(income.source)}</td>
                   <td>${formatAmount(income.amount).fullAmount}</td>
                   <td>{formatToShort(income.date)}</td>
-                  <td>{income.recurring ? "• Recurring" : "• One-Time"}</td>
-                  <td>
+                  <td
+                    className={`${income.recurring ? "recurring" : "one-time"}`}
+                  >
+                    {income.recurring ? "• Recurring" : "• One-Time"}
+                  </td>
+                  <td className="table-edit">
                     <FaPen
                       onClick={() => {
                         setModalData(income);
@@ -116,11 +120,10 @@ export default function Income() {
                       }}
                     />
                   </td>
-                  <td>
+                  <td className="table-trash">
                     <FaTrash
                       onClick={() => {
-                        setDeleteId(income.id);
-                        setDeleteModal(true);
+                        setSelectedIncome(income);
                       }}
                     />
                   </td>
@@ -138,8 +141,8 @@ export default function Income() {
         {/* Right: Items range and navigation */}
         <div className="pagination__controls">
           <p>
-            Items {(currentPage - 1) * itemsPerPage + 1} -{" "}
-            {Math.min(currentPage * itemsPerPage, numOfIncomes)} of{" "}
+            <span>Items</span> {(currentPage - 1) * itemsPerPage + 1} -{" "}
+            {Math.min(currentPage * itemsPerPage, numOfIncomes)} <span>of</span>{" "}
             {numOfIncomes}
           </p>
           <button
@@ -156,14 +159,33 @@ export default function Income() {
           </button>
         </div>
       </div>
-      {deleteModal && (
-        <div className="delete-modal">
-          <p className="delete-modal__text">
-            Are sure you want to delete this income?
-          </p>
-          <div className="delete-modal__confirm">
-            <p onClick={handleIncomeDelete}>Delete</p>
-            <p onClick={() => setDeleteModal(false)}>Cancel</p>
+
+      {selectedIncome && (
+        <div className="delete-overlay">
+          <div className="delete-modal">
+            <p className="delete-modal__text">
+              Are sure you want to delete this income?
+            </p>
+            <div className="delete-modal__income-info">
+              <p>{capitalizeStr(selectedIncome.source)}</p>
+              <p>${formatAmount(selectedIncome.amount).fullAmount}</p>
+              <p>{formatToShort(selectedIncome.date)}</p>
+              <p>{deleteIncome.recurring ? "Recurring" : "One-Time"}</p>
+            </div>
+            <div className="delete-modal__confirm">
+              <p
+                className="delete-modal__delete"
+                onClick={() => handleIncomeDelete(selectedIncome.id)}
+              >
+                Delete
+              </p>
+              <p
+                className="delete-modal__cancel"
+                onClick={() => setSelectedIncome(null)}
+              >
+                Cancel
+              </p>
+            </div>
           </div>
         </div>
       )}
