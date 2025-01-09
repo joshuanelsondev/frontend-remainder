@@ -27,6 +27,7 @@ export default function ExpenseModal({ setActiveModal }) {
     amount: "",
     category: "",
     date: "",
+    recurring: "",
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -66,9 +67,9 @@ export default function ExpenseModal({ setActiveModal }) {
   const isFormComplete = form.amount && form.category && form.date;
 
   return (
-    <div className="expense-form">
-      <div className="expense-form__overlay"></div>
-      <form onSubmit={submitForm} className="expense-form__form" ref={formRef}>
+    <div className="expense-modal">
+      <div className="expense-modal__overlay"></div>
+      <form onSubmit={submitForm} className="expense-form" ref={formRef}>
         <h1 className="expense-form__header">Add Expense</h1>
 
         {error && <div className="error-message">{error}</div>}
@@ -127,6 +128,16 @@ export default function ExpenseModal({ setActiveModal }) {
               required
             />
           </div>
+        </div>
+        <div className="expense-form__checkbox">
+          <input
+            type="checkbox"
+            id="recurring"
+            name="recurring"
+            checked={form.recurring}
+            onChange={(e) => setForm({ ...form, recurring: e.target.checked })}
+          />
+          <label htmlFor="recurring">Recurring Expense</label>
         </div>
         <button
           type="submit"
