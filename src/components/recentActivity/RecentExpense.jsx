@@ -8,7 +8,7 @@ import "./RecentExpense.scss";
 
 export default function RecentExpense() {
   const { userData } = useUserData();
-  const { expenses } = userData;
+  const expenses = userData?.expenseData?.expenses || [];
 
   const expensesListClass =
     expenses.length <= 4 ? "expenses-list no-scroll" : "expenses-list";

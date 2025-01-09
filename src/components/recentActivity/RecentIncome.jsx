@@ -8,14 +8,14 @@ import "./RecentIncome.scss";
 
 export default function RecentIncome() {
   const { userData } = useUserData();
-  const incomes = userData?.incomes || [];
+  const incomes = userData?.incomeData?.incomes || [];
 
   const incomeListClass =
     incomes.length <= 4 ? "income-list no-scroll" : "income-list";
 
   return (
     <>
-      {incomes.length ? (
+      {incomes && incomes.length ? (
         <div className={incomeListClass}>
           {incomes.map((income) => {
             const { dollars, cents } = formatAmount(income.amount);

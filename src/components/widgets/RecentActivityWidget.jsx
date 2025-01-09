@@ -10,11 +10,6 @@ import "./RecentActivityWidget.scss";
 
 export default function RecentActivityWidget() {
   const [activityData, setActivityData] = useState("income");
-  const { userData } = useUserData();
-  const { expenses } = userData;
-
-  const expensesListClass =
-    expenses.length <= 4 ? "expenses-list no-scroll" : "expenses-list";
 
   return (
     <div className="dashboard__recent-activity">
