@@ -12,13 +12,10 @@ export default function RecentIncome() {
   const { setActiveModal } = useModal();
   const incomes = userData?.incomeData?.incomes || [];
 
-  const incomeListClass =
-    incomes.length <= 4 ? "income-list no-scroll" : "income-list";
-
   return (
     <>
       {incomes && incomes.length ? (
-        <div className={incomeListClass}>
+        <div className="income-list">
           {incomes.map((income) => {
             const { dollars, cents } = formatAmount(income.amount);
             const Icon = icons[income.source];

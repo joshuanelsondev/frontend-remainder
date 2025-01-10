@@ -5,14 +5,9 @@
     overflow-x: auto;
     overflow-y: hidden;
     height: 100%;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: repeat(5, 50%);
+    grid-template-columns: 1fr 1fr;
     scrollbar-color: $primary $gray-light;
-   
-    &.no-scroll {
-        overflow-x: hidden;
-        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-    }
+    justify-items: center;
 }
 
 .income-item {

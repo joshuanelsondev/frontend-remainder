@@ -12,13 +12,10 @@ export default function RecentExpense() {
   const { setActiveModal } = useModal();
   const expenses = userData?.expenseData?.expenses || [];
 
-  const expensesListClass =
-    expenses.length <= 4 ? "expenses-list no-scroll" : "expenses-list";
-
   return (
     <>
       {expenses.length ? (
-        <div className={expensesListClass}>
+        <div className="expenses-list">
           {expenses.map((expense) => {
             const { dollars, cents } = formatAmount(expense.amount);
             const Icon = icons[expense.category];
