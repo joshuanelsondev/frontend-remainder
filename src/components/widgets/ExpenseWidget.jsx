@@ -4,13 +4,7 @@ import "./ExpenseWidget";
 import { useUserData } from "../../context/UserDataContext";
 import { useModal } from "../../context/ModalContext";
 import { formatAmount } from "../../utils/formatAmount";
-import {
-  FaAngleDoubleUp,
-  FaAngleDoubleDown,
-  FaExchangeAlt,
-  FaThLarge,
-  FaRegPlusSquare,
-} from "react-icons/fa";
+import { FaExchangeAlt, FaThLarge, FaPlus } from "react-icons/fa";
 
 export default function ExpenseWidget() {
   const [increase, setIncrease] = useState(false);
@@ -29,11 +23,14 @@ export default function ExpenseWidget() {
         <Link to={"/expense"} className="header">
           Expenses
         </Link>
-        <FaRegPlusSquare
-          className="add"
+        <button
           onClick={() => setActiveModal("expense")}
+          className="add"
           title="Add Expense"
-        />
+        >
+          <FaPlus />
+          Add Expense
+        </button>
       </div>
       <p className="amount">
         ${dollars}

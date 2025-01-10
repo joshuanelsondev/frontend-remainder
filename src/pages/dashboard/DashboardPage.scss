@@ -37,6 +37,13 @@
     }
 
     .add {
+      display: flex;
+      border: 1px solid $gray;
+      border-radius: 0.25rem;
+      font-weight: 600;
+      gap: 0.5rem;
+      background-color: $gray-light;
+      padding: 0.5rem;
       color: $primary;
       cursor: pointer;
     }

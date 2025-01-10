@@ -4,13 +4,7 @@ import "./IncomeWidget.scss";
 import { useUserData } from "../../context/UserDataContext";
 import { formatAmount } from "../../utils/formatAmount";
 import { useModal } from "../../context/ModalContext";
-import {
-  FaAngleDoubleUp,
-  FaAngleDoubleDown,
-  FaExchangeAlt,
-  FaThLarge,
-  FaRegPlusSquare,
-} from "react-icons/fa";
+import { FaExchangeAlt, FaThLarge, FaPlus } from "react-icons/fa";
 
 export default function IncomeWidget() {
   const [increase, setIncrease] = useState(true);
@@ -30,11 +24,14 @@ export default function IncomeWidget() {
           Income
         </Link>
         {/*Add income button  */}
-        <FaRegPlusSquare
-          className="add"
+        <button
           onClick={() => setActiveModal("income")}
+          className="add"
           title="Add Income"
-        />
+        >
+          <FaPlus />
+          Add Income
+        </button>
       </div>
       <p className="amount">
         ${dollars}
