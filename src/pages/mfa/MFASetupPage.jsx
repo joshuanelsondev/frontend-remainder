@@ -22,8 +22,7 @@ export default function MFASetupPage() {
       await registerUser(email);
 
       login(token);
-      setSuccess("Login Successful! Bringing you to your dashboard...");
-      setTimeout(() => navigate("/"), 2000);
+      setSuccess("Login Successful! Click below to go to your dashboard.");
     } catch (error) {
       console.error("MFA setup error:", error);
 
@@ -59,8 +58,15 @@ export default function MFASetupPage() {
             </button>
           </>
         )}
+        {success && (
+          <div className="mfa__success">
+            <p>{success}</p>
+            <button onClick={() => navigate("/")} className="mfa__to-dashboard">
+              Continue
+            </button>
+          </div>
+        )}
       </div>
-      {success && <div className="mfa__success">{success}</div>}
     </div>
   );
 }

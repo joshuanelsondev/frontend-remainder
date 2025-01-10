@@ -31,29 +31,17 @@ export default function BudgetWidget() {
         ${dollars}
         <span className="cents">.{cents}</span>
       </p>
-      <div className="bottom">
-        <div className="left-subinfo">
-          <p className={`percentage ${increase ? "increase" : "decrease"}`}>
-            {increase ? <FaAngleDoubleUp size={16} /> : <FaAngleDoubleDown />}
-            10%
-          </p>
-          <p className="text">
-            You have <span className="text-amt">$1,000</span> more compared to
-            last month
-          </p>
-        </div>
-        <div className="right-subinfo">
-          <p className="transactions">
-            <FaExchangeAlt className="icon" />
-            {totalTransactions} transactions
-          </p>
-          <p className="categories">
-            <span>
-              <FaThLarge className="icon" />
-            </span>
-            {totalSources} categories
-          </p>
-        </div>
+      <div className="subinfo">
+        <p className="transactions">
+          <FaExchangeAlt className="icon" />
+          {totalTransactions} transactions
+        </p>
+        <p className="categories">
+          <span>
+            <FaThLarge className="icon" />
+          </span>
+          {totalSources} categories
+        </p>
       </div>
     </div>
   );

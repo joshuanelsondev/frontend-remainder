@@ -170,15 +170,6 @@
       padding: 0.25rem;
       border-radius: 0.25rem;
     }
-
-    &__checkbox {
-      display: flex;
-      align-items: center;
-
-      input {
-        accent-color: $primary;
-      }
-    }
     
     &__add-btn {
       border: none;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { getCurrentUser, updateUser } from "../../../api/userApi";
-import { formatToIso } from "../../../utils/formatDate";
+// import { formatToIso } from "../../../utils/formatDate";
 import "./UserSettings.scss";
 
 export default function UserSettings() {
@@ -16,24 +16,19 @@ export default function UserSettings() {
   });
 
   useEffect(() => {
-    const getUserData = async () => {
-      try {
-        const userData = await getCurrentUser();
-
-        // Format the dateOfBirth to yyyy-MM-dd
-        if (userData.dateOfBirth) {
-          userData.dateOfBirth = formatToIso(userData.dateOfBirth);
-        }
-
-        setUserInfo(userData);
-        setOriginalUserInfo(userData);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
     getUserData();
   }, []);
+
+  const getUserData = async () => {
+    try {
+      const userData = await getCurrentUser();
+
+      setUserInfo(userData);
+      setOriginalUserInfo(userData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleFormInput = (e) => {
     const { name, value } = e.target;
@@ -80,6 +75,7 @@ export default function UserSettings() {
       setUserInfo(updatedUser);
       setOriginalUserInfo(updatedUser);
       alert("User information updated successfully");
+      getUserData();
     } catch (error) {
       console.error("Error updating user information:", error);
       alert("Failed to update user information. Please try again.");

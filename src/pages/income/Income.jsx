@@ -91,7 +91,6 @@ export default function Income() {
             <th>Source of Income</th>
             <th>Amount</th>
             <th>Date</th>
-            <th>Recurring</th>
             <th className="table-edit">Edit</th>
             <th className="table-trash">Delete</th>
           </tr>
@@ -107,11 +106,6 @@ export default function Income() {
                   <td>{capitalizeStr(income.source)}</td>
                   <td>${formatAmount(income.amount).fullAmount}</td>
                   <td>{formatToShort(income.date)}</td>
-                  <td
-                    className={`${income.recurring ? "recurring" : "one-time"}`}
-                  >
-                    {income.recurring ? "• Recurring" : "• One-Time"}
-                  </td>
                   <td className="table-edit">
                     <FaPen
                       onClick={() => {
@@ -161,7 +155,8 @@ export default function Income() {
       </div>
 
       {selectedIncome && (
-        <div className="delete-overlay">
+        <div className="delete-container">
+          <div className="delete-overlay"></div>
           <div className="delete-modal">
             <p className="delete-modal__text">
               Are sure you want to delete this income?

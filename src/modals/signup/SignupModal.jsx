@@ -63,10 +63,6 @@ export default function SignupModal({ setActiveModal }) {
     } catch (error) {
       setMessage(error.response?.data?.message || "Something went wrong");
       setErrors({});
-    } finally {
-      setTimeout(() => {
-        setMessage(null);
-      }, 3000);
     }
   };
 

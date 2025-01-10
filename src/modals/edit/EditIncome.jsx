@@ -22,7 +22,6 @@ export default function EditIncome({ setActiveModal, income }) {
     amount: "",
     source: "",
     date: "",
-    recurring: false,
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -67,20 +66,20 @@ export default function EditIncome({ setActiveModal, income }) {
   const isFormComplete = form.amount && form.source && form.date;
 
   return (
-    <div className="edit-income">
-      <div className="edit-income__overlay"></div>
-      <form onSubmit={submitForm} className="edit-income-form" ref={formRef}>
-        <h1 className="edit-income-form__header">Edit Income</h1>
+    <div className="edit-modal">
+      <div className="edit-modal__overlay"></div>
+      <form onSubmit={submitForm} className="edit-modal-form" ref={formRef}>
+        <h1 className="edit-modal-form__header">Edit Income</h1>
 
         {error && <div className="error-message">{error}</div>}
         {success && <div className="success-message">{success}</div>}
 
-        <div className="edit-income-form__amount">
+        <div className="edit-modal-form__amount">
           <span>$</span>
           <input
             value={form.amount}
             id="amount"
-            className="edit-income-form__amount-input"
+            className="edit-modal-form__amount-input"
             name="amount"
             onChange={handleFormInput}
             placeholder=""
@@ -90,15 +89,15 @@ export default function EditIncome({ setActiveModal, income }) {
             title="Enter a valid amount (up to 2 decimal places)"
             required
           />
-          <label className="edit-income-form__amount-label" htmlFor="amount">
+          <label className="edit-modal-form__amount-label" htmlFor="amount">
             Amount
           </label>
         </div>
-        <div className="edit-income-form__bottom-inputs">
-          <div className="edit-income-form__source">
+        <div className="edit-modal-form__bottom-inputs">
+          <div className="edit-modal-form__source">
             <label htmlFor="source">Source of Income:</label>
             <select
-              className="edit-income-form__source-select"
+              className="edit-modal-form__source-select"
               onChange={handleFormInput}
               name="source"
               id="source"
@@ -116,10 +115,10 @@ export default function EditIncome({ setActiveModal, income }) {
             </select>
             <span className="source-caret">▾</span>
           </div>
-          <div className="edit-income-form__date">
+          <div className="edit-modal-form__date">
             <label htmlFor="date">Date:</label>
             <input
-              className="edit-income-form__date-input"
+              className="edit-modal-form__date-input"
               value={form.date}
               id="date"
               name="date"
@@ -130,19 +129,9 @@ export default function EditIncome({ setActiveModal, income }) {
             />
           </div>
         </div>
-        <div className="edit-income-form__checkbox">
-          <input
-            type="checkbox"
-            id="recurring"
-            name="recurring"
-            checked={form.recurring}
-            onChange={(e) => setForm({ ...form, recurring: e.target.checked })}
-          />
-          <label htmlFor="recurring">Recurring Income</label>
-        </div>
         <button
           type="submit"
-          className="edit-income-form__add-btn"
+          className="edit-modal-form__add-btn"
           disabled={!isFormComplete || loading}
         >
           {loading ? "Updating Income..." : "Update Income"}
