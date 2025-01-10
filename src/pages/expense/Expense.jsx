@@ -49,7 +49,6 @@ export default function Expense() {
   const handleExpenseDelete = async (id) => {
     try {
       await deleteExpense(id);
-      alert("Expense deleted");
       getExpenses();
       getUserData();
       setSelectedExpense(null);
@@ -82,11 +81,12 @@ export default function Expense() {
         <thead>
           <tr>
             <th className="table-checkbox">
-              {selectAll ? (
+              {/* {selectAll ? (
                 <FaSquare onClick={() => setSelectAll(false)} />
               ) : (
                 <FaRegSquare onClick={() => setSelectAll(true)} />
-              )}
+              )} */}
+              <FaRegSquare />
             </th>
             <th>Expense Category</th>
             <th>Amount</th>
@@ -101,7 +101,8 @@ export default function Expense() {
               return (
                 <tr key={expense.id}>
                   <td className="table-checkbox">
-                    <Checkbox selectAll={selectAll} />
+                    {/* <Checkbox selectAll={selectAll} /> */}
+                    <FaRegSquare />
                   </td>
                   <td>{capitalizeStr(expense.category)}</td>
                   <td>${formatAmount(expense.amount).fullAmount}</td>
@@ -124,6 +125,16 @@ export default function Expense() {
                 </tr>
               );
             })}
+          {/* Placeholder rows */}
+          {Array.from({ length: Math.max(0, 10 - expenses.length) }).map(
+            (_, index) => (
+              <tr className="placeholder" key={`placeholder-${index}`}>
+                <td colSpan={4} style={{ visibility: "hidden" }}>
+                  Placeholder
+                </td>
+              </tr>
+            )
+          )}
         </tbody>
       </table>
       <div className="pagination">

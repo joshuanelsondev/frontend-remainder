@@ -55,6 +55,8 @@
         font-size: 0.9rem;
         text-align: left;
         border-collapse: collapse;
+        table-layout: fixed;
+        width: 100%;
     }
     
     thead {
@@ -69,13 +71,23 @@
         border-bottom: 1px solid $gray-light;
     }
 
-    tr {
-        border-bottom: 1px solid $gray-light;
+    th, td {
+        width: 2rem;
+    }
+
+    tbody tr {
+        height: 2rem;
+        line-height: 2rem;
+        border-bottom: 1px solid $gray;
 
         &:hover {
             background-color: $gray-light;
             color: $primary;
         }
+    }
+
+    .placeholder {
+        border: none;
     }
 
     .table-edit, .table-trash {
@@ -95,7 +107,6 @@
     .table-checkbox {
         padding-top: 0.3rem;
         text-align: center;
-        cursor: pointer;
     }
 
     td.recurring {

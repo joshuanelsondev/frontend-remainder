@@ -49,7 +49,6 @@ export default function Income() {
   const handleIncomeDelete = async (id) => {
     try {
       await deleteIncome(id);
-      alert("Income deleted");
       getIncomes();
       getUserData();
       setSelectedIncome(null);
@@ -82,11 +81,12 @@ export default function Income() {
         <thead>
           <tr>
             <th className="table-checkbox">
-              {selectAll ? (
+              {/* {selectAll ? (
                 <FaSquare onClick={() => setSelectAll(false)} />
               ) : (
                 <FaRegSquare onClick={() => setSelectAll(true)} />
-              )}
+              )} */}
+              <FaRegSquare />
             </th>
             <th>Source of Income</th>
             <th>Amount</th>
@@ -101,7 +101,8 @@ export default function Income() {
               return (
                 <tr key={income.id}>
                   <td className="table-checkbox">
-                    <Checkbox selectAll={selectAll} />
+                    {/* <Checkbox selectAll={selectAll} /> */}
+                    <FaRegSquare />
                   </td>
                   <td>{capitalizeStr(income.source)}</td>
                   <td>${formatAmount(income.amount).fullAmount}</td>
@@ -124,6 +125,16 @@ export default function Income() {
                 </tr>
               );
             })}
+          {/* Placeholder rows */}
+          {Array.from({ length: Math.max(0, 10 - incomes.length) }).map(
+            (_, index) => (
+              <tr className="placeholder" key={`placeholder-${index}`}>
+                <td colSpan={4} style={{ visibility: "hidden" }}>
+                  Placeholder
+                </td>
+              </tr>
+            )
+          )}
         </tbody>
       </table>
       <div className="pagination">
@@ -165,7 +176,6 @@ export default function Income() {
               <p>{capitalizeStr(selectedIncome.source)}</p>
               <p>${formatAmount(selectedIncome.amount).fullAmount}</p>
               <p>{formatToShort(selectedIncome.date)}</p>
-              <p>{deleteIncome.recurring ? "Recurring" : "One-Time"}</p>
             </div>
             <div className="delete-modal__confirm">
               <p
