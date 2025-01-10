@@ -1,6 +1,6 @@
 @use "../../utils/variables" as *;
 
-.edit-income {
+.edit-modal {
     height: 100vh;
     width: 100vw;
     position: absolute;
@@ -18,7 +18,7 @@
 
 }
 
-.edit-income-form {
+.edit-modal-form {
         position: inherit;
         top: inherit;
         left: inherit;
