@@ -6,6 +6,7 @@ import { formatAmount } from "../../utils/formatAmount";
 import icons from "../../utils/icons";
 import capitalizeStr from "../../utils/capitalizeStr";
 import "./RecentIncome.scss";
+import { formatToShort } from "../../utils/formatDate";
 
 export default function RecentIncome() {
   const { userData } = useUserData();
@@ -21,17 +22,25 @@ export default function RecentIncome() {
             const Icon = icons[income.source];
             return (
               <div key={income.id} className="income-item">
-                {Icon && (
-                  <Link to={"/income"} className="income-item__icon">
-                    <Icon size={15} />
-                  </Link>
-                )}
-                <div className="income-item__right">
-                  <p className="income-item__category">
-                    {capitalizeStr(income.source)}
-                  </p>
-                  <p className="income-item__amount">
-                    ${dollars}.{cents}
+                <div className="income-item__left">
+                  {Icon && (
+                    <Link to={"/income"} className="income-item__icon">
+                      <Icon size={15} />
+                    </Link>
+                  )}
+                  <div className="income-item__right">
+                    <p className="income-item__source">
+                      {capitalizeStr(income.source)}
+                    </p>
+                    <p className="income-item__amount">
+                      ${dollars}.{cents}
+                    </p>
+                  </div>
+                </div>
+                <div className="income-item__date-container">
+                  <p className="income-item__date-heading">Date</p>
+                  <p className="income-item__date">
+                    {formatToShort(income.date)}
                   </p>
                 </div>
               </div>

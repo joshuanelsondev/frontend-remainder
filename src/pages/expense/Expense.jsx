@@ -27,7 +27,6 @@ export default function Expense() {
   const [selectedExpense, setSelectedExpense] = useState(null);
   const itemsPerPage = 10;
 
-  console.log(userData);
   useEffect(() => {
     getExpenses();
   }, [currentPage, userData]);

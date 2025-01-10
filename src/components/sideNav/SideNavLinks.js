@@ -23,11 +23,11 @@ export const SideNavLinks = [
     icon: FaMoneyCheck,
     path: "/expense",
   },
-  {
-    name: "Budget",
-    icon: FaChartPie,
-    path: "/budget",
-  },
+  // {
+  //   name: "Budget",
+  //   icon: FaChartPie,
+  //   path: "/budget",
+  // },
   // {
   //   name: "Investments",
   //   icon: FaPiggyBank,

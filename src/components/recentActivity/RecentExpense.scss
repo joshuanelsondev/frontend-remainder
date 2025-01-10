@@ -1,20 +1,27 @@
 @use '../../utils/variables' as *;
 
 .expenses-list {
+    margin-top: 1rem;
     display: grid;
-    overflow-x: auto;
-    overflow-y: hidden;
-    height: 100%;
-    grid-template-columns: 1fr 1fr;
+    overflow-y: auto;
+    grid-template-columns: 1fr;
     scrollbar-color: $primary $gray-light;
-    justify-items: center;
+    justify-items: start;
+    max-height: 25rem;
 }
 
 .expense-item {
     display: flex;
-    place-items: center;
-    gap: 0.5rem;
-    padding-left: 1px;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+    border-bottom: 1px solid $gray;
+    height: 5rem;
+    width: 100%;
+
+    &:last-child {
+        border-bottom: none;
+    }
 
     &__icon {
         background-color: $gray-light;
@@ -30,20 +37,30 @@
         }
     }
 
-    &__right {
+    &__left {
+        display: flex;
+        gap: 1.5rem;
+    }
+
+    &__right, &__date-container {
         display: grid;
         gap: 0.5rem;
     }
 
-    &__category {
+    &__category, &__date-heading {
       font-size: 0.8rem;
       margin: 0;
     }
 
-    &__amount {
+    &__amount, &__date {
         font-size: 0.8rem;
         font-weight: 600;
         margin: 0;
+    }
+
+    &__date {
+        font-weight: 400;
+        color: $primary;
     }
 }
 

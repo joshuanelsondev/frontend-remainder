@@ -9,8 +9,6 @@ const routes = {
   "/": "Dashboard",
   "/income": "Income",
   "/expense": "Expenses",
-  "/budget": "Budget",
-  "/investment": "Investments",
   "/settings": "Settings",
 };
 
@@ -22,7 +20,7 @@ export default function Header() {
     <div className="header">
       <h4 className="header__page">{routes[location.pathname]}</h4>
       <div className="header-right">
-        <FaUserCircle size={24} />
+        <FaUserCircle size={24} className="header-right__avatar" />
         {isLoggedIn && user ? (
           <div className="header-right__user">
             <p className="header-right__name">
@@ -36,7 +34,6 @@ export default function Header() {
             <p className="header-right__email">guest@mail.com</p>
           </div>
         )}
-        <FaSortDown className="header-right__caret" />
       </div>
     </div>
   );
