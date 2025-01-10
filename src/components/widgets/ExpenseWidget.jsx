@@ -39,33 +39,17 @@ export default function ExpenseWidget() {
         ${dollars}
         <span className="cents">.{cents}</span>
       </p>
-      <div className="bottom">
-        <div className="left-subinfo">
-          <p className={`percentage ${increase ? "increase" : "decrease"}`}>
-            {increase ? (
-              <FaAngleDoubleUp className="increase" size={16} />
-            ) : (
-              <FaAngleDoubleDown className="decrease" size={16} />
-            )}
-            10%
-          </p>
-          <p className="text">
-            You spent <span className="text-amt">$500</span> more compared to
-            last month
-          </p>
-        </div>
-        <div className="right-subinfo">
-          <p className="transactions">
-            <FaExchangeAlt className="icon" />
-            {expenseTransactions} transactions
-          </p>
-          <p className="categories">
-            <span>
-              <FaThLarge className="icon" />
-            </span>
-            {expenseSources} categories
-          </p>
-        </div>
+      <div className="subinfo">
+        <p className="transactions">
+          <FaExchangeAlt className="icon" />
+          {expenseTransactions} transactions
+        </p>
+        <p className="categories">
+          <span>
+            <FaThLarge className="icon" />
+          </span>
+          {expenseSources} categories
+        </p>
       </div>
     </div>
   );

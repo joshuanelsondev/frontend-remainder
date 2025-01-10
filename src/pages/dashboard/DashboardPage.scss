@@ -57,7 +57,7 @@
     justify-content: space-between;
 
     .amount {
-      font-size: 2rem;
+      font-size: 2.5rem;
       margin: 1rem 0;
     }
 
@@ -72,37 +72,15 @@
       justify-items: end;
     }
 
-    .left-subinfo, .right-subinfo {
-      display: grid;
-      grid-template-rows: 1fr 1fr;
-      align-items: center;
-      gap: 1rem;
-    }
-
-
-    .percentage {
+     .subinfo {
+      // display: grid;
+      // grid-template-rows: 1fr 1fr;
+      // align-items: center;
+      // gap: 1rem;
       display: flex;
-      align-items: center;
-      height: 1.4rem;
-      width: 3rem;
-      box-sizing: border-box;
-      padding: 0.2rem;
-      border-radius: 0.25rem;
-      margin: 0;
-      box-shadow: 0 0 3px $gray;
     }
 
-    .increase {
-      background-color: $increase-background;
-      color: $increase-text;
-    }
-
-    .decrease {
-      background-color: $decrease-background;
-      color: $decrease-text;
-    }
-
-    .text, .transactions, .categories {
+    .transactions, .categories {
       font-size: 0.8rem;
       margin: 0;
     }

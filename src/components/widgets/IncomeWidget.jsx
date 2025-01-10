@@ -40,29 +40,17 @@ export default function IncomeWidget() {
         ${dollars}
         <span className="cents">.{cents}</span>
       </p>
-      <div className="bottom">
-        <div className="left-subinfo">
-          <p className={`percentage ${increase ? "increase" : "decrease"}`}>
-            {increase ? <FaAngleDoubleUp size={16} /> : <FaAngleDoubleDown />}
-            5%
-          </p>
-          <p className="text">
-            You earned <span className="text-amt">$300</span> more compared to
-            last month
-          </p>
-        </div>
-        <div className="right-subinfo">
-          <p className="transactions">
-            <FaExchangeAlt className="icon" />
-            {incomeTransactions} transactions
-          </p>
-          <p className="categories">
-            <span>
-              <FaThLarge className="icon" />
-            </span>
-            {incomeSources} categories
-          </p>
-        </div>
+      <div className="subinfo">
+        <p className="transactions">
+          <FaExchangeAlt className="icon" />
+          {incomeTransactions} transactions
+        </p>
+        <p className="categories">
+          <span>
+            <FaThLarge className="icon" />
+          </span>
+          {incomeSources} categories
+        </p>
       </div>
     </div>
   );
