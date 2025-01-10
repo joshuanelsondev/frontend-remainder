@@ -58,7 +58,7 @@ export default function SignupModal({ setActiveModal }) {
       setMessage("Submitting your information...");
       await signupUser(apiData);
       setMessage(
-        "Your account is being set up. Check your email for the next steps."
+        "Your account is being set up. Check your email for the next steps. You may need to check your spam folder."
       );
     } catch (error) {
       setMessage(error.response?.data?.message || "Something went wrong");
