@@ -14,7 +14,7 @@ export default function DashboardPage() {
       <IncomeWidget />
       <ExpenseWidget />
       <ComparisonWidget />
-      <InvestmentWidget />
+      {/* <InvestmentWidget /> */}
       <RecentActivityWidget />
     </div>
   );

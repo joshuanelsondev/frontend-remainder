@@ -10,18 +10,18 @@ const navLinks = [
     displayName: "User Settings",
     identifier: "user",
   },
-  {
-    displayName: "Password Settings",
-    identifier: "password",
-  },
-  {
-    displayName: "Notifications",
-    identifier: "notification",
-  },
-  {
-    displayName: "Additional Settings",
-    identifier: "additional",
-  },
+  // {
+  //   displayName: "Password Settings",
+  //   identifier: "password",
+  // },
+  // {
+  //   displayName: "Notifications",
+  //   identifier: "notification",
+  // },
+  // {
+  //   displayName: "Additional Settings",
+  //   identifier: "additional",
+  // },
 ];
 
 export default function Settings() {

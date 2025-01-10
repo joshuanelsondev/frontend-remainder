@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useUserData } from "../../context/UserDataContext";
+import { useModal } from "../../context/ModalContext";
 import { formatAmount } from "../../utils/formatAmount";
 import icons from "../../utils/icons";
 import capitalizeStr from "../../utils/capitalizeStr";
@@ -8,6 +9,7 @@ import "./RecentExpense.scss";
 
 export default function RecentExpense() {
   const { userData } = useUserData();
+  const { setActiveModal } = useModal();
   const expenses = userData?.expenseData?.expenses || [];
 
   const expensesListClass =
@@ -40,7 +42,15 @@ export default function RecentExpense() {
           })}
         </div>
       ) : (
-        <p className="no-data">No Data Available Yet</p>
+        <div className="no-data">
+          <p>No Data Available Yet</p>
+          <p
+            onClick={() => setActiveModal("expense")}
+            className="no-data__add-expense"
+          >
+            Add Expense
+          </p>
+        </div>
       )}
     </>
   );

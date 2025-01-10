@@ -63,7 +63,7 @@ export default function LoginModal({ setActiveModal }) {
       setTimeout(() => {
         setActiveModal(null);
         navigate("/");
-      }, 1200);
+      }, 1500);
     } catch (error) {
       console.error("Login failed", error);
       setMessage(

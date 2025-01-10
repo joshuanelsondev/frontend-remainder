@@ -159,12 +159,12 @@
 
   &__recent-activity {
     grid-column: 3 / 4;
-    grid-row: 3 / 4;
+    grid-row: 2 / 4;
   }
 
-  &__investment {
-    grid-column: 3 / 4;
-    grid-row: 2 / 3;
-  }
+  // &__investment {
+  //   grid-column: 3 / 4;
+  //   grid-row: 2 / 3;
+  // }
 }
 

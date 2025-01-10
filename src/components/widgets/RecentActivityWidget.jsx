@@ -1,9 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useUserData } from "../../context/UserDataContext";
-import { formatAmount } from "../../utils/formatAmount";
-import icons from "../../utils/icons";
-import capitalizeStr from "../../utils/capitalizeStr";
 import RecentIncome from "../../components/recentActivity/RecentIncome";
 import RecentExpense from "../../components/recentActivity/RecentExpense";
 import "./RecentActivityWidget.scss";

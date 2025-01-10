@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useUserData } from "../../context/UserDataContext";
+import { useModal } from "../../context/ModalContext";
 import { formatAmount } from "../../utils/formatAmount";
 import icons from "../../utils/icons";
 import capitalizeStr from "../../utils/capitalizeStr";
@@ -8,6 +9,7 @@ import "./RecentIncome.scss";
 
 export default function RecentIncome() {
   const { userData } = useUserData();
+  const { setActiveModal } = useModal();
   const incomes = userData?.incomeData?.incomes || [];
 
   const incomeListClass =
@@ -40,7 +42,15 @@ export default function RecentIncome() {
           })}
         </div>
       ) : (
-        <p className="no-data">No Data Available Yet</p>
+        <div className="no-data">
+          <p>No Data Available Yet</p>
+          <p
+            onClick={() => setActiveModal("income")}
+            className="no-data__add-income"
+          >
+            Add Income
+          </p>
+        </div>
       )}
     </>
   );
