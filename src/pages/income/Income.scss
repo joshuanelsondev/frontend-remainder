@@ -40,7 +40,7 @@
         }
     }
 
-    &__add-expense {
+    &__add-income {
         border: none;
         background-color: $primary;
         color: $white;
@@ -55,6 +55,8 @@
         font-size: 0.9rem;
         text-align: left;
         border-collapse: collapse;
+        table-layout: fixed;
+        width: 100%;
     }
     
     thead {
@@ -73,13 +75,19 @@
         width: 2rem;
     }
 
-    tr {
-        border-bottom: 1px solid $gray-light;
+    tbody tr {
+        height: 2rem;
+        line-height: 2rem;
+        border-bottom: 1px solid $gray;
 
         &:hover {
             background-color: $gray-light;
             color: $primary;
         }
+    }
+
+    .placeholder {
+        border: none;
     }
 
     .table-edit, .table-trash {
@@ -175,7 +183,7 @@
         font-size: 1.25rem;
     }
 
-    &__expense-info {
+    &__income-info {
         display: flex;
         justify-content: space-evenly;
         gap: 1rem;

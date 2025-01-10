@@ -49,7 +49,6 @@ export default function Expense() {
   const handleExpenseDelete = async (id) => {
     try {
       await deleteExpense(id);
-      alert("Expense deleted");
       getExpenses();
       getUserData();
       setSelectedExpense(null);
@@ -126,6 +125,16 @@ export default function Expense() {
                 </tr>
               );
             })}
+          {/* Placeholder rows */}
+          {Array.from({ length: Math.max(0, 10 - expenses.length) }).map(
+            (_, index) => (
+              <tr className="placeholder" key={`placeholder-${index}`}>
+                <td colSpan={4} style={{ visibility: "hidden" }}>
+                  Placeholder
+                </td>
+              </tr>
+            )
+          )}
         </tbody>
       </table>
       <div className="pagination">
