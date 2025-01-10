@@ -82,11 +82,12 @@ export default function Expense() {
         <thead>
           <tr>
             <th className="table-checkbox">
-              {selectAll ? (
+              {/* {selectAll ? (
                 <FaSquare onClick={() => setSelectAll(false)} />
               ) : (
                 <FaRegSquare onClick={() => setSelectAll(true)} />
-              )}
+              )} */}
+              <FaRegSquare />
             </th>
             <th>Expense Category</th>
             <th>Amount</th>
@@ -101,7 +102,8 @@ export default function Expense() {
               return (
                 <tr key={expense.id}>
                   <td className="table-checkbox">
-                    <Checkbox selectAll={selectAll} />
+                    {/* <Checkbox selectAll={selectAll} /> */}
+                    <FaRegSquare />
                   </td>
                   <td>{capitalizeStr(expense.category)}</td>
                   <td>${formatAmount(expense.amount).fullAmount}</td>

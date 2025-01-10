@@ -40,7 +40,7 @@
         }
     }
 
-    &__add-income {
+    &__add-expense {
         border: none;
         background-color: $primary;
         color: $white;
@@ -69,6 +69,10 @@
         border-bottom: 1px solid $gray-light;
     }
 
+    th, td {
+        width: 2rem;
+    }
+
     tr {
         border-bottom: 1px solid $gray-light;
 
@@ -95,7 +99,6 @@
     .table-checkbox {
         padding-top: 0.3rem;
         text-align: center;
-        cursor: pointer;
     }
 
     td.recurring {
@@ -172,7 +175,7 @@
         font-size: 1.25rem;
     }
 
-    &__income-info {
+    &__expense-info {
         display: flex;
         justify-content: space-evenly;
         gap: 1rem;
