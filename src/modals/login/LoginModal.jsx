@@ -19,6 +19,7 @@ export default function LoginModal({ setActiveModal }) {
   const [pwdInfo, setPwdInfo] = useState(false);
   const [useWebAuthn, setUseWebAuthn] = useState(false);
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
   const formRef = useRef(null);
@@ -49,6 +50,7 @@ export default function LoginModal({ setActiveModal }) {
     }
 
     try {
+      setMessage("Please wait while we log you in...");
       const { email, password } = form;
       const response = await loginUser(email, password);
 
@@ -59,11 +61,13 @@ export default function LoginModal({ setActiveModal }) {
       }
 
       login(token);
-      setMessage("Successful Login");
       setTimeout(() => {
-        setActiveModal(null);
-        navigate("/");
-      }, 1500);
+        setMessage("Successful Login. Directing you to your dashboard...");
+
+        setTimeout(() => {
+          navigate("/");
+        }, 3000);
+      }, 5000);
     } catch (error) {
       console.error("Login failed", error);
       setMessage(
@@ -71,10 +75,6 @@ export default function LoginModal({ setActiveModal }) {
           `${error.response?.data?.message}. Please try again.`) ||
           "Login failed. Please try again."
       );
-    } finally {
-      setTimeout(() => {
-        setMessage(null);
-      }, 2500);
     }
   };
 
@@ -86,20 +86,23 @@ export default function LoginModal({ setActiveModal }) {
     }
 
     try {
+      setLoading(true);
       const { token } = await authenticateUser(email);
       if (!token) {
         console.error("No token");
       }
 
       login(token);
-      navigate("/");
+      setTimeout(() => {
+        setMessage("Successful Login. Directing you to your dashboard...");
+
+        setTimeout(() => {
+          navigate("/");
+        }, 3000);
+      }, 5000);
     } catch (error) {
       console.error("Authentication failed:", error);
       setMessage(error.message || "Authentication failed. Please try again.");
-    } finally {
-      setTimeout(() => {
-        setMessage(null);
-      }, 2500);
     }
   };
 
@@ -143,8 +146,9 @@ export default function LoginModal({ setActiveModal }) {
                 onClick={handleWebAuthnLogin}
                 type="button"
                 className="login-options__sign-in"
+                disabled={loading}
               >
-                Sign in
+                {loading ? "Signing in..." : "Sign in"}
               </button>
               <p className="login-options__or">or</p>
               <button
@@ -220,14 +224,19 @@ export default function LoginModal({ setActiveModal }) {
 
             {/*Login Options */}
             <div className="login-options">
-              <button type="submit" className="login-options__sign-in">
-                Sign in
+              <button
+                type="submit"
+                className="login-options__sign-in"
+                disabled={loading}
+              >
+                {loading ? "Logging in..." : "Sign in"}
               </button>
               <p className="login-options__or">or</p>
               <button
                 type="button"
                 onClick={() => setUseWebAuthn(true)}
                 className="login-options__sign-in"
+                disabled={loading}
               >
                 Sign in with Passkey
               </button>
@@ -237,6 +246,7 @@ export default function LoginModal({ setActiveModal }) {
                 type="button"
                 onClick={() => setActiveModal("resetPassword")}
                 className="login__resetPassword"
+                disabled={loading}
               >
                 Forgot Password?
               </button>
@@ -244,13 +254,16 @@ export default function LoginModal({ setActiveModal }) {
                 type="button"
                 onClick={() => setActiveModal("signup")}
                 className="login__signup"
+                disabled={loading}
               >
                 Create account
               </button>
             </div>
           </>
         )}
-
+        {loading && (
+          <p className="login__loading-message" aria-live="polite"></p>
+        )}
         {message && (
           <p className="login__message" aria-live="polite">
             {message}
