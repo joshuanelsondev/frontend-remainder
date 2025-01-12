@@ -10,12 +10,6 @@
   align-items: center;
   z-index: 10;
 
-  &__overlay {
-      height: inherit;
-      width: inherit;
-      background-color: $primary;
-      opacity: 30%;
-  }
 
   &__modal {
     background-color: $gray-light;
@@ -32,6 +26,7 @@
     justify-content: start;
     align-items: center;
     padding: 1rem;
+    box-shadow: 0 0 0.5rem $gray;
   }
 
   &__header {
