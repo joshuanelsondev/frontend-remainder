@@ -11,9 +11,9 @@
 
   // Header and sizing of widgets
   &__budget, &__income, &__expense, &__comparison, &__recent-activity, &__investment {
-    height: 100%;
+    height: 0;
     width: 100%;
-    min-height: 10rem;
+    min-height: 100%;
     padding: 1rem;
     border: none;
     border-radius: 0.5rem;

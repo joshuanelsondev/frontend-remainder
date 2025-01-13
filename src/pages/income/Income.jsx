@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import Checkbox from "../../components/checkbox/Checkbox";
 import { useModal } from "../../context/ModalContext";
 import { useUserData } from "../../context/UserDataContext";
 import {
   FaRegSquare,
-  FaSquare,
   FaPen,
   FaTrash,
   FaAngleLeft,
   FaAngleRight,
+  FaThLarge,
 } from "react-icons/fa";
+import icons from "../../utils/icons";
 import capitalizeStr from "../../utils/capitalizeStr";
 import { formatToShort } from "../../utils/formatDate";
 import { formatAmount } from "../../utils/formatAmount";
@@ -86,7 +86,7 @@ export default function Income() {
               ) : (
                 <FaRegSquare onClick={() => setSelectAll(true)} />
               )} */}
-              <FaRegSquare />
+              <FaThLarge />
             </th>
             <th>Source of Income</th>
             <th>Amount</th>
@@ -98,11 +98,11 @@ export default function Income() {
         <tbody>
           {incomes &&
             incomes.map((income) => {
+              const Icon = icons[income.source];
               return (
                 <tr key={income.id}>
                   <td className="table-checkbox">
-                    {/* <Checkbox selectAll={selectAll} /> */}
-                    <FaRegSquare />
+                    <Icon />
                   </td>
                   <td>{capitalizeStr(income.source)}</td>
                   <td>${formatAmount(income.amount).fullAmount}</td>
