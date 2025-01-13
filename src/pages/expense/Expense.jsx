@@ -9,7 +9,9 @@ import {
   FaTrash,
   FaAngleLeft,
   FaAngleRight,
+  FaThLarge,
 } from "react-icons/fa";
+import icons from "../../utils/icons";
 import capitalizeStr from "../../utils/capitalizeStr";
 import { formatToShort } from "../../utils/formatDate";
 import { formatAmount } from "../../utils/formatAmount";
@@ -86,7 +88,7 @@ export default function Expense() {
               ) : (
                 <FaRegSquare onClick={() => setSelectAll(true)} />
               )} */}
-              <FaRegSquare />
+              <FaThLarge />
             </th>
             <th>Expense Category</th>
             <th>Amount</th>
@@ -98,11 +100,11 @@ export default function Expense() {
         <tbody>
           {expenses &&
             expenses.map((expense) => {
+              const Icon = icons[expense.category];
               return (
                 <tr key={expense.id}>
                   <td className="table-checkbox">
-                    {/* <Checkbox selectAll={selectAll} /> */}
-                    <FaRegSquare />
+                    <Icon />
                   </td>
                   <td>{capitalizeStr(expense.category)}</td>
                   <td>${formatAmount(expense.amount).fullAmount}</td>
