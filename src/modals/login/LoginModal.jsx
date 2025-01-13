@@ -70,11 +70,14 @@ export default function LoginModal({ setActiveModal }) {
       }, 5000);
     } catch (error) {
       console.error("Login failed", error);
-      setMessage(
-        (error.response?.data?.message &&
-          `${error.response?.data?.message}. Please try again.`) ||
-          "Login failed. Please try again."
-      );
+      setTimeout(() => {
+        setMessage(
+          (error.response?.data?.message &&
+            `${error.response?.data?.message}. Please try again.`) ||
+            "Login failed. Please try again."
+        );
+      }, 3000);
+      setTimeout(() => setMessage(null), 6000);
     }
   };
 
@@ -102,7 +105,10 @@ export default function LoginModal({ setActiveModal }) {
       }, 5000);
     } catch (error) {
       console.error("Authentication failed:", error);
-      setMessage(error.message || "Authentication failed. Please try again.");
+      setTimeout(() => {
+        setMessage(error.message || "Authentication failed. Please try again.");
+      }, 3000);
+      setTimeout(() => setMessage(null), 6000);
     }
   };
 
