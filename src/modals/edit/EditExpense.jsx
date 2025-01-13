@@ -8,12 +8,18 @@ import { updateExpense } from "../../api/expenseApi";
 import "./EditModals.scss";
 
 const selectOptions = [
-  "freelance",
-  "salary",
-  "business",
-  "gifts",
-  "rental",
-  "investment",
+  "rent",
+  "utilities",
+  "groceries",
+  "entertainment",
+  "transportation",
+  "personal",
+  "healthcare",
+  "education",
+  "savings",
+  "family",
+  "emergency",
+  "vacation",
   "other",
 ];
 
@@ -95,17 +101,19 @@ export default function EditExpense({ setActiveModal, expense }) {
         </div>
         <div className="edit-modal-form__bottom-inputs">
           <div className="edit-modal-form__source">
-            <label htmlFor="source">Source of Expense:</label>
+            <label htmlFor="source">Expense Category:</label>
             <select
               className="edit-modal-form__source-select"
               onChange={handleFormInput}
               name="source"
               id="source"
               value={form.source}
-              title="Select a source of expense"
+              title="Select an expense category"
               required
             >
-              <option value="">Choose a source</option>
+              <option value={form.category}>
+                {capitalizeStr(form.category)}
+              </option>
 
               {selectOptions.map((option, index) => (
                 <option key={index} value={option}>

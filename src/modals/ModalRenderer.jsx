@@ -1,6 +1,7 @@
 import React from "react";
 import { useModal } from "../context/ModalContext";
 import LoginModal from "../modals/login/LoginModal";
+import LogoutModal from "../modals/logout/LogoutModal";
 import SignupModal from "../modals/signup/SignupModal";
 import ResetPasswordModal from "../modals/resetPassword/ResetPasswordModal";
 import IncomeModal from "../modals/income/IncomeModal";
@@ -18,6 +19,9 @@ const ModalRenderer = () => {
       )}
       {activeModal === "signup" && (
         <SignupModal setActiveModal={setActiveModal} />
+      )}
+      {activeModal === "logout" && (
+        <LogoutModal setActiveModal={setActiveModal} />
       )}
       {activeModal === "resetPassword" && (
         <ResetPasswordModal setActiveModal={setActiveModal} />

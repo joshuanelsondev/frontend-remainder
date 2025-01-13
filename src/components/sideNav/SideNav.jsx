@@ -1,13 +1,12 @@
-import React, { useContext } from "react";
-import { NavLink, Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
+import React, { useState, useContext } from "react";
+import { NavLink, Link } from "react-router-dom";
+import { useModal } from "../../context/ModalContext";
 import "./SideNav.scss";
 import { SideNavLinks } from "./SideNavLinks.js";
 import { FaSignOutAlt } from "react-icons/fa";
 
 export default function SideNav() {
-  const navigate = useNavigate();
-  const { logout } = useContext(AuthContext);
+  const { setActiveModal } = useModal();
 
   return (
     <nav className="sidenav">
@@ -34,7 +33,10 @@ export default function SideNav() {
           );
         })}
       </ul>
-      <button className="sidenav-logout" onClick={() => logout(navigate)}>
+      <button
+        className="sidenav-logout"
+        onClick={() => setActiveModal("logout")}
+      >
         <FaSignOutAlt className="sidenav-logout__icon" />
         Logout
       </button>

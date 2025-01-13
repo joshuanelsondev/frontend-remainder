@@ -6,12 +6,8 @@ import "./Nav.scss";
 
 export default function Nav() {
   const { setActiveModal } = useModal();
-  const { isLoggedIn, logout } = useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout(navigate);
-  };
 
   return (
     <nav className="nav">
@@ -19,26 +15,18 @@ export default function Nav() {
         Remainder
       </Link>
       <div className="right-links">
-        {isLoggedIn ? (
-          <button onClick={handleLogout} className="right-links__logout">
-            Logout
-          </button>
-        ) : (
-          <>
-            <button
-              onClick={() => setActiveModal("login")}
-              className="right-links__login"
-            >
-              Login
-            </button>
-            <button
-              onClick={() => setActiveModal("signup")}
-              className="right-links__signup"
-            >
-              Sign up
-            </button>
-          </>
-        )}
+        <button
+          onClick={() => setActiveModal("login")}
+          className="right-links__login"
+        >
+          Login
+        </button>
+        <button
+          onClick={() => setActiveModal("signup")}
+          className="right-links__signup"
+        >
+          Sign up
+        </button>
       </div>
     </nav>
   );

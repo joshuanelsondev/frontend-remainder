@@ -1,5 +1,12 @@
 @use "../../utils/variables" as *;
 
+.dashboard__comparison {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem !important;
+}
+
 .heading {
     display: flex;
     justify-content: space-between;

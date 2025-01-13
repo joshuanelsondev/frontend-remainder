@@ -1,5 +1,9 @@
 @use "../../utils/variables" as *;
 
+.dashboard__recent-activity {
+    display: flex;
+    flex-direction: column;
+}
 
 .recent-activity-heading {
     display: flex;
