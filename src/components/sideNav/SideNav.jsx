@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import "./SideNav.scss";
@@ -6,6 +6,7 @@ import { SideNavLinks } from "./SideNavLinks.js";
 import { FaSignOutAlt } from "react-icons/fa";
 
 export default function SideNav() {
+  const [logoutModal, setLogoutModal] = useState(false);
   const navigate = useNavigate();
   const { logout } = useContext(AuthContext);
 
