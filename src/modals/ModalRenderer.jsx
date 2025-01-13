@@ -21,7 +21,7 @@ const ModalRenderer = () => {
         <SignupModal setActiveModal={setActiveModal} />
       )}
       {activeModal === "logout" && (
-        <SignupModal setActiveModal={setActiveModal} />
+        <LogoutModal setActiveModal={setActiveModal} />
       )}
       {activeModal === "resetPassword" && (
         <ResetPasswordModal setActiveModal={setActiveModal} />
