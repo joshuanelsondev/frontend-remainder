@@ -6,12 +6,8 @@ import "./Nav.scss";
 
 export default function Nav() {
   const { setActiveModal } = useModal();
-  const { isLoggedIn, logout } = useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout(navigate);
-  };
 
   return (
     <nav className="nav">
