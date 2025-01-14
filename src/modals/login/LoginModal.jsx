@@ -248,14 +248,7 @@ export default function LoginModal({ setActiveModal }) {
               </button>
             </div>
             <div className="login__links">
-              <button
-                type="button"
-                onClick={() => setActiveModal("resetPassword")}
-                className="login__resetPassword"
-                disabled={loading}
-              >
-                Forgot Password?
-              </button>
+              <p className="login__new-user">New User?</p>
               <button
                 type="button"
                 onClick={() => setActiveModal("signup")}

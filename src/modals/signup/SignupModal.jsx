@@ -58,11 +58,12 @@ export default function SignupModal({ setActiveModal }) {
       setMessage("Submitting your information...");
       await signupUser(apiData);
       setMessage(
-        "Your account is being set up! Please check your email for the next steps. If you don’t see it, be sure to check your spam or junk folder."
+        "Please click the verification link sent to your email. If you don’t see it, check your spam or junk folder."
       );
     } catch (error) {
       setMessage(error.response?.data?.message || "Something went wrong");
       setErrors({});
+      setTimeout(() => setMessage(null), 8000);
     }
   };
 
