@@ -89,6 +89,11 @@
         display: flex;
         gap: 1px;
 
+        p {
+          color: $gray-dark;
+          font-size: 0.75rem;
+        }
+
         button {
             font-family: $primary-font;
             font-size: 0.75rem;
@@ -96,6 +101,11 @@
             border: none;
             cursor: pointer;
             color: $gray-dark;
+
+            &:hover {
+              text-decoration: underline;
+              text-underline-offset: 5px;
+            }
         }
     }
 

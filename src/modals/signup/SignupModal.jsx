@@ -58,11 +58,12 @@ export default function SignupModal({ setActiveModal }) {
       setMessage("Submitting your information...");
       await signupUser(apiData);
       setMessage(
-        "Your account is being set up! Please check your email for the next steps. If you don’t see it, be sure to check your spam or junk folder."
+        "Please click the verification link sent to your email. If you don’t see it, check your spam or junk folder."
       );
     } catch (error) {
       setMessage(error.response?.data?.message || "Something went wrong");
       setErrors({});
+      setTimeout(() => setMessage(null), 8000);
     }
   };
 
@@ -191,12 +192,9 @@ export default function SignupModal({ setActiveModal }) {
         </div>
         <button className="signup-form__create-btn">Create account</button>
         <div>
-          <button
-            type="submit"
-            onClick={() => setActiveModal("login")}
-            className="signup-form__login"
-          >
-            Already have an account? Sign in
+          <button type="submit" className="signup-form__login">
+            Already have an account?{" "}
+            <span onClick={() => setActiveModal("login")}>Sign in</span>
           </button>
           {message && <p className="signup-form__message">{message}</p>}
         </div>

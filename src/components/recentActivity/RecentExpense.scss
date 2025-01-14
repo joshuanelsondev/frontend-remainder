@@ -7,12 +7,11 @@
     grid-template-columns: 1fr;
     scrollbar-color: $primary $gray-light;
     justify-items: start;
-    max-height: 25rem;
 }
 
 .expense-item {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: 2rem;
     border-bottom: 1px solid $gray;
@@ -45,6 +44,8 @@
     &__right, &__date-container {
         display: grid;
         gap: 0.5rem;
+        justify-self: end;
+        padding-right: 1rem;
     }
 
     &__category, &__date-heading {

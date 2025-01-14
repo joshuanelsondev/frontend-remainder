@@ -85,7 +85,7 @@
         color: $white;
         background-color: $primary-light;
         width: 100%;
-        font-size: 0.75rem;
+        font-size: 0.9rem;
         padding: 0.75rem 0;
         border-radius: 0.25rem;
         cursor: pointer;
@@ -98,8 +98,16 @@
         font-size: 0.75rem;
         background: transparent;
         border: none;
-        cursor: pointer;
         color: $gray-dark;
+
+        span {
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+            text-underline-offset: 5px;
+          }
+        }
     }
 
     &__error {

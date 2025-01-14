@@ -10,8 +10,8 @@
 }
 
 .income-item {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: 2rem;
     border-bottom: 1px solid $gray;
@@ -44,6 +44,8 @@
     &__right, &__date-container {
         display: grid;
         gap: 0.5rem;
+        justify-self: end;
+        padding-right: 1rem;
     }
 
     &__source, &__date-heading {

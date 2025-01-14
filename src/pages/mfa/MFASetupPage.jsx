@@ -22,7 +22,7 @@ export default function MFASetupPage() {
       await registerUser(email);
 
       login(token);
-      setSuccess("Login Successful! Click below to go to your dashboard.");
+      setSuccess("Login Successful! Click continue to go to your dashboard.");
     } catch (error) {
       console.error("MFA setup error:", error);
 
@@ -43,7 +43,7 @@ export default function MFASetupPage() {
         {!error && !success && (
           <>
             <p className="mfa__text">
-              Click below to set up authentication options
+              Click start to set up authentication options
             </p>
             <button onClick={setupMFA} className="mfa__btn">
               Start
