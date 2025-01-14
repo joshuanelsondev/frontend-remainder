@@ -191,12 +191,9 @@ export default function SignupModal({ setActiveModal }) {
         </div>
         <button className="signup-form__create-btn">Create account</button>
         <div>
-          <button
-            type="submit"
-            onClick={() => setActiveModal("login")}
-            className="signup-form__login"
-          >
-            Already have an account? Sign in
+          <button type="submit" className="signup-form__login">
+            Already have an account?{" "}
+            <span onClick={() => setActiveModal("login")}>Sign in</span>
           </button>
           {message && <p className="signup-form__message">{message}</p>}
         </div>

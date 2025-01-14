@@ -98,8 +98,16 @@
         font-size: 0.75rem;
         background: transparent;
         border: none;
-        cursor: pointer;
         color: $gray-dark;
+
+        span {
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+            text-underline-offset: 5px;
+          }
+        }
     }
 
     &__error {
