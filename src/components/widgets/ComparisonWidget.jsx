@@ -46,17 +46,23 @@ export default function ComparisonWidget() {
   // Convert month date (e.g., '2024-01') to month name
   const monthFormatter = new Intl.DateTimeFormat("en-US", { month: "short" });
 
-  const months = Object.keys(comparisons).map((date) => {
+  const sortedDates = Object.keys(comparisons).sort();
+
+  // Filter dates for the selected year
+  const filteredDates = sortedDates.filter((date) =>
+    date.startsWith(`${selectedYear}-`)
+  );
+
+  const months = filteredDates.map((date) => {
     const [year, month] = date.split("-");
-    return `${monthFormatter.format(new Date(year, month - 1))} '${year.slice(
-      -2
-    )}`;
+    return `${monthFormatter.format(new Date(year, month - 1))} '${year.slice(-2)}`;
   });
 
-  const incomeData = Object.keys(comparisons).map(
+  const incomeData = filteredDates.map(
     (date) => comparisons[date]?.income || 0
   );
-  const expenseData = Object.keys(comparisons).map(
+
+  const expenseData = filteredDates.map(
     (date) => comparisons[date]?.expenses || 0
   );
 
