@@ -105,6 +105,7 @@ export default function LoginModal({ setActiveModal }) {
       }, 5000);
     } catch (error) {
       console.error("Authentication failed:", error);
+      setLoading(false);
       setTimeout(() => {
         setMessage(error.message || "Authentication failed. Please try again.");
       }, 3000);
