@@ -10,7 +10,7 @@ import EditIncome from "./edit/EditIncome";
 import EditExpense from "./edit/EditExpense";
 
 const ModalRenderer = () => {
-  const { activeModal, setActiveModal, modalData } = useModal();
+  const { setActiveModal, modalData } = useModal();
 
   return (
     <>
