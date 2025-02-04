@@ -32,6 +32,11 @@ export default function MFASetupPage() {
     }
   };
 
+  const continueToLogin = () => {
+    login(token);
+    navigate("/");
+  };
+
   return (
     <div className="mfa">
       <div className="mfa__overlay"></div>
@@ -43,11 +48,17 @@ export default function MFASetupPage() {
         {!error && !success && (
           <>
             <p className="mfa__text">
-              Click start to set up authentication options
+              Click <b>start</b> to set up authentication options, or{" "}
+              <b>click</b> cancel to login
             </p>
-            <button onClick={setupMFA} className="mfa__btn">
-              Start
-            </button>
+            <div className="mfa__btns">
+              <button onClick={setupMFA} className="mfa__btn">
+                Start
+              </button>
+              <button onClick={continueToLogin} className="mfa__btn">
+                Cancel
+              </button>
+            </div>
           </>
         )}
         {error && (

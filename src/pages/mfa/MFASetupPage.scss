@@ -15,7 +15,7 @@
     background-color: $gray-light;
     height: auto;
     min-height: 5rem;
-    width: 25rem;
+    width: fit-content;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -42,7 +42,13 @@
     color: $error;
   }
 
+  &__btns {
+    display: flex;
+    gap: 1rem;
+  }
+  
   &__btn {
+        width: 5rem;
         color: $white;
         background-color: $primary-light;
         font-size: 0.75rem;
