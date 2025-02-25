@@ -23,10 +23,7 @@ export default function LandingPage() {
       }
 
       login(token);
-
-      setTimeout(() => {
-        navigate("/");
-      }, 3000);
+      navigate("/");
     } catch (error) {}
   };
 
@@ -42,7 +39,11 @@ export default function LandingPage() {
           <button onClick={() => setActiveModal("login")} className="hero__cta">
             Get Started
           </button>
-          <button onClick={handleGuestLogin} className="hero__cta">
+          <button
+            onClick={handleGuestLogin}
+            className="hero__cta"
+            title="Sign in as a Guest"
+          >
             Explore the App
           </button>
         </div>
