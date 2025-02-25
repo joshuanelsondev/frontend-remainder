@@ -1,10 +1,13 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import PropTypes from "prop-types";
+import { AuthContext } from "../../context/AuthContext";
 import useClickOutside from "../../hooks/useClickOutside";
 import capitalizeStr from "../../utils/capitalizeStr";
 import { useUserData } from "../../context/UserDataContext";
 import { createIncome } from "../../api/incomeApi";
 import "./IncomeModal.scss";
+
+const GUEST_USER_ID = import.meta.env.VITE_APP_GUEST_ID;
 
 const selectOptions = [
   "freelance",
@@ -24,8 +27,17 @@ export default function IncomeModal({ setActiveModal }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [guestIncomeData, setGuestIncomeData] = useState(() => {
+    const storedData = sessionStorage.getItem("guestIncomeData");
+    return storedData ? JSON.parse(storedData) : [];
+  });
   const formRef = useRef(null);
   const { getUserData } = useUserData();
+  const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    sessionStorage.setItem("guestIncomeData", JSON.stringify(guestIncomeData));
+  }, [guestIncomeData]);
 
   useClickOutside(formRef, () => setActiveModal(null));
 
@@ -40,19 +52,30 @@ export default function IncomeModal({ setActiveModal }) {
     setError("");
     setSuccess("");
 
-    try {
-      await createIncome(form);
-      setSuccess("Income added successfully!");
+    if (user.id === GUEST_USER_ID) {
+      setGuestIncomeData([...guestIncomeData, form]);
+      setSuccess("Income added to guest session!");
       setTimeout(() => {
         setActiveModal(null);
+        setForm({ amount: "", source: "", date: "" });
         getUserData();
       }, 2000);
-    } catch (error) {
-      console.error("Error creating income:", error);
-      setError("Failed to add income. Please try again.");
-      setTimeout(() => setError(""), 2000);
-    } finally {
       setLoading(false);
+    } else {
+      try {
+        await createIncome(form);
+        setSuccess("Income added successfully!");
+        setTimeout(() => {
+          setActiveModal(null);
+          getUserData();
+        }, 2000);
+      } catch (error) {
+        console.error("Error creating income:", error);
+        setError("Failed to add income. Please try again.");
+        setTimeout(() => setError(""), 2000);
+      } finally {
+        setLoading(false);
+      }
     }
   };
 

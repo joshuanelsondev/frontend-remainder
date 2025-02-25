@@ -28,6 +28,11 @@
     font-family: $secondary-font
   }
 
+  &__btns {
+    display: flex;
+    gap: 1rem;
+  }
+
   &__cta {
     font-size: 1.25rem;
     background: $primary-light;
