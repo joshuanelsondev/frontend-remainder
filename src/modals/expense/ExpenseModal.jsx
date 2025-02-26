@@ -1,10 +1,13 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
+import { AuthContext } from "../../context/AuthContext";
 import useClickOutside from "../../hooks/useClickOutside";
 import capitalizeStr from "../../utils/capitalizeStr";
 import { useUserData } from "../../context/UserDataContext";
 import { createExpense } from "../../api/expenseApi";
 import "./ExpenseModal.scss";
+
+const GUEST_USER_ID = import.meta.env.VITE_APP_GUEST_ID;
 
 const selectOptions = [
   "rent",
@@ -31,8 +34,17 @@ export default function ExpenseModal({ setActiveModal }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [guestIncomeData, setGuestIncomeData] = useState(() => {
+    const storedData = sessionStorage.getItem("guestIncomeData");
+    return storedData ? JSON.parse(storedData) : [];
+  });
   const { getUserData } = useUserData();
   const formRef = useRef(null);
+  const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    sessionStorage.setItem("guestIncomeData", JSON.stringify(guestIncomeData));
+  }, [guestIncomeData]);
 
   useClickOutside(formRef, () => setActiveModal(null));
 
@@ -47,19 +59,30 @@ export default function ExpenseModal({ setActiveModal }) {
     setError("");
     setSuccess("");
 
-    try {
-      await createExpense(form);
-      setSuccess("Expense added successfully!");
+    if (user.id === GUEST_USER_ID) {
+      setGuestIncomeData([...guestIncomeData, form]);
+      setSuccess("Income added to guest session!");
       setTimeout(() => {
         setActiveModal(null);
+        setForm({ amount: "", source: "", date: "" });
         getUserData();
       }, 2000);
-    } catch (error) {
-      console.error("Error creating expense:", error);
-      setError("Failed to add expense. Please try again.");
-      setTimeout(() => setError(""), 2000);
-    } finally {
       setLoading(false);
+    } else {
+      try {
+        await createExpense(form);
+        setSuccess("Expense added successfully!");
+        setTimeout(() => {
+          setActiveModal(null);
+          getUserData();
+        }, 2000);
+      } catch (error) {
+        console.error("Error creating expense:", error);
+        setError("Failed to add expense. Please try again.");
+        setTimeout(() => setError(""), 2000);
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
