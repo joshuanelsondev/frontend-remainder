@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import PropTypes from "prop-types";
-import { AuthContext } from "../../context/AuthContext";
-import useClickOutside from "../../hooks/useClickOutside";
-import capitalizeStr from "../../utils/capitalizeStr";
-import { useUserData } from "../../context/UserDataContext";
-import { createIncome } from "../../api/incomeApi";
+import { AuthContext } from "@/context/AuthContext";
+import useClickOutside from "@/hooks/useClickOutside";
+import capitalizeStr from "@/utils/capitalizeStr";
+import { useUserData } from "@/context/UserDataContext";
+import { createIncome } from "@/api/incomeApi";
 import "./IncomeModal.scss";
 
 const GUEST_USER_ID = import.meta.env.VITE_APP_GUEST_ID;
@@ -18,6 +18,7 @@ const selectOptions = [
   "investment",
   "other",
 ];
+
 export default function IncomeModal({ setActiveModal }) {
   const [form, setForm] = useState({
     amount: "",

@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
-import { AuthContext } from "../../context/AuthContext";
-import useClickOutside from "../../hooks/useClickOutside";
-import capitalizeStr from "../../utils/capitalizeStr";
-import { useUserData } from "../../context/UserDataContext";
-import { createExpense } from "../../api/expenseApi";
+import { AuthContext } from "@/context/AuthContext";
+import useClickOutside from "@/hooks/useClickOutside";
+import capitalizeStr from "@/utils/capitalizeStr";
+import { useUserData } from "@/context/UserDataContext";
+import { createExpense } from "@/api/expenseApi";
 import "./ExpenseModal.scss";
 
 const GUEST_USER_ID = import.meta.env.VITE_APP_GUEST_ID;
@@ -25,6 +25,8 @@ const selectOptions = [
   "other",
 ];
 
+console.log("sessionstorage:", sessionStorage.getItem("guestExpenseData"));
+
 export default function ExpenseModal({ setActiveModal }) {
   const [form, setForm] = useState({
     amount: "",
@@ -34,8 +36,8 @@ export default function ExpenseModal({ setActiveModal }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const [guestIncomeData, setGuestIncomeData] = useState(() => {
-    const storedData = sessionStorage.getItem("guestIncomeData");
+  const [guestExpenseData, setGuestExpenseData] = useState(() => {
+    const storedData = sessionStorage.getItem("guestExpenseData");
     return storedData ? JSON.parse(storedData) : [];
   });
   const { getUserData } = useUserData();
@@ -43,8 +45,11 @@ export default function ExpenseModal({ setActiveModal }) {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    sessionStorage.setItem("guestIncomeData", JSON.stringify(guestIncomeData));
-  }, [guestIncomeData]);
+    sessionStorage.setItem(
+      "guestExpenseData",
+      JSON.stringify(guestExpenseData)
+    );
+  }, [guestExpenseData]);
 
   useClickOutside(formRef, () => setActiveModal(null));
 
@@ -60,8 +65,8 @@ export default function ExpenseModal({ setActiveModal }) {
     setSuccess("");
 
     if (user.id === GUEST_USER_ID) {
-      setGuestIncomeData([...guestIncomeData, form]);
-      setSuccess("Income added to guest session!");
+      setGuestExpenseData([...guestExpenseData, form]);
+      setSuccess("Expense added to guest session!");
       setTimeout(() => {
         setActiveModal(null);
         setForm({ amount: "", source: "", date: "" });
