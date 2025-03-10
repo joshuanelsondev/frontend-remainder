@@ -7,10 +7,10 @@ import React, {
 } from "react";
 import PropTypes from "prop-types";
 import { throttle } from "lodash";
-import { getAllIncomes } from "../api/incomeApi.js";
-import { getAllExpenses } from "../api/expenseApi.js";
-import { getBudget } from "../api/budgetApi.js";
-import { getComparisons, getComparisonsYears } from "../api/comparisonsApi.js";
+import { getAllIncomes } from "@/api/incomeApi.js";
+import { getAllExpenses } from "@/api/expenseApi.js";
+import { getBudget } from "@/api/budgetApi.js";
+import { getComparisons, getComparisonsYears } from "@/api/comparisonsApi.js";
 
 const UserDataContext = createContext();
 
