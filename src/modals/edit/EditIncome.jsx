@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import useClickOutside from "../../hooks/useClickOutside";
 import capitalizeStr from "../../utils/capitalizeStr";
-import { formatToIso } from "../../utils/formatDate";
+import { formatDateToUtcIsoDate } from "../../utils/formatDate";
 import { useUserData } from "../../context/UserDataContext";
 import { updateIncome } from "../../api/incomeApi";
 import "./EditModals.scss";
@@ -33,7 +33,7 @@ export default function EditIncome({ setActiveModal, income }) {
 
   useEffect(() => {
     if (income) {
-      setForm({ ...income, date: formatToIso(income.date) });
+      setForm({ ...income, date: formatDateToUtcIsoDate(income.date) });
     }
   }, []);
   const handleFormInput = (e) => {

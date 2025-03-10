@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import useClickOutside from "../../hooks/useClickOutside";
 import capitalizeStr from "../../utils/capitalizeStr";
-import { formatToIso } from "../../utils/formatDate";
+import { formatDateToUtcIsoDate } from "../../utils/formatDate";
 import { useUserData } from "../../context/UserDataContext";
 import { updateExpense } from "../../api/expenseApi";
 import "./EditModals.scss";
@@ -39,7 +39,7 @@ export default function EditExpense({ setActiveModal, expense }) {
 
   useEffect(() => {
     if (expense) {
-      setForm({ ...expense, date: formatToIso(expense.date) });
+      setForm({ ...expense, date: formatDateToUtcIsoDate(expense.date) });
     }
   }, []);
   const handleFormInput = (e) => {

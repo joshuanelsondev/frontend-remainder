@@ -38,6 +38,10 @@ export const UserDataProvider = ({ children }) => {
         getComparisons(selectedYear),
       ]);
 
+      console.log("SessionStorage:", sessionStorage.getItem("guestIncomeData"));
+      console.log("Incomes:", incomes);
+      let guestIncome = JSON.parse(sessionStorage.getItem("guestIncomeData"));
+      console.log("Merged Income:", incomes.incomes.concat(guestIncome));
       setUserData({
         incomeData: incomes,
         expenseData: expenses,

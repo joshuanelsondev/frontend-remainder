@@ -1,4 +1,4 @@
-export const formatToIso = (date) => {
+export const formatDateToUtcIsoDate = (date) => {
   if (!(date instanceof Date)) date = new Date(date);
 
   const adjustedDate = new Date(

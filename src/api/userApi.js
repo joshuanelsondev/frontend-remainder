@@ -1,11 +1,11 @@
 import axios from "./axios";
-import { formatToIso } from "../utils/formatDate";
+import { formatDateToUtcIsoDate } from "../utils/formatDate";
 
 export const getCurrentUser = async () => {
   const response = await axios.get("/users/me");
   const userData = response.data;
   if (userData.dateOfBirth) {
-    userData.dateOfBirth = formatToIso(userData.dateOfBirth);
+    userData.dateOfBirth = formatDateToUtcIsoDate(userData.dateOfBirth);
   }
 
   return userData;

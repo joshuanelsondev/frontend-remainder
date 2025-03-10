@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { getCurrentUser, updateUser } from "../../../api/userApi";
-// import { formatToIso } from "../../../utils/formatDate";
 import "./UserSettings.scss";
 
 export default function UserSettings() {
